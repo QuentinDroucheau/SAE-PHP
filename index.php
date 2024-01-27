@@ -1,17 +1,40 @@
 <?php
 
-use form\Form;
-use form\type\RadioButton;
-use form\type\Submit;
-use form\type\Text;
+use controller\ControllerHome;
+use controller\ControllerLogin;
+use route\Route;
 
 require "classes/autoload.php";
 
-$form = new Form("/", Form::GET, "form_id");
-$form->addInput((new Text("", true, "user", "user"))->setLabel("Nom"));
-$form->addInput((new RadioButton("test1", true, "id", "test1"))->setLabel("Test 1"));
-$form->addInput((new RadioButton("test1", true, "id", "test2"))->setLabel("Test 2"));
 
-$form->addInput(new Submit("Valider"));
+$routes = [
+    new Route("/", "GET", ControllerHome::class, "view", []),
+    new Route("/add", "GET", ControllerHome::class, "add", ["t"])
+];
 
-echo $form;
+
+$uri = parse_url($_SERVER["REQUEST_URI"]);
+$method = $_SERVER["REQUEST_METHOD"];
+$url = $uri["path"] ?? "/";
+$role = $_SESSION["utilisateur"]["role"] ?? "user";
+
+$notFound = true;
+
+foreach($routes as $route){
+    if(!($url === $route->getUrl()))continue;
+    if(!($method === $route->getMethod()))continue;
+    if(count($route->getRoles()) > 0 and !in_array($role, $route->getRoles()))continue;
+
+    $controller = $route->getController();
+    $action = $route->getAction();
+
+    (new $controller())->$action();
+
+    $notFound = false;
+
+    break;
+}
+
+if($notFound){
+    header("HTTP/1.0 404 Not Found");   
+}
