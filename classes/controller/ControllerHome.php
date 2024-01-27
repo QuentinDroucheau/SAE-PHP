@@ -5,7 +5,9 @@ namespace controller;
 class ControllerHome extends Controller{
 
     public function view(): void{
-        $this->render("home.php", []);
+        $this->render("test2.php", [
+            "test" => $this->get("test3.php")
+        ]);
     }
 
     public function add(): void{

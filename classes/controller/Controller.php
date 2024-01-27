@@ -15,10 +15,24 @@ abstract class Controller{
      * @param string $view
      * @param array $variale
      */
-    public function render(string $view, array $variable = []){
-        // converti le tableau en variable
+    public function render(string $view, array $variable = []): void{
         extract($variable);
         require "view/".$view;
+    }
+
+    /**
+     * retourne le contenu d'une vue 
+     * utile pour imbriquer des vues entre elles
+     * @param string $view
+     * @param array $variable
+     * @return string
+     */
+    public function get(string $view, array $variable = []): string{
+        ob_start();
+        extract($variable);
+        require "view/".$view;
+        $content = ob_get_clean();
+        return $content;
     }
 
     /**
