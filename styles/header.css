@@ -1,0 +1,150 @@
+:root{
+    --header-height: 70px;
+}
+
+.header{
+    width: 100%;
+    height: var(--header-height);
+    position: fixed;
+    display: flex;
+    z-index: 3;
+    border-bottom: 1px solid var(--couleur3);
+    background-color: white;
+    flex-wrap: wrap;
+}
+
+.page{
+    margin-top: var(--header-height);
+}
+
+.header .search-bar input{
+    height: 40px;
+    width: 300px;
+    background-color: var(--couleur3);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: none;
+    border-right: 1px solid var(--couleur4);
+    border-bottom: 1px solid var(--couleur4);
+    border-top: 1px solid var(--couleur4);
+}
+
+.header .search-bar input:focus{
+    outline: none;
+}
+
+.logo{
+    height: 25px;
+    width: 170px;
+    margin-right: 20px;
+}
+
+.header .left{
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.icon_search{
+    height: 40px;
+    width: 40px;
+    background-color: var(--couleur3);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 1px solid var(--couleur4);
+    border-bottom: 1px solid var(--couleur4);
+    border-top: 1px solid var(--couleur4);
+}
+
+.icon_search img{
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+}
+
+.header .left div{
+    display: flex;
+}
+
+.header .left .container{
+    align-items: center;
+}
+
+.header .right{
+    display: flex;
+    flex-basis: 300px;
+    align-items: center;
+}
+
+.header .right .notif-icon{
+    height: 35px;
+    width: 30px;
+}
+
+.header .right .notif{
+    margin-right: 10%;
+    margin-left: 25px;
+    display: flex;
+}
+
+.header .right .profil{
+    display: flex;
+    height: 40px;
+    background-color: var(--couleur1);
+    border-radius: 10px;
+    align-items: center;
+}
+
+.header .right .profil a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    margin: 0 10%;
+}
+
+.header .right .notif .nb-notif{
+    position: relative;
+    left: -10px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 20px;
+    background-color: var(--couleur1);
+    border-radius: 50%;
+}
+
+header .right .notif .nb-notif p{
+    color: white;
+    font-size: 10px;
+}
+
+.profil-icon{
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    background-color: var(--couleur3);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.publier a{
+    text-decoration: none;
+    color: var(--couleur4);
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.icon_publier{
+    height: 20px;
+    width: 20px;
+}
+
+.publier{
+    background-color: var(--couleur3);
+    border-radius: 7px;
+    padding: 8px 12px;
+}

@@ -1,0 +1,219 @@
+.menu-close{
+    display: none;
+    height: 100%;
+    position: fixed;
+    width: 50px;
+    background-color: var(--couleur2);
+    right: 0;
+    border-left: 1px solid var(--couleur3);
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.menu-open{
+    height: 100%;
+    position: fixed;
+    width: 320px;
+    background-color: var(--couleur2);
+    right: 0;
+    border-left: 1px solid var(--couleur3);
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.menu{
+    height: 100%;
+    position: fixed;
+    width: 320px;
+    background-color: var(--couleur2);
+    right: 0;
+    border-left: 1px solid var(--couleur3);
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.scroll-1 .element{
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.scroll-1 .elements{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
+.scroll-2 .element{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}   
+
+.pochette{
+    width: 120px;
+    height: 120px;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.page{
+    margin-right: 350px;
+}
+
+.title-info{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.menu, .menu-open, .menu-close{
+    padding-top: 50px;
+}
+
+.scroll-1 .icon{
+    height: 15px;
+    width: 15px;
+}
+
+.scroll-2 .icon{
+    height: 60px;
+    width: 60px;
+}
+
+.scroll-2 .info{
+    margin-left: 20px;
+}
+
+.scroll-1{
+    overflow-y: scroll;
+    height: 50%;
+    margin-left: 25px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    scrollbar-color: var(--couleur1) var(--couleur3);
+}
+
+.scroll-2{
+    margin-top: 20px;
+    overflow-y: scroll;
+    height: 40%;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid black;
+}
+
+.button{
+    background-color: var(--couleur1);
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.scroll-1 ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 20px 0;
+}
+
+.menu-header li{
+    margin: 15px;
+}
+
+.menu-header li .icon{
+    margin-right: 15px;
+    position: relative;
+    bottom: -3px;
+}
+
+.scroll-1 li{
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+.scroll-1 a{
+    text-decoration: none;
+}
+
+.menu-header{
+    height: 130px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.menu-header ul{
+    list-style: none;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+.menu-header a{
+    text-decoration: none;
+    color: var(--couleur4);
+    font-weight: bold;
+}
+
+.menu-header{
+    border-bottom: 1px solid var(--couleur3);
+}
+
+.playlist-button{
+    background-color: var(--couleur1);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 2px solid black;
+    color: white;
+}
+
+.plus-button{
+    height: 40px;
+    width: 40px;
+}
+
+.icon_musique {
+    position: relative;
+    left: -10px;
+}
+
+.scroll-1 ul{
+    align-items: center;
+}
+
+.button-close{
+    display: none;
+}
+
+/* quand la fenetre est trop petite */
+@media only screen and (max-width: 1200px){
+    /* enlève le menu */
+    .menu {
+        display: none;
+    }
+    /* affiche le bouton pour fermer le menu */
+    .button-close{
+        display: block;
+    }
+    .page{
+        margin-right: 50px;
+    }
+    .menu-close{
+        display: block;
+    }
+}
