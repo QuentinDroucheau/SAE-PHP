@@ -17,7 +17,7 @@ try {
     $data = parseYAML($yamlContent);
 
     // Connexion à la base de données SQLite
-    $db = new PDO('sqlite:bd/database.sqlite3');
+    $db = new PDO('sqlite:db/database.sqlite3');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Boucle sur les données YAML et insertion dans la base de données
