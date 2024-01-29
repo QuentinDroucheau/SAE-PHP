@@ -6,11 +6,11 @@
   musiques: 
     - idM: 1
       nomG: Rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Head Trip in Every Key
     - idM: 2
       nomG: Punk
-      lienM: blablabla.mp3
+      lienM:
       nomM: Last Call for Vitriol
 - nomA: 16 Horsepower
   idAlbum: 10575
@@ -20,11 +20,11 @@
   musiques:
     - idM: 3
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: Sackcloth 'n' Ashes
     - idM: 4
       nomG: Neofolk
-      lienM: blablabla.mp3
+      lienM:
       nomM: Secret South
 - nomA: Ryan Adams
   idAlbum: 10637
@@ -34,7 +34,7 @@
   musiques:
     - idM: 5
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: Heartbreaker
     - idM: 6
       nomG: Country
@@ -48,15 +48,15 @@
   musiques:
     - idM: 7
       nomG: Rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Danse with the One That Brought You Here
     - idM: 8
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: Road to Nowhere
     - idM: 9
       nomG: Pop rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Prisoner of Love
 - nomA: Whiskeytown
   idAlbum: 10660
@@ -66,7 +66,7 @@
   musiques:
     - idM: 10
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: Pneumonia
 - nomA: Jesse Malin
   idAlbum: 10668
@@ -76,15 +76,15 @@
   musiques:
     - idM: 11
       nomG: 
-      lienM: blablabla.mp3
+      lienM:
       nomM: Queen of the Underworld
     - idM: 12
       nomG: 
-      lienM: blablabla.mp3
+      lienM:
       nomM: TKO
     - idM: 13
       nomG: 
-      lienM: blablabla.mp3
+      lienM:
       nomM: Wendy and Lucy (Live)
 - nomA: The Finger
   idAlbum: 10669
@@ -94,7 +94,7 @@
   musiques:
     - idM: 14
       nomG: Rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Are Fuck You
 - nomA: Ryan Adams
   idAlbum: 10675
@@ -104,7 +104,7 @@
   musiques:
     - idM: 15
       nomG: Rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: I'm Not Your Jesus
 - nomA: Joan Baez
   idAlbum: 10679
@@ -114,7 +114,7 @@
   musiques:
     -  idM: 16
        nomG: Rock
-       lienM: blablabla.mp3
+       lienM:
        nomM: When I Paint My Masterpiece
 - nomA: Willie Nelson
   idAlbum: 10697
@@ -124,7 +124,7 @@
   musiques:
     - idM: 18
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: The Mystery of Life
 - nomA: Cowboy Junkies
   idAlbum: 10707
@@ -134,11 +134,11 @@
   musiques:
     - idM: 19
       nomG: Country rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: You Don't Own Me
     - idM: 20
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: I'm So Open
 - nomA: Ryan Adams
   idAlbum: 10714
@@ -148,11 +148,11 @@
   musiques:
     - idM: 21
       nomG: Heavy metal
-      lienM: blablabla.mp3
+      lienM:
       nomM: Electrosnake
     - idM: 22
       nomG: hard rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Fire and Ice
 - nomA: Whiskeytown
   idAlbum: 10770
@@ -162,7 +162,7 @@
   musiques:
     - idM: 23
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: Forever Valentine
 - nomA: Alabama Shakes
   idAlbum: 10809
@@ -172,27 +172,27 @@
   musiques:
     - idM: 24
       nomG: Blues rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Don't Wanna Fight
     - idM: 25
       nomG: roots rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Gimme All Your Love
     - idM: 26
       nomG: soul
-      lienM: blablabla.mp3
+      lienM:
       nomM: This Feeling (Can't Get Over You)
     - idM: 27
       nomG: Southern rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Future People
     - idM: 28
       nomG: garage rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Guess Who
     - idM: 29
       nomG: Americana
-      lienM: blablabla.mp3
+      lienM:
       nomM: The Greatest Show on Earth
 - nomA: Terry Allen
   idAlbum: 10890
@@ -202,7 +202,7 @@
   musiques:
     - idM: 30
       nomG: Country
-      lienM: blablabla.mp3
+      lienM:
       nomM: Amarillo Highway (For Dave Hickey)
 - nomA: Terry Allen
   idAlbum: 10893
@@ -212,7 +212,7 @@
   musiques:
     - idM: 31
       nomG: Country
-      lienM: blablabla.mp3
+      lienM:
       nomM: Border Palace
 - nomA: Terry Allen
   idAlbum: 10895
@@ -222,7 +222,7 @@
   musiques:
     - idM: 32
       nomG: Country
-      lienM: blablabla.mp3
+      lienM:
       nomM: The Beautiful Waitress
 - nomA: Terry Allen
   idAlbum: 10899
@@ -232,7 +232,7 @@
   musiques:
     - idM: 33
       nomG: Country
-      lienM: blablabla.mp3
+      lienM:
       nomM: The Gift of Your Love
 - nomA: X
   idAlbum: 10913
@@ -242,11 +242,11 @@
   musiques:
     - idM: 34
       nomG: Alternative rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: I'm Lost
     - idM: 35
       nomG: Alternative country
-      lienM: blablabla.mp3
+      lienM:
       nomM: 4th of July (Tonight)
 - nomA: Dave Alvin
   idAlbum: 10919
@@ -256,9 +256,9 @@
   musiques:
     - idM: 36
       nomG: Folk rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Harlan County Line
     - idM: 37
       nomG: country rock
-      lienM: blablabla.mp3
+      lienM:
       nomM: Johnny Ace Is Dead
