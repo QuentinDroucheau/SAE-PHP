@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS artiste (
 CREATE TABLE IF NOT EXISTS composer (
   idP INTEGER NOT NULL,
   idM INTEGER NOT NULL,
+  dateAjout INTEGER NOT NULL,
   PRIMARY KEY (idP, idM),
   FOREIGN KEY (idM) REFERENCES musique (idM),
   FOREIGN KEY (idP) REFERENCES playlist (idP)
@@ -43,12 +44,13 @@ CREATE TABLE IF NOT EXISTS genre (
   idG INTEGER NOT NULL,
   nomG TEXT,
   PRIMARY KEY (idG)
-);
+);s
 
 CREATE TABLE IF NOT EXISTS musique (
   idM INTEGER NOT NULL,
   nomM TEXT,
   lienM TEXT,
+  dateP INTEGER NOT NULL;
   idAlbum INTEGER NOT NULL,
   PRIMARY KEY (idM),
   FOREIGN KEY (idAlbum) REFERENCES album (idAlbum)
@@ -57,7 +59,7 @@ CREATE TABLE IF NOT EXISTS musique (
 CREATE TABLE IF NOT EXISTS noter (
   idU INTEGER NOT NULL,
   idAlbum INTEGER NOT NULL,
-  note INTEGER,
+  note FLOAT,
   PRIMARY KEY (idU, idAlbum),
   FOREIGN KEY (idAlbum) REFERENCES album (idAlbum),
   FOREIGN KEY (idU) REFERENCES utilisateur (idU)
@@ -66,6 +68,8 @@ CREATE TABLE IF NOT EXISTS noter (
 CREATE TABLE IF NOT EXISTS playlist (
   idP INTEGER NOT NULL,
   nomP TEXT,
+  imgPlaylist TEXT,
+  descriptionP TEXT,
   idU INTEGER NOT NULL,
   PRIMARY KEY (idP),
   FOREIGN KEY (idU) REFERENCES utilisateur (idU)
@@ -77,4 +81,14 @@ CREATE TABLE IF NOT EXISTS utilisateur (
   mdpU TEXT,
   roleU TEXT,
   PRIMARY KEY (idU)
+);
+
+-- pour avoir la fonctionnalité du nombre d'abonnées qu'a un artiste
+-- pour avoir une liste des musiques des artistes que l'utilisateur écoute (est abonnée)
+CREATE TABLE IF NOT EXISTS abonnement (
+  idU INTEGER NOT NULL,
+  idA INTEGER NOT NULL,
+  PRIMARY KEY (idU, idA),
+  FOREIGN KEY (idA) REFERENCES artiste (idA),
+  FOREIGN KEY (idU) REFERENCES utilisateur (idU)
 );
