@@ -1,14 +1,14 @@
 <?php
 
-require_once 'bd/Spyc.php';
+require_once 'db/Spyc.php';
 
 function parseYAML($yamlContent) {
     return Spyc::YAMLLoadString($yamlContent);
 }
 
 try {
-    $sql = file_get_contents("bd/table.sql");
-    $db = new \PDO("sqlite:bd/database.sqlite3");
+    $sql = file_get_contents("db/table.sql");
+    $db = new \PDO("sqlite:db/database.sqlite3");
     $db->exec($sql);
     $db = null;
 

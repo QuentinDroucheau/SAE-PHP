@@ -44,13 +44,13 @@ CREATE TABLE IF NOT EXISTS genre (
   idG INTEGER NOT NULL,
   nomG TEXT,
   PRIMARY KEY (idG)
-);s
+);
 
 CREATE TABLE IF NOT EXISTS musique (
   idM INTEGER NOT NULL,
   nomM TEXT,
   lienM TEXT,
-  dateP INTEGER NOT NULL;
+  dateP INTEGER NOT NULL,
   idAlbum INTEGER NOT NULL,
   PRIMARY KEY (idM),
   FOREIGN KEY (idAlbum) REFERENCES album (idAlbum)
