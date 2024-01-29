@@ -3,7 +3,6 @@ CREATE TABLE IF NOT EXISTS album (
   anneeAlbum INTEGER,
   titreAlbum TEXT,
   imgAlbum TEXT,
-  noteAlbum FLOAT,
   idA INTEGER NOT NULL,
   PRIMARY KEY (idAlbum),
   FOREIGN KEY (idA) REFERENCES artiste (idA)
@@ -18,7 +17,7 @@ CREATE TABLE IF NOT EXISTS artiste (
 CREATE TABLE IF NOT EXISTS composer (
   idP INTEGER NOT NULL,
   idM INTEGER NOT NULL,
-  dateAjout DATE NOT NULL,
+  dateAjout INTEGER NOT NULL,
   PRIMARY KEY (idP, idM),
   FOREIGN KEY (idM) REFERENCES musique (idM),
   FOREIGN KEY (idP) REFERENCES playlist (idP)
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS musique (
   idM INTEGER NOT NULL,
   nomM TEXT,
   lienM TEXT,
-  dateP DATE NOT NULL;
+  dateP INTEGER NOT NULL;
   idAlbum INTEGER NOT NULL,
   PRIMARY KEY (idM),
   FOREIGN KEY (idAlbum) REFERENCES album (idAlbum)
@@ -60,7 +59,7 @@ CREATE TABLE IF NOT EXISTS musique (
 CREATE TABLE IF NOT EXISTS noter (
   idU INTEGER NOT NULL,
   idAlbum INTEGER NOT NULL,
-  note INTEGER,
+  note FLOAT,
   PRIMARY KEY (idU, idAlbum),
   FOREIGN KEY (idAlbum) REFERENCES album (idAlbum),
   FOREIGN KEY (idU) REFERENCES utilisateur (idU)

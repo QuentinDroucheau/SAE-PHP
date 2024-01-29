@@ -1,4 +1,6 @@
 <?php 
+// 2 méthodes
+
 
 namespace controller;
 
