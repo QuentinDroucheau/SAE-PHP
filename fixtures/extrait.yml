@@ -1,140 +1,264 @@
-- by: Superdrag
-  entryId: 67913
-  genre: [Rock, Punk]
-  img: Superdrag-Stereo_360_Sound.jpg
-  parent: Superdrag
-  releaseYear: 1998
-  title: Stereo 360 Sound
-- by: 16 Horsepower
-  entryId: 10575
-  genre: [Alternative country, neofolk]
-  img: 220px-Folklore_hp.jpg
-  parent: 16 Horsepower
-  releaseYear: 2002
-  title: Folklore
-- by: Ryan Adams
-  entryId: 10637
-  genre: [Alternative country, country]
-  img: 220px-RyanAdamsHeartbreaker.jpg
-  parent: Ryan Adams
-  releaseYear: 2000
-  title: Heartbreaker
-- by: Ryan Adams
-  entryId: 10644
-  genre: [Rock, alternative country, pop rock]
-  img: 220px-Ryanadamsselftitled.jpg
-  parent: Ryan Adams
-  releaseYear: 2014
-  title: Ryan Adams
-- by: Whiskeytown
-  entryId: 10660
-  genre: [Alternative country]
-  img: 220px-WhiskeytownPneumonia.jpg
-  parent: Ryan Adams
-  releaseYear: 2001
-  title: Pneumonia
-- by: Jesse Malin
-  entryId: 10668
-  genre: []
-  img: The_Fine_Art_of_Self_Destruction.jpg
-  parent: Ryan Adams
-  releaseYear: 2002
-  title: The Fine Art of Self Destruction
-- by: The Finger
-  entryId: 10669
-  genre: []
-  img: null
-  parent: Ryan Adams
-  releaseYear: 2003
-  title: We Are Fuck You
-- by: Ryan Adams
-  entryId: 10675
-  genre: [Alternative country]
-  img: 220px-Love_Is_Hell.jpg
-  parent: Ryan Adams
-  releaseYear: 2004
-  title: Love Is Hell
-- by: Joan Baez
-  entryId: 10679
-  genre: [Folk]
-  img: 220px-DarkChords.jpg
-  parent: Ryan Adams
-  releaseYear: 2003
-  title: Dark Chords on a Big Guitar
-- by: Willie Nelson
-  entryId: 10697
-  genre: [Alternative country]
-  img: 220px-Songbird_Willie_Nelson.jpg
-  parent: Ryan Adams
-  releaseYear: 2006
-  title: Songbird
-- by: Cowboy Junkies
-  entryId: 10707
-  genre: [Country rock, Alternative country]
-  img: 220px-Trinityrevisited.jpg
-  parent: Ryan Adams
-  releaseYear: 2007
-  title: Trinity Revisited
-- by: Ryan Adams
-  entryId: 10714
-  genre: [Heavy metal, hard rock]
-  img: 220px-Ryan-adams-orion.jpg
-  parent: Ryan Adams
-  releaseYear: 2010
-  title: Orion
-- by: Whiskeytown
-  entryId: 10770
-  genre: [Alternative country]
-  img: null
-  parent: Ryan Adams
-  releaseYear: 0
-  title: Forever Valentine
-- by: Alabama Shakes
-  entryId: 10809
-  genre: [Blues rock, roots rock, soul, Southern rock, garage rock, Americana]
-  img: 220px-Alabama_Shakes_-_Sound_%26_Color_album_cover.jpg
-  parent: Alabama Shakes
-  releaseYear: 2015
-  title: Sound & Color
-- by: Terry Allen
-  entryId: 10890
-  genre: [Country]
-  img: Terry_Allen_Lubbock%28on_everything%29.jpg
-  parent: Terry Allen (country singer)
-  releaseYear: 1979
-  title: Lubbock
-- by: Terry Allen
-  entryId: 10893
-  genre: [Country]
-  img: TerryAllen_Juarez.jpg
-  parent: Terry Allen (country singer)
-  releaseYear: 1975
-  title: Juarez
-- by: Terry Allen
-  entryId: 10895
-  genre: [Country]
-  img: Terry_Allen_Pedal_Steal.jpg
-  parent: Terry Allen (country singer)
-  releaseYear: 1985
-  title: Pedal Steal
-- by: Terry Allen
-  entryId: 10899
-  genre: [Country]
-  img: Terry_Allen_Human_Remains.jpg
-  parent: Terry Allen (country singer)
-  releaseYear: 1996
-  title: Human Remains
-- by: X
-  entryId: 10913
-  genre: [Alternative rock, alternative country]
-  img: XSeeHowWeAre.jpg
-  parent: Dave Alvin
-  releaseYear: 1987
-  title: See How We Are
-- by: Dave Alvin
-  entryId: 10919
-  genre: [Folk rock, country rock]
-  img: null
-  parent: Dave Alvin
-  releaseYear: 2011
-  title: Eleven Eleven
+- nomA: Superdrag
+  idAlbum: 67913
+  imgAlbum: Superdrag-Stereo_360_Sound.jpg
+  anneeAlbum: 1998
+  titreAlbum: Stereo 360 Sound
+  musiques: 
+    - idM: 1
+      nomG: Rock
+      lienM:
+      nomM: Head Trip in Every Key
+    - idM: 2
+      nomG: Punk
+      lienM:
+      nomM: Last Call for Vitriol
+- nomA: 16 Horsepower
+  idAlbum: 10575
+  imgAlbum: 220px-Folklore_hp.jpg
+  anneeAlbum: 2002
+  titreAlbum: Folklore
+  musiques:
+    - idM: 3
+      nomG: Alternative country
+      lienM:
+      nomM: Sackcloth 'n' Ashes
+    - idM: 4
+      nomG: Neofolk
+      lienM:
+      nomM: Secret South
+- nomA: Ryan Adams
+  idAlbum: 10637
+  imgAlbum: 220px-RyanAdamsHeartbreaker.jpg
+  anneeAlbum: 2000
+  titreAlbum: Heartbreaker
+  musiques:
+    - idM: 5
+      nomG: Alternative country
+      lienM:
+      nomM: Heartbreaker
+    - idM: 6
+      nomG: Country
+      lienMM: blablabla.mp3
+      nomM: Gold
+- nomA: Ryan Adams
+  idAlbum: 10644
+  imgAlbum: 220px-RyanadamsselftitreAlbumd.jpg
+  anneeAlbum: 2014
+  titreAlbum: Ryan Adams
+  musiques:
+    - idM: 7
+      nomG: Rock
+      lienM:
+      nomM: Danse with the One That Brought You Here
+    - idM: 8
+      nomG: Alternative country
+      lienM:
+      nomM: Road to Nowhere
+    - idM: 9
+      nomG: Pop rock
+      lienM:
+      nomM: Prisoner of Love
+- nomA: Whiskeytown
+  idAlbum: 10660
+  imgAlbum: 220px-WhiskeytownPneumonia.jpg
+  anneeAlbum: 2001
+  titreAlbum: Pneumonia
+  musiques:
+    - idM: 10
+      nomG: Alternative country
+      lienM:
+      nomM: Pneumonia
+- nomA: Jesse Malin
+  idAlbum: 10668
+  imgAlbum: The_Fine_Art_of_Self_Destruction.jpg
+  anneeAlbum: 2002
+  titreAlbum: The Fine Art of Self Destruction
+  musiques:
+    - idM: 11
+      nomG: 
+      lienM:
+      nomM: Queen of the Underworld
+    - idM: 12
+      nomG: 
+      lienM:
+      nomM: TKO
+    - idM: 13
+      nomG: 
+      lienM:
+      nomM: Wendy and Lucy (Live)
+- nomA: The Finger
+  idAlbum: 10669
+  imgAlbum: null
+  anneeAlbum: 2003
+  titreAlbum: We Are Fuck You
+  musiques:
+    - idM: 14
+      nomG: Rock
+      lienM:
+      nomM: Are Fuck You
+- nomA: Ryan Adams
+  idAlbum: 10675
+  imgAlbum: 220px-Love_Is_Hell.jpg
+  anneeAlbum: 2004
+  titreAlbum: Love Is Hell
+  musiques:
+    - idM: 15
+      nomG: Rock
+      lienM:
+      nomM: I'm Not Your Jesus
+- nomA: Joan Baez
+  idAlbum: 10679
+  imgAlbum: 220px-DarkChords.jpg
+  anneeAlbum: 2003
+  titreAlbum: Dark Chords on a Big Guitar
+  musiques:
+    -  idM: 16
+       nomG: Rock
+       lienM:
+       nomM: When I Paint My Masterpiece
+- nomA: Willie Nelson
+  idAlbum: 10697
+  imgAlbum: 220px-Songbird_Willie_Nelson.jpg
+  anneeAlbum: 2006
+  titreAlbum: Songbird
+  musiques:
+    - idM: 18
+      nomG: Alternative country
+      lienM:
+      nomM: The Mystery of Life
+- nomA: Cowboy Junkies
+  idAlbum: 10707
+  imgAlbum: 220px-Trinityrevisited.jpg
+  anneeAlbum: 2007
+  titreAlbum: Trinity Revisited
+  musiques:
+    - idM: 19
+      nomG: Country rock
+      lienM:
+      nomM: You Don't Own Me
+    - idM: 20
+      nomG: Alternative country
+      lienM:
+      nomM: I'm So Open
+- nomA: Ryan Adams
+  idAlbum: 10714
+  imgAlbum: 220px-Ryan-adams-orion.jpg
+  anneeAlbum: 2010
+  titreAlbum: Orion
+  musiques:
+    - idM: 21
+      nomG: Heavy metal
+      lienM:
+      nomM: Electrosnake
+    - idM: 22
+      nomG: hard rock
+      lienM:
+      nomM: Fire and Ice
+- nomA: Whiskeytown
+  idAlbum: 10770
+  imgAlbum: null
+  anneeAlbum: 0
+  titreAlbum: Forever Valentine
+  musiques:
+    - idM: 23
+      nomG: Alternative country
+      lienM:
+      nomM: Forever Valentine
+- nomA: Alabama Shakes
+  idAlbum: 10809
+  imgAlbum: 220px-Alabama_Shakes_-_Sound_%26_Color_album_cover.jpg
+  anneeAlbum: 2015
+  titreAlbum: Sound & Color
+  musiques:
+    - idM: 24
+      nomG: Blues rock
+      lienM:
+      nomM: Don't Wanna Fight
+    - idM: 25
+      nomG: roots rock
+      lienM:
+      nomM: Gimme All Your Love
+    - idM: 26
+      nomG: soul
+      lienM:
+      nomM: This Feeling (Can't Get Over You)
+    - idM: 27
+      nomG: Southern rock
+      lienM:
+      nomM: Future People
+    - idM: 28
+      nomG: garage rock
+      lienM:
+      nomM: Guess Who
+    - idM: 29
+      nomG: Americana
+      lienM:
+      nomM: The Greatest Show on Earth
+- nomA: Terry Allen
+  idAlbum: 10890
+  imgAlbum: Terry_Allen_Lubbock%28on_everything%29.jpg
+  anneeAlbum: 1979
+  titreAlbum: Lubbock
+  musiques:
+    - idM: 30
+      nomG: Country
+      lienM:
+      nomM: Amarillo Highway (For Dave Hickey)
+- nomA: Terry Allen
+  idAlbum: 10893
+  imgAlbum: TerryAllen_Juarez.jpg
+  anneeAlbum: 1975
+  titreAlbum: Juarez
+  musiques:
+    - idM: 31
+      nomG: Country
+      lienM:
+      nomM: Border Palace
+- nomA: Terry Allen
+  idAlbum: 10895
+  imgAlbum: Terry_Allen_Pedal_Steal.jpg
+  anneeAlbum: 1985
+  titreAlbum: Pedal Steal
+  musiques:
+    - idM: 32
+      nomG: Country
+      lienM:
+      nomM: The Beautiful Waitress
+- nomA: Terry Allen
+  idAlbum: 10899
+  imgAlbum: Terry_Allen_Human_Remains.jpg
+  anneeAlbum: 1996
+  titreAlbum: Human Remains
+  musiques:
+    - idM: 33
+      nomG: Country
+      lienM:
+      nomM: The Gift of Your Love
+- nomA: X
+  idAlbum: 10913
+  imgAlbum: XSeeHowWeAre.jpg
+  anneeAlbum: 1987
+  titreAlbum: See How We Are
+  musiques:
+    - idM: 34
+      nomG: Alternative rock
+      lienM:
+      nomM: I'm Lost
+    - idM: 35
+      nomG: Alternative country
+      lienM:
+      nomM: 4th of July (Tonight)
+- nomA: Dave Alvin
+  idAlbum: 10919
+  imgAlbum: null
+  anneeAlbum: 2011
+  titreAlbum: Eleven Eleven
+  musiques:
+    - idM: 36
+      nomG: Folk rock
+      lienM:
+      nomM: Harlan County Line
+    - idM: 37
+      nomG: country rock
+      lienM:
+      nomM: Johnny Ace Is Dead
