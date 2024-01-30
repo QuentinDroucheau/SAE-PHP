@@ -3,14 +3,12 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
     padding: 3rem;
 }
 
 .img-artiste {
     margin-right: 5rem;
+    margin-left: 2rem;
     flex-basis: 40%;
     flex-grow: 0;
     display: flex;
@@ -74,4 +72,32 @@
     align-items: center;
 }
 
+.musiques {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 3rem;
+}
 
+.musiques h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.derniere-sortie {
+    flex-basis: 50%;
+    flex-grow: 0;
+}
+
+.derniere-sortie img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.derniere-sortie div {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
