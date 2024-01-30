@@ -9,7 +9,7 @@ class Album{
     private int $id,
     private string $titreAlbum,
     private int $anneeAlbum,
-    private string $imageAlbum,
+    private ?string $imageAlbum, // certains albums n'ont pas d'image
     public Artiste $artiste,
     public array $musiques = []
     
@@ -30,6 +30,6 @@ class Album{
   }
 
   public function getImageAlbum(): string{
-    return $this->imageAlbum;
-  }
+    return ($this->imageAlbum ? "fixtures//images/" . $this->imageAlbum : "../../img/default_album.png");
+}
 }

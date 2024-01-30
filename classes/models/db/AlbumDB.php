@@ -47,7 +47,7 @@ class AlbumDB {
         foreach ($result as $r) {
             if (!$album) {
                 $artiste = new Artiste($r["idA"], $r["nomA"]);
-                $album = new Album($r["idAlbum"], $r["titreAlbum"], $r["anneeAlbum"], "imgAlbum", $artiste, []);
+                $album = new Album($r["idAlbum"], $r["titreAlbum"], $r["anneeAlbum"], $r["imgAlbum"], $artiste, []);
             }
     
             if ($r["idM"]) {
@@ -80,7 +80,7 @@ class AlbumDB {
             $idAlbum = $s["idAlbum"];
             if (!isset($albums[$idAlbum])) {
                 $artiste = new Artiste($s["idA"], $s["nomA"]);
-                $album = new Album($s["idAlbum"], $s["titreAlbum"], $s["anneeAlbum"], "", $artiste, []);
+                $album = new Album($s["idAlbum"], $s["titreAlbum"], $s["anneeAlbum"], $s["imgAlbum"], $artiste, []);
                 $albums[$idAlbum] = $album;
             }
 
