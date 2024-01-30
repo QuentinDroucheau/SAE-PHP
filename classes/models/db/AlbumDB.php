@@ -58,16 +58,29 @@ class AlbumDB {
         return $album;
     }
     
-    public static function getInfosCardsAlbum(): array {
+    public static function getInfosCardsAlbum(string $category): array {
         $db = Database::getInstance();
-        $stmt = $db->query("SELECT album.*, artiste.*, musique.* FROM album JOIN artiste ON album.idA = artiste.idA LEFT JOIN musique ON musique.idAlbum = album.idAlbum ORDER BY album.idAlbum");
+        $conditions = '';
+        switch ($category) {
+            case 'recents':
+                $conditions = 'ORDER BY album.anneeAlbum DESC';
+                break;
+            case 'populaires':
+                // a faire quand on aura le nb d'écoute
+                break;
+            default:
+                $conditions = "ORDER BY album.idAlbum DESC";
+                break;
+        }
+
+        $stmt = $db->query("SELECT album.*, artiste.*, musique.* FROM album JOIN artiste ON album.idA = artiste.idA LEFT JOIN musique ON musique.idAlbum = album.idAlbum $conditions");
         $albums = [];
 
         foreach ($stmt as $s) {
             $idAlbum = $s["idAlbum"];
             if (!isset($albums[$idAlbum])) {
                 $artiste = new Artiste($s["idA"], $s["nomA"]);
-                $album = new Album($s["idAlbum"], $s["titreAlbum"], $s["anneeAlbum"], "imgAlbum", $artiste, []);
+                $album = new Album($s["idAlbum"], $s["titreAlbum"], $s["anneeAlbum"], "", $artiste, []);
                 $albums[$idAlbum] = $album;
             }
 
