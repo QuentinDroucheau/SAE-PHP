@@ -43,4 +43,30 @@ class MusiqueDB{
         $stmt->bindParam(":lien", $musique->getLien());
         return $stmt->execute();
     }
+
+    /**
+     * @return Musique[]
+     */
+    public static function getMusiquesAlbum(int $id): array{
+        $db = Database::getInstance();
+        $musiques = [];
+        $result = $db->query("SELECT * FROM musique WHERE idAlbum = $id");
+        foreach($result as $r){
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+        }
+        return $musiques;
+    }
+
+    /**
+     * @return Musique[]
+     */
+    public static function getMusiquesArtiste(int $id): array{
+        $db = Database::getInstance();
+        $musiques = [];
+        $result = $db->query("SELECT * FROM musique WHERE idA = $id");
+        foreach($result as $r){
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+        }
+        return $musiques;
+    }
 }

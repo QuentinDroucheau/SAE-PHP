@@ -16,11 +16,7 @@
             </p>
             <div>
                 <?php
-                foreach ($albums as $album){
-                    foreach ($musique as $key => $value){
-                        echo "<p>$key : $value</p>";
-                    }
-                }
+                
                 ?>
             </div>
             <div>
