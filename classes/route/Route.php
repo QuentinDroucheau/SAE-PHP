@@ -9,7 +9,8 @@ class Route{
         private string $method,
         private string $controller,
         private string $action,
-        private array $roles = []
+        private array $roles = [],
+        private array $params = []
     ){}
 
     public function getController(): string{
@@ -30,5 +31,9 @@ class Route{
 
     public function getRoles(): array{
         return $this->roles;
+    }
+
+    public function getParams(): array{
+        return $this->params;
     }
 }

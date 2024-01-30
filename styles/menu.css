@@ -71,7 +71,7 @@
 }
 
 .page{
-    margin-right: 350px;
+    margin-right: 320px;
 }
 
 .title-info{
@@ -178,7 +178,6 @@
     background-color: var(--couleur1);
     padding: 8px 12px;
     border-radius: 10px;
-    border: 2px solid black;
     color: white;
 }
 
