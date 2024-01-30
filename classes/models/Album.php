@@ -9,7 +9,13 @@ class Album{
     private int $id,
     private string $titreAlbum,
     private int $anneeAlbum,
-    private string $imageAlbum
+    private string $imageAlbum,
+    public Artiste $artiste,
+    public array $musiques = []
+    
+
+
+
   ){}
   public function getId(): int{
     return $this->id;

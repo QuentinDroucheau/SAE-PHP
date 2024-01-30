@@ -1,14 +1,18 @@
 <?php 
 // 2 méthodes
 
-
 namespace controller;
+use models\db\AlbumDB;
+
 
 class ControllerHome extends Controller{
-
+    
     public function view(): void{
-        $this->render("test2", [
-            "test" => $this->get("test3")
+        $lesAlbums = AlbumDB::getInfosCardsAlbum();
+        $this->render("base", [
+            "header" => $this->get("element/header"),
+            "content" => $this->get("test3", ["lesAlbums" => $lesAlbums]),
+            "menu" => $this->get("element/menu"),
         ]);
     }
 

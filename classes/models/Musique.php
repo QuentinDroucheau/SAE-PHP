@@ -7,7 +7,7 @@ class Musique{
     public function __construct(
         private int $id, 
         private string $nom,
-        private int $lien
+        private string $lien
     ){}
 
     public function getId(){
