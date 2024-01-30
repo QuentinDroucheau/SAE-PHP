@@ -3,6 +3,7 @@
 use controller\ControllerHome;
 use controller\ControllerLogin;
 use controller\ControllerTest;
+use controller\ControllerArtiste;
 use route\Route;
 
 require "classes/autoload.php";
@@ -11,7 +12,8 @@ require "classes/autoload.php";
 $routes = [
     new Route("/", "GET", ControllerHome::class, "view", []),
     new Route("/add", "GET", ControllerHome::class, "add", ["t"]),
-    new Route("/test", "GET", ControllerTest::class, "view")
+    new Route("/test", "GET", ControllerTest::class, "view"),
+    new Route("/artiste", "GET", ControllerArtiste::class, "view")
 ];
 
 

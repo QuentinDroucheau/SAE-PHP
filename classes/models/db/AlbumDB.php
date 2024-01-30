@@ -27,7 +27,7 @@ class AlbumDB {
         $result = $db->query("SELECT * FROM album WHERE idAlbum = $id");
         $r = $result->fetch();
         if($r) {
-            return new Album($r["idAlbum"], $r["titreAlbum"], $r["anneeAlbum"], $r["imageAlbum"]);
+            return new Album($r["idAlbum"], $r["titreAlbum"], $r["anneeAlbum"], "");
         }
         return null;
     }
@@ -47,5 +47,16 @@ class AlbumDB {
         return $stmt->execute();
     }
 
-
+    /**
+     * @return Album[]
+     */
+    public static function getAlbumsArtiste(int $id): array {
+        $db = Database::getInstance();
+        $albums = [];
+        $result = $db->query("SELECT * FROM album WHERE idA = $id");
+        foreach($result as $r) {
+            $albums[] = new Album($r["idAlbum"], $r["titreAlbum"], $r["anneeAlbum"], "");
+        }
+        return $albums;
+    }
 }

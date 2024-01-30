@@ -1,4 +1,7 @@
 <?php
+
+namespace models;
+
 class Genre {
   public function __construct(
       private int $id,

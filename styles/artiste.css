@@ -1,0 +1,103 @@
+.infos-artistes {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.img-artiste {
+    margin-right: 5rem;
+    margin-left: 2rem;
+    flex-basis: 40%;
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.img-artiste img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.infos-artistes h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.infos-artistes p {
+    font-weight: 400;
+}
+
+.infos-artistes button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.infos-artistes button:hover {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+}
+
+.nav-artiste a {
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    color: var(--couleur4);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nav-artiste a:hover {
+    color: var(--couleur1);
+}
+
+.nav-artiste li {
+    list-style: none;
+}
+
+.nav-artiste ul {
+    display: flex;
+    align-items: center;
+}
+
+.musiques {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 3rem;
+}
+
+.musiques h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.derniere-sortie {
+    flex-basis: 50%;
+    flex-grow: 0;
+}
+
+.derniere-sortie img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.derniere-sortie div {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
