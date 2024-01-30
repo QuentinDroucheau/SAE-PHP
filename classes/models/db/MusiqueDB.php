@@ -63,10 +63,24 @@ class MusiqueDB{
     public static function getMusiquesArtiste(int $id): array{
         $db = Database::getInstance();
         $musiques = [];
-        $result = $db->query("SELECT * FROM musique WHERE idA = $id");
+        $result = $db->query("SELECT * FROM musique NATURAL JOIN album NATURAL JOIN artiste WHERE idA = $id");
         foreach($result as $r){
             $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
         }
         return $musiques;
     }
+
+    /**
+     * @return Musique
+     */
+    public static function getIdM(string $nomM): int{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT idM FROM musique WHERE nomM = '$nomM'");
+        $r = $result->fetch();
+        if($r){
+            return $r["idM"];
+        }
+        return null;
+    }
+
 }

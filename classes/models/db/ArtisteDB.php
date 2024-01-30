@@ -29,4 +29,17 @@ class ArtisteDB{
         $stmt->bindParam(":nom", $artiste->getNom());
         return $stmt->execute();
     }
+
+    /**
+     * @param int $id
+     * @return Artiste
+     */
+    public static function getArtiste(int $id): Artiste{
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM artiste WHERE idA = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return new Artiste($result["idA"], $result["nomA"]);
+    }
 }

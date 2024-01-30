@@ -4,9 +4,11 @@
         <div class="img-artiste">
             <img src="fixtures/images/220px-DarkChords.jpg" alt="photo de profil">
         </div>
-        <div>
+        <div class="desc-artiste">
             <h1>
-                Luther
+                <?php
+                    echo $artiste->getNom();
+                ?>
             </h1>
             <p>
                 10 354 écoute ce mois-ci
@@ -14,11 +16,18 @@
             <p>
                 34039 abonnées
             </p>
-            <div>
+            <ul class="artiste-genre">
                 <?php
-                
+                $uniqueGenres = [];
+                foreach ($genres as $genre) {
+                    $genreName = $genre->getNom();
+                    if (!isset($uniqueGenres[$genreName])) {
+                        echo "<li>" . $genreName . "</li>";
+                        $uniqueGenres[$genreName] = true;
+                    }
+                }
                 ?>
-            </div>
+            </ul>
             <div>
                 <button>
                     SUIVRE
