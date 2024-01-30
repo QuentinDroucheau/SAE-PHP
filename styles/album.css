@@ -1,0 +1,58 @@
+.header-album{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: antiquewhite;
+    margin: 10px;
+}
+
+.img-album{
+    height: 200px;
+    width: 200px;
+    display: flex;
+}
+
+.img-album .note{
+    position: relative;
+    color: white;
+    left: -70px;
+    top: 10px;
+    font-family: 'Nunito';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.img-album img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.info{
+    flex-basis: 60%;
+}
+
+.navbar-album{
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+}
+
+.navbar-album li{
+    margin-right: 20px;
+}
+
+.navbar-album{
+    flex-basis: 100%;
+}
+
+.container-musique{
+    flex-basis: 100%;
+    background-color: black;
+}
+
+.container-critique{
+    flex-basis: 100%;
+    background-color: red;
+}
