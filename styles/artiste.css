@@ -160,3 +160,8 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+
+.nav-artiste a.active {
+    border-bottom: 3px solid var(--couleur1);
+}
+

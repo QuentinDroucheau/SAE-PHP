@@ -60,20 +60,23 @@
                     Dernières sorties
                 </h2>
                 <div class="album">
-                <?php
-                $albumCpt = 0;
-                foreach ($albums as $album) {
-                    if ($albumCpt < 2) {
-                        echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
-                        echo "<p>" . $album->getTitreAlbum() . "</p>";
-                        echo "<span>" . $album->getAnneeAlbum() . "</span>";
+                    <?php
+                    $albumCpt = 0;
+                    foreach ($albums as $album) {
+                        if ($albumCpt < 2) {
+                            echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
+                            echo "<p>" . $album->getTitreAlbum() . "</p>";
+                            echo "<span>" . $album->getAnneeAlbum() . "</span>";
 
-                        $albumCpt++;
-                    } else {
-                        break;
+                            $albumCpt++;
+                        } else {
+                            break;
+                        }
                     }
-                }
-                ?>
+                    ?>
+
+                    <!-- rajouter le css/html de l'album -->
+
                 </div>
             </div>
 
@@ -93,14 +96,19 @@
                         <?php
                         $i = 0;
                         foreach ($musiquesArtiste as $musique) {
-                            $i ++;
-                            echo "<li>";
-                            echo "<div class='musique-titre'>";
-                            echo "<p>". $i . ".  </p>";
-                            echo "<p>" . $musique->getNom() . "</p>";
-                            echo "<p>" . $artiste->getNom() . "</p>";
-                            echo "</div>";
-                            echo "</li>";
+                            if ($i < 5) {
+                                $i ++;
+                                echo "<li>";
+                                echo "<div class='musique-titre'>";
+                                echo "<p>". $i . ".  </p>";
+                                echo "<p>" . $musique->getNom() . "</p>";
+                                echo "<p>" . $artiste->getNom() . "</p>";
+                                echo "</div>";
+                                echo "</li>";
+                            }
+                            else {
+                                break;
+                            }
                         }
                         ?>
                     </ul>
@@ -131,19 +139,23 @@
 </div>
 
 <script>
-    // Fonction pour afficher une section
+    function updateActiveLink(sectionId) {
+        document.querySelectorAll('.nav-artiste a').forEach(function(link) {
+            link.classList.remove('active');
+        });
+        document.querySelector('.nav-artiste a[href="#"][onclick="showSection(\'' + sectionId + '\')"]').classList.add('active');
+    }
+
     function showSection(sectionId) {
-        // Masquer toutes les sections
         document.querySelectorAll('.section-mouvante').forEach(function(section) {
             section.style.display = 'none';
         });
-
-        // Afficher la section spécifique
         document.getElementById(sectionId + '-section').style.display = 'flex';
+        updateActiveLink(sectionId);
     }
 
-    // Affiche la section "Musiques" au départ
     window.onload = function () {
         showSection('musiques');
     };
+
 </script>
