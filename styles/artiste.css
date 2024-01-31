@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 .infos-artistes {
     display: flex;
     flex-wrap: nowrap;
@@ -93,22 +97,34 @@
 }
 
 .derniere-sortie {
+    flex-basis: 40%;
+    flex-grow: 0;
+    margin-right: 3rem;
+}
+
+.derniere-sortie h2, .top-titres h2 {
+    margin-bottom: 2rem;
+    font-size: 200%;
+}
+
+.top-titres {
     flex-basis: 50%;
     flex-grow: 0;
 }
 
-.derniere-sortie img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
+.list-titres li {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    display: block;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
 }
 
-.derniere-sortie div {
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.list-titres p {
+    padding: 1rem 0.5rem;
+    display: inline-block;
 }
 
 .artiste-genre li {
@@ -129,7 +145,13 @@
 .section-mouvante {
     padding: 2rem  2rem 2rem 5rem;
     display: flex;
-    align-items: center;
 }
-
-
+ 
+.scroll {
+    overflow-y: scroll;
+    height: 40%;
+    margin-left: 25px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    scrollbar-color: var(--couleur1) var(--couleur3);
+}

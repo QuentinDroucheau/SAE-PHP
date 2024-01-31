@@ -59,22 +59,14 @@
                 <h2>
                     Dernières sorties
                 </h2>
-                <div>
-                    <div class="element">
-                        <div>
-                            <img class="pochette" src="img/pochette.png" alt="">
-                        </div>
-                        <div class="text">
-                            <div class="title">
-                                <p>Titre</p>
-                                <div class="title-info">
-                                    <img class="icon" src="img/horloge.jpg" alt="">
-                                    <p>43:20</p>
-                                </div>
-                            </div>
-                            <p>Mis a jour le 27/01/2023</p>
-                        </div>
-                    </div>
+                <div class="album">
+                    <?php
+                    foreach ($albums as $album) {
+                        echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
+                        echo "<p>" . $album->getTitreAlbum() . "</p>";
+                        echo "<span>" . $album->getAnneeAlbum() . "</span>";
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -82,85 +74,49 @@
                 <h2>
                     Top Titres 
                 </h2>
-                <ul id="list-titles">
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                </ul>
+                <?php
+                if (count($musiquesArtiste) > 3) {
+                    echo "<div class='scroll'>";
+                }
+                else {
+                    echo "<div>";
+                }
+                ?>
+                    <ul class="list-titres">
+                        <?php
+                        $i = 0;
+                        foreach ($musiquesArtiste as $musique) {
+                            $i ++;
+                            echo "<li>";
+                            echo "<p>". $i . ".  </p>";
+                            echo "<p>" . $musique->getNom() . "</p>";
+                            echo "<p> - </p>";
+                            echo "<p>" . $artiste->getNom() . "</p>";
+                            echo "</li>";
+                        }
+                        ?>
+                    </ul>
+                </div>
             </div>
 
         </section>
 
         <section id="artistesimilaire-section" class="section-mouvante">
-            <div class="derniere-sortie">
-                <h2>
-                    Dernières sorties
-                </h2>
-            </div>
-
-            <div class="top-titres">
-                <h2>
-                    artiste similaire
-                </h2>
-            </div>
-
+            <h2>
+                artiste similaire
+            </h2>
         </section>
 
         <section id="playlist-section" class="section-mouvante">
-            <div class="derniere-sortie">
-                <h2>
-                    Dernières sorties
-                </h2>
-            </div>
-
-            <div class="top-titres">
-                <h2>
-                    playlist
-                </h2>
-            </div>
-
+            <h2>
+                playlist
+            </h2>
         </section>
 
         <section id="critique-section" class="section-mouvante">
-            <div class="derniere-sortie">
-                <h2>
-                    Dernières sorties
-                </h2>
-            </div>
-
-            <div class="top-titres">
-                <h2>
-                    critique 
-                </h2>
-            </div>
-
+            <h2>
+                critiques
+            </h2>
         </section>
 
     </section>
