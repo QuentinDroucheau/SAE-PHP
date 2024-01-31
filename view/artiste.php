@@ -39,42 +39,27 @@
     <nav class="nav-artiste">
         <ul>
             <li>
-                <a href="">MUSIQUES</a>
+                <a href="#" onclick="showSection('musiques')">MUSIQUES</a>
             </li>
             <li>
-                <a href="">ARTISTE SIMILAIRE</a>
+                <a href="#" onclick="showSection('artistesimilaire')">ARTISTE SIMILAIRE</a>
             </li>
             <li>
-                <a href="">PLAYLISTS</a>
+                <a href="#" onclick="showSection('playlist')">PLAYLISTS</a>
             </li>
             <li>
-                <a href="">CRITIQUES</a>
+                <a href="#" onclick="showSection('critique')">CRITIQUES</a>
             </li>
         </ul>
     </nav>
 
     <section>
-        <div class="musiques">
+        <section id="musiques-section" class="section-mouvante">
             <div class="derniere-sortie">
                 <h2>
                     Dernières sorties
                 </h2>
                 <div>
-                    <div class="element">
-                        <div>
-                            <img class="pochette" src="img/pochette.png" alt="">
-                        </div>
-                        <div class="text">
-                            <div class="title">
-                                <p>Titre</p>
-                                <div class="title-info">
-                                    <img class="icon" src="img/horloge.jpg" alt="">
-                                    <p>43:20</p>
-                                </div>
-                            </div>
-                            <p>Mis a jour le 27/01/2023</p>
-                        </div>
-                    </div>
                     <div class="element">
                         <div>
                             <img class="pochette" src="img/pochette.png" alt="">
@@ -131,7 +116,70 @@
                 </ul>
             </div>
 
-        </div>
+        </section>
+
+        <section id="artistesimilaire-section" class="section-mouvante">
+            <div class="derniere-sortie">
+                <h2>
+                    Dernières sorties
+                </h2>
+            </div>
+
+            <div class="top-titres">
+                <h2>
+                    artiste similaire
+                </h2>
+            </div>
+
+        </section>
+
+        <section id="playlist-section" class="section-mouvante">
+            <div class="derniere-sortie">
+                <h2>
+                    Dernières sorties
+                </h2>
+            </div>
+
+            <div class="top-titres">
+                <h2>
+                    playlist
+                </h2>
+            </div>
+
+        </section>
+
+        <section id="critique-section" class="section-mouvante">
+            <div class="derniere-sortie">
+                <h2>
+                    Dernières sorties
+                </h2>
+            </div>
+
+            <div class="top-titres">
+                <h2>
+                    critique 
+                </h2>
+            </div>
+
+        </section>
 
     </section>
 </div>
+
+<script>
+    // Fonction pour afficher une section
+    function showSection(sectionId) {
+        // Masquer toutes les sections
+        document.querySelectorAll('.section-mouvante').forEach(function(section) {
+            section.style.display = 'none';
+        });
+
+        // Afficher la section spécifique
+        document.getElementById(sectionId + '-section').style.display = 'flex';
+    }
+
+    // Affiche la section "Musiques" au départ
+    window.onload = function () {
+        showSection('musiques');
+    };
+</script>

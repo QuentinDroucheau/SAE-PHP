@@ -125,3 +125,11 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.section-mouvante {
+    padding: 2rem  2rem 2rem 5rem;
+    display: flex;
+    align-items: center;
+}
+
+
