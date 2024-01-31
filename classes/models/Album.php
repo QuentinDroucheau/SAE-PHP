@@ -8,7 +8,7 @@ class Album{
   public function __construct(
     private int $id,
     private string $titreAlbum,
-    private int $anneeAlbum,
+    private string $anneeAlbum,
     private ?string $imageAlbum, // certains albums n'ont pas d'image
     public Artiste $artiste,
     public array $musiques = []
@@ -25,11 +25,11 @@ class Album{
     return $this->titreAlbum;
   }
 
-  public function getAnneeAlbum(): int{
-    return $this->anneeAlbum;
-  }
+  public function getAnneeAlbum(): \DateTime {
+    return \DateTime::createFromFormat('d/m/Y', $this->anneeAlbum);
+}
 
   public function getImageAlbum(): string{
-    return ($this->imageAlbum ? "fixtures//images/" . $this->imageAlbum : "../../img/default_album.png");
+    return ($this->imageAlbum ? "fixtures/images/" . $this->imageAlbum : "../../img/default_album.png");
 }
 }
