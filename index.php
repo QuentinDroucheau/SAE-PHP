@@ -14,7 +14,7 @@ $routes = [
     new Route("/", "GET", ControllerHome::class, "view", []),
     new Route("/add", "GET", ControllerHome::class, "add", ["t"]),
     new Route("/test", "GET", ControllerTest::class, "view"),
-    new Route("/artiste", "GET", ControllerArtiste::class, "view"),
+    new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
 ];
 

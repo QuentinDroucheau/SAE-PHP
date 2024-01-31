@@ -4,9 +4,11 @@
         <div class="img-artiste">
             <img src="fixtures/images/220px-DarkChords.jpg" alt="photo de profil">
         </div>
-        <div>
+        <div class="desc-artiste">
             <h1>
-                Luther
+                <?php
+                    echo $artiste->getNom();
+                ?>
             </h1>
             <p>
                 10 354 écoute ce mois-ci
@@ -14,11 +16,18 @@
             <p>
                 34039 abonnées
             </p>
-            <div>
+            <ul class="artiste-genre">
                 <?php
-                
+                $uniqueGenres = [];
+                foreach ($genres as $genre) {
+                    $genreName = $genre->getNom();
+                    if (!isset($uniqueGenres[$genreName])) {
+                        echo "<li>" . $genreName . "</li>";
+                        $uniqueGenres[$genreName] = true;
+                    }
+                }
                 ?>
-            </div>
+            </ul>
             <div>
                 <button>
                     SUIVRE
@@ -30,57 +39,44 @@
     <nav class="nav-artiste">
         <ul>
             <li>
-                <a href="">MUSIQUES</a>
+                <a href="#" onclick="showSection('musiques')">MUSIQUES</a>
             </li>
             <li>
-                <a href="">ARTISTE SIMILAIRE</a>
+                <a href="#" onclick="showSection('artistesimilaire')">ARTISTE SIMILAIRE</a>
             </li>
             <li>
-                <a href="">PLAYLISTS</a>
+                <a href="#" onclick="showSection('playlist')">PLAYLISTS</a>
             </li>
             <li>
-                <a href="">CRITIQUES</a>
+                <a href="#" onclick="showSection('critique')">CRITIQUES</a>
             </li>
         </ul>
     </nav>
 
     <section>
-        <div class="musiques">
+        <section id="musiques-section" class="section-mouvante">
             <div class="derniere-sortie">
                 <h2>
                     Dernières sorties
                 </h2>
-                <div>
-                    <div class="element">
-                        <div>
-                            <img class="pochette" src="img/pochette.png" alt="">
-                        </div>
-                        <div class="text">
-                            <div class="title">
-                                <p>Titre</p>
-                                <div class="title-info">
-                                    <img class="icon" src="img/horloge.jpg" alt="">
-                                    <p>43:20</p>
-                                </div>
-                            </div>
-                            <p>Mis a jour le 27/01/2023</p>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <div>
-                            <img class="pochette" src="img/pochette.png" alt="">
-                        </div>
-                        <div class="text">
-                            <div class="title">
-                                <p>Titre</p>
-                                <div class="title-info">
-                                    <img class="icon" src="img/horloge.jpg" alt="">
-                                    <p>43:20</p>
-                                </div>
-                            </div>
-                            <p>Mis a jour le 27/01/2023</p>
-                        </div>
-                    </div>
+                <div class="album">
+                    <?php
+                    $albumCpt = 0;
+                    foreach ($albums as $album) {
+                        if ($albumCpt < 2) {
+                            echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
+                            echo "<p>" . $album->getTitreAlbum() . "</p>";
+                            echo "<span>" . $album->getAnneeAlbum() . "</span>";
+
+                            $albumCpt++;
+                        } else {
+                            break;
+                        }
+                    }
+                    ?>
+
+                    <!-- rajouter le css/html de l'album -->
+
                 </div>
             </div>
 
@@ -88,41 +84,78 @@
                 <h2>
                     Top Titres 
                 </h2>
-                <ul id="list-titles">
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            j
-                        </p>
-                    </li>
-                </ul>
+                <?php
+                if (count($musiquesArtiste) > 3) {
+                    echo "<div class='scroll'>";
+                }
+                else {
+                    echo "<div>";
+                }
+                ?>
+                    <ul class="list-titres">
+                        <?php
+                        $i = 0;
+                        foreach ($musiquesArtiste as $musique) {
+                            if ($i < 5) {
+                                $i ++;
+                                echo "<li>";
+                                echo "<div class='musique-titre'>";
+                                echo "<p>". $i . ".  </p>";
+                                echo "<p>" . $musique->getNom() . "</p>";
+                                echo "<p>" . $artiste->getNom() . "</p>";
+                                echo "</div>";
+                                echo "</li>";
+                            }
+                            else {
+                                break;
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
             </div>
 
-        </div>
+        </section>
+
+        <section id="artistesimilaire-section" class="section-mouvante">
+            <h2>
+                artiste similaire
+            </h2>
+        </section>
+
+        <section id="playlist-section" class="section-mouvante">
+            <h2>
+                playlist
+            </h2>
+        </section>
+
+        <section id="critique-section" class="section-mouvante">
+            <h2>
+                critiques
+            </h2>
+        </section>
 
     </section>
 </div>
+
+<script>
+    function updateActiveLink(sectionId) {
+        document.querySelectorAll('.nav-artiste a').forEach(function(link) {
+            link.classList.remove('active');
+        });
+        document.querySelector('.nav-artiste a[href="#"][onclick="showSection(\'' + sectionId + '\')"]').classList.add('active');
+    }
+
+    function showSection(sectionId) {
+        document.querySelectorAll('.section-mouvante').forEach(function(section) {
+            section.style.display = 'none';
+        });
+        document.getElementById(sectionId + '-section').style.display = 'flex';
+        updateActiveLink(sectionId);
+    }
+
+    window.onload = function () {
+        showSection('musiques');
+    };
+
+</script>
