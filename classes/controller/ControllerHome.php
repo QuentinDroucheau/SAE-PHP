@@ -13,7 +13,12 @@ class ControllerHome extends Controller{
         }
         $this->render("base", [
             "header" => $this->get("element/header"),
-            "content" => $this->get("accueil", ["albumsByCategory" => $albumsByCategory]),
+            "content" => $this->get("accueil", [
+                "albumsByCategory" => $albumsByCategory, 
+                "renderMusicCard" => function($album) {
+                    return $this->get("element/musicCard", ["album" => $album]);
+                }
+            ]),
             "menu" => $this->get("element/menu"),
         ]);
     }
