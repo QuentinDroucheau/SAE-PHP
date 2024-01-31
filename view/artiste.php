@@ -60,13 +60,20 @@
                     Dernières sorties
                 </h2>
                 <div class="album">
-                    <?php
-                    foreach ($albums as $album) {
+                <?php
+                $albumCpt = 0;
+                foreach ($albums as $album) {
+                    if ($albumCpt < 2) {
                         echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
                         echo "<p>" . $album->getTitreAlbum() . "</p>";
                         echo "<span>" . $album->getAnneeAlbum() . "</span>";
+
+                        $albumCpt++;
+                    } else {
+                        break;
                     }
-                    ?>
+                }
+                ?>
                 </div>
             </div>
 
@@ -88,10 +95,11 @@
                         foreach ($musiquesArtiste as $musique) {
                             $i ++;
                             echo "<li>";
+                            echo "<div class='musique-titre'>";
                             echo "<p>". $i . ".  </p>";
                             echo "<p>" . $musique->getNom() . "</p>";
-                            echo "<p> - </p>";
                             echo "<p>" . $artiste->getNom() . "</p>";
+                            echo "</div>";
                             echo "</li>";
                         }
                         ?>

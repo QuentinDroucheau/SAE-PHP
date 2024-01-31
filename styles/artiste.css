@@ -109,21 +109,20 @@ body {
 
 .top-titres {
     flex-basis: 50%;
-    flex-grow: 0;
+    flex-grow: 1;
 }
 
 .list-titres li {
     background-color: white;
     border-radius: 6px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
     color: black;
     display: block;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
+    margin: 0.5rem;
 }
 
 .list-titres p {
-    padding: 1rem 0.5rem;
+    padding: 1rem 1rem;
     display: inline-block;
 }
 
@@ -149,9 +148,15 @@ body {
  
 .scroll {
     overflow-y: scroll;
-    height: 40%;
+    height: 12rem;
     margin-left: 25px;
     margin-right: 10px;
     margin-bottom: 30px;
     scrollbar-color: var(--couleur1) var(--couleur3);
+}
+
+.musique-titre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
