@@ -1,30 +1,30 @@
 <?php
-class Playlist {
+
+namespace models;
+
+use models\db\CollectionMusicale;
+
+class Playlist extends CollectionMusicale {
+    private string $dateMAJ;
+    private int $idU;
+
     public function __construct(
-        private int $id,
-        private string $nomP,
-        private string $imgPlaylist,
-        private string $descriptionP,
-        private int $idU
-    ){}
-
-    public function getId(): int{
-        return $this->id;
+        int $id,
+        string $titre,
+        $auteur,
+        string $image,
+        string $datePublication,
+        string $description,
+        array $musiques = []
+    ) {
+        parent::__construct($id, $titre, $auteur, $image, $datePublication, $description, $musiques);
     }
 
-    public function getNomP(): string{
-        return $this->nomP;
-    }
-
-    public function getImgPlaylist(): string{
-        return $this->imgPlaylist;
-    }
-
-    public function getDescriptionP(): string{
-        return $this->descriptionP;
-    }
-
-    public function getIdU(): int{
+    public function getIdU(): int {
         return $this->idU;
+    }
+
+    public function getDateMAJ(): string {
+        return $this->dateMAJ;
     }
 }

@@ -14,10 +14,7 @@ class ControllerHome extends Controller{
         $this->render("base", [
             "header" => $this->get("element/header"),
             "content" => $this->get("accueil", [
-                "albumsByCategory" => $albumsByCategory, 
-                "renderMusicCard" => function($album) {
-                    return $this->get("element/musicCard", ["album" => $album]);
-                }
+                "albumsByCategory" => $albumsByCategory
             ]),
             "menu" => $this->get("element/menu"),
         ]);

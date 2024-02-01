@@ -5,7 +5,7 @@
         <button class="btn-voir-plus">plus</button>
         <div class="albums">
             <?php foreach ($lesAlbums as $album) : ?>
-                <?= $renderMusicCard($album) ?>
+                <?= $album->render() ?>
             <?php endforeach ?>
         </div>
     </section>
