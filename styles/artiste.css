@@ -128,11 +128,10 @@ body {
 
 .artiste-genre li {
     list-style: none;
-    margin: 0 1rem 1rem 0;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    background-color: var(--couleur1);
-    color: var(--couleur2);
+    margin: 0 1rem 0 0;
+    font-weight: bold;
+    color: var(--couleur4);
+    text-transform: uppercase;
 }
 
 .artiste-genre {

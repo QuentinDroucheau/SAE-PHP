@@ -17,16 +17,25 @@
                 34039 abonnées
             </p>
             <ul class="artiste-genre">
+                
+
                 <?php
                 $uniqueGenres = [];
-                foreach ($genres as $genre) {
+                $genreCount = count($genres);
+
+                foreach ($genres as $index => $genre) {
                     $genreName = $genre->getNom();
                     if (!isset($uniqueGenres[$genreName])) {
-                        echo "<li>" . $genreName . "</li>";
+                        echo "<li>" . $genreName;
+                        if ($index < $genreCount - 1) {
+                            echo ", ";
+                        }
+                        echo "</li>";
                         $uniqueGenres[$genreName] = true;
                     }
                 }
                 ?>
+        
             </ul>
             <div>
                 <button>
