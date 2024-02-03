@@ -90,11 +90,13 @@
 }
 
 .header .right .profil{
+    position: relative;
     display: flex;
     height: 40px;
     background-color: var(--couleur1);
     border-radius: 10px;
     align-items: center;
+    z-index: 3;
 }
 
 .header .right .profil a{

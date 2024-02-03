@@ -23,8 +23,39 @@
             </div>
         </div>
         <div class="profil">
-            <a href="">Quentin</a>
+            <div class="testt">
+            <?php
+
+                use utils\Utils;
+
+                if(Utils::isConnected()){
+                    echo "<a onclick='openLogin();'>".Utils::getConnexion()->getPseudoU()."</a>";
+                }else{
+                    echo "<a onclick='openLogin();'>Connexion</a>";
+                }
+            ?>
+            </div>
+            
+            
             <img class="profil-icon" src="img/profil.png" alt="">
         </div>
     </div>
 </header>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    function openLogin(){
+        let right = document.querySelector('.testt');
+        $.ajax({
+            url: "/login",
+            type: "POST",
+            async: false,
+            data: {
+                "action": "ajaxGetLoginForm"
+            },
+            success: function(reponse){
+                let obj = JSON.parse(reponse);
+                right.innerHTML = obj + right.innerHTML;
+            }
+        });
+    }
+</script>
