@@ -1,5 +1,5 @@
 :root{
-    --header-height: 70px;
+    --header-height: 75px;
 }
 
 .header{
@@ -18,8 +18,8 @@
 }
 
 .header .search-bar input{
-    height: 40px;
-    width: 300px;
+    height: 55px;
+    width: 470px;
     background-color: var(--couleur3);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -34,8 +34,8 @@
 }
 
 .logo{
-    height: 25px;
-    width: 170px;
+    height: 30px;
+    width: 200px;
     margin-right: 20px;
 }
 
@@ -48,20 +48,26 @@
 }
 
 .icon_search{
-    height: 40px;
-    width: 40px;
+    height: 55px;
+    width: 70px;
     background-color: var(--couleur3);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-left: 1px solid var(--couleur4);
     border-bottom: 1px solid var(--couleur4);
     border-top: 1px solid var(--couleur4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon_search img{
-    height: 20px;
-    width: 20px;
-    margin: 10px;
+    height: 24px;
+    width: 24px;
+}
+
+.icon_search{
+    vertical-align: middle;
 }
 
 .header .left div{
@@ -79,8 +85,8 @@
 }
 
 .header .right .notif-icon{
-    height: 35px;
-    width: 30px;
+    height: 32px;
+    width: 28px;
 }
 
 .header .right .notif{
@@ -91,60 +97,78 @@
 
 .header .right .profil{
     display: flex;
-    height: 40px;
-    background-color: var(--couleur1);
-    border-radius: 10px;
+    height: 55px;
+    background-color: var(--blue);
+    border-radius: 8px;
     align-items: center;
+    width: 190px;
+    justify-content: space-between;
 }
 
 .header .right .profil a{
     text-decoration: none;
     color: white;
-    font-size: 20px;
-    margin: 0 10%;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-left: 2em;
+}
+
+.profil-icon{
+    height: 55px;
+    width: 55px;
+    border-radius: 8px;
+    background-color: var(--couleur3);
+    vertical-align: middle;
 }
 
 .header .right .notif .nb-notif{
     position: relative;
     left: -10px;
-    height: 20px;
+    height: 18px;
     justify-content: center;
     align-items: center;
     display: flex;
-    width: 20px;
+    width: 18px;
     background-color: var(--couleur1);
     border-radius: 50%;
 }
 
 header .right .notif .nb-notif p{
     color: white;
-    font-size: 10px;
-}
-
-.profil-icon{
-    height: 40px;
-    width: 40px;
-    border-radius: 10px;
-    background-color: var(--couleur3);
-    display: inline-block;
-    vertical-align: middle;
+    font-size: 0.665rem;
 }
 
 .publier a{
     text-decoration: none;
     color: var(--couleur4);
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 700;
     margin-left: 10px;
 }
 
 .icon_publier{
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 
 .publier{
     background-color: var(--couleur3);
-    border-radius: 7px;
-    padding: 8px 12px;
+    border-radius: 8px;
+    height: 55px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu{
+    margin-top: var(--header-height);
+}
+
+.menu-close{
+    margin-top: var(--header-height);
+}
+
+.menu-open{
+    margin-top: var(--header-height);
 }

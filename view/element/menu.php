@@ -21,8 +21,8 @@
     </div>
     <div class="scroll-1">
         <ul>
-            <li>
-                <a class="playlist-button" href="">
+            <li class="playlist-button">
+                <a class="playlist-text" href="">
                     <img src="img/icon_musique2.png" alt="">
                     <img class="icon_musique" src="img/icon_musique.png" alt="">
                     Mes playlists</a>
