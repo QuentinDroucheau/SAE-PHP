@@ -3,7 +3,7 @@
     <img class="img-album" 
         src=<?php echo $image;?> 
         alt="" 
-        onclick="window.location.href=album?id=<?php echo $id;?>">
+        onclick="redirect(<?php echo $id;?>);">
 
     <section class="infos-card">
         <div class="top-infos-card">
