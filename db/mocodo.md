@@ -8,7 +8,7 @@ MUSIQUE: idM, nomM, lienM
 POSSEDER, 0N ALBUM, 11 MUSIQUE
 :
 
-PLAYLIST: idP, nomP,imgP, descriptionP
+PLAYLIST: idP, nomP,imgP, descriptionP, anneeP, dateMajP
 ECOUTER, ON UTILISATEUR, ON MUSIQUE:date
 ALBUM: idAlbum, anneeAlbum, titreAlbum, imgAlbum,noteAlbum, dateP
 PUBLIER, 0N ARTISTE, 11 ALBUM

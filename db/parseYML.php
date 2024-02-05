@@ -6,11 +6,11 @@ require_once 'db/Spyc.php';
      return Spyc::YAMLLoadString($yamlContent);
  }
 
- try {
-     $sql = file_get_contents("db/table.sql");
-     $db = new \PDO("sqlite:db/database.sqlite3");
-     $db->exec($sql);
-     $db = null;
+try {
+    $sql = file_get_contents("db/table.sql");
+    $db = new \PDO("sqlite:db/database.sqlite3");
+    $db->exec($sql);
+    $db = null;
 
     // Charger le fichier YAML
     $yamlContent = file_get_contents('fixtures/extrait.yml');
