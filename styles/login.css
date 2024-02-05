@@ -1,0 +1,42 @@
+.login{
+    background-color: var(--couleur1);
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+}
+
+.login .top{
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login .bottom{
+    height: 80%;
+}
+
+.close{
+    align-items: center;
+    display: flex;
+}
+
+.profil{
+    display: flex;
+    align-items: center;
+}
+
+.info a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.25rem;
+    margin: 0 10%;
+}
+
+.profil-icon{
+    height: 40px;
+    width: 40px;
+    border-radius: 7px;
+    background-color: var(--couleur3);
+}

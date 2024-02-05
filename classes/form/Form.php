@@ -71,7 +71,7 @@ class Form implements InputRender{
      * @return string
      */
     public function render(): string{
-        $form = sprintf("<form class='form' action='%s' method='%s'>", $this->action, $this->method);
+        $form = sprintf("<form id='%s' class='form' action='%s' method='%s'>", $this->id, $this->action, $this->method);
         foreach($this->input as $input){
             // affiche les submits à la fin du formulaire
             if($input instanceof Submit){continue;}

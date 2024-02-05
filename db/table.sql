@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS playlist (
 CREATE TABLE IF NOT EXISTS utilisateur (
   idU INTEGER NOT NULL,
   pseudoU TEXT,
+  mailU TEXT,
   mdpU TEXT,
   roleU TEXT,
   PRIMARY KEY (idU)
