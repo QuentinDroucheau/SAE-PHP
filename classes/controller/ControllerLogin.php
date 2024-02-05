@@ -29,7 +29,11 @@ class ControllerLogin extends Controller{
     }
 
     public function ajaxGetLoginForm(){
-        echo json_encode($this->getForm()->render());
+        echo json_encode(
+            $this->get("element/login", [
+                "form" => $this->getForm()
+            ])
+        );
         die();
     }
 
