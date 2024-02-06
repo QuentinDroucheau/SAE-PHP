@@ -199,20 +199,25 @@ function addSelectedGenre(genre) {
     }
 }
 
-
 function createRemoveButton() {
     const removeButton = document.createElement('button');
-    removeButton.textContent = 'Supprimer';
     removeButton.classList.add('remove-genre');
 
+    // Ajouter une balise img avec la source de l'image de la croix
+    const imgElement = document.createElement('img');
+    imgElement.src = 'img/croix.png';
+    imgElement.alt = 'Supprimer';
+    
     // Ajouter un gestionnaire d'événements pour supprimer le genre associé
     removeButton.addEventListener('click', function () {
         removeSelectedGenre(this.closest('li.selected-genre'));
     });
 
+    // Ajouter l'élément img au bouton
+    removeButton.appendChild(imgElement);
+
     return removeButton;
 }
-
 
 // Ajout d'un gestionnaire d'événements à la liste des genres sélectionnés
 const selectedGenresList = document.getElementById('selectedGenresList');
