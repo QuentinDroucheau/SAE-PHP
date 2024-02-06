@@ -53,7 +53,10 @@
             },
             success: function(reponse){
                 let obj = JSON.parse(reponse);
-                right.innerHTML = obj;
+                let test = document.createElement('div');
+                test.innerHTML = obj;
+                right.append(test);
+                // right.innerHTML = obj + right.innerHTML;
             }
         });
     }

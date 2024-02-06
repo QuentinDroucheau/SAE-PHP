@@ -6,25 +6,10 @@
         <div class="close">
             <img src="img/close.svg" alt="">
         </div>
-        <div class="profil">
-            <?php
-
-            use utils\Utils;
-
-            if(Utils::isConnected()){
-                echo "<a>".Utils::getConnexion()->getPseudoU()."</a>";
-            }else{
-                echo "<a>Connexion</a>";
-            }
-
-            ?>
-            <img class="profil-icon" src="img/profil.png" alt="">
-        </div>
     </section>
     <section class="bottom">
-        <?php 
+        <!-- <?php 
             echo $form;
-        ?>
+        ?> -->
     </section>
 </section>
-
