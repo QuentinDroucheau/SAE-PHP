@@ -92,7 +92,7 @@
 .header .right .profil-container{
     height: 40px;
     align-items: center;
-    width: 150px;
+    width: 180px;
     position: relative;
 }
 
@@ -104,7 +104,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1;
 }
 
 
