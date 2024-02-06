@@ -26,11 +26,9 @@
                     <label for="description">Description</label>
                     <textarea name="description" id="description" cols="30" rows="10" placeholder="Description de l'album" required></textarea>
                     <label for="genres">Genres</label>
-                    <div id="selectedGenresList" class="selected-genres-list">
-                        <button type="button" onclick="clearSelectedGenres()">Effacer tous les genres</button>
-                    </div>
+                    <div id="selectedGenresList" class="selected-genres-list"></div>
                     <ul id="genreList" class="list-genre" onclick="handleGenreSelection(event)">
-                        <li>
+                        <li class="li-search-genre">
                             <div class="search-genre">
                                 <div class="img-search">
                                     <img src="img/search.png" alt="">

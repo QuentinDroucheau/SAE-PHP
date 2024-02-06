@@ -1,3 +1,12 @@
+let musiqueID = 0;
+
+// ==============================
+
+// NAV BAR PUBLIER ET ARCHIVES
+
+// ==============================
+
+
 // Fonction pour mettre à jour le lien actif dans la navigation
 function updateActiveLink(sectionId) {
     document.querySelectorAll('.nav-artiste a').forEach(function (link) {
@@ -63,6 +72,14 @@ function openFileInput() {
     document.getElementById('file-input').click();
 }
 
+
+// ==============================
+
+// CHARGEMENT DE LA PAGE ET GESTION DES ÉVÉNEMENTS
+
+// ==============================
+
+
 // Fonction appelée lors du chargement de la page
 window.onload = function () {
     showSection('publier');
@@ -95,39 +112,36 @@ function addNewGenre() {
         </div>
     `;
 
-    // Ajout d'un identifiant unique à chaque nouvel élément de genre
-    const uniqueId = 'new-genre-' + Date.now();
-    newGenreLi.setAttribute('id', uniqueId);
-
     genresList.insertBefore(newGenreLi, genresList.lastElementChild);
     setTimeout(() => newGenreLi.classList.add('show'), 0);
 }
+
+
+// ==============================
+
+// GESTION DES GENRES
+
+// ==============================
+
 
 // Fonction pour sauvegarder le nouveau genre
 function saveNewGenre(inputElement) {
     const newGenre = inputElement.value.trim();
     if (newGenre !== '' && !isGenreAlreadySelected(newGenre)) {
         console.log('Nouveau genre ajouté :', newGenre);
-        // Ajout du genre à la liste des genres sélectionnés
+        const newGenreLi = inputElement.closest('li.new-genre');
+        newGenreLi.remove();
         addSelectedGenre(newGenre);
-        // Masquer l'élément de la liste des genres ajoutés
-        const newGenreLi = inputElement.parentElement;
-        if (newGenreLi) {
-            newGenreLi.classList.add('hide');
-            setTimeout(() => newGenreLi.remove(), 500); // Supprimer l'élément après l'animation
-        }
-    } else if (isGenreAlreadySelected(newGenre)) {
+    } 
+    else if (isGenreAlreadySelected(newGenre)) {
         alert('Ce genre est déjà sélectionné.');
-        // Masquer l'élément de la liste des genres ajoutés
-        const newGenreLi = inputElement.parentElement;
-        if (newGenreLi) {
-            newGenreLi.classList.add('hide');
-            setTimeout(() => newGenreLi.remove(), 500); // Supprimer l'élément après l'animation
-        }
     }
+    const newGenreLi = inputElement.closest('li.new-genre');
+    newGenreLi.remove();
+    
 }
 
-// Fonction appelée lors de la sélection d'un genre
+// Fonction appelée lors du clic sur un genre
 function handleGenreSelection(event) {
     // Récupérer l'élément cliqué
     const clickedElement = event.target;
@@ -135,10 +149,11 @@ function handleGenreSelection(event) {
     // Exclure les éléments de recherche et le bouton "Voir plus"
     if (
         clickedElement.tagName === 'LI' &&
-        !clickedElement.classList.contains('search-genre') &&
-        !clickedElement.classList.contains('img-search') &&
+        !clickedElement.classList.contains('li-search-genre') &&
+        !clickedElement.classList.contains('new-genre') &&
         !clickedElement.classList.contains('img-plus')
     ) {
+        // Vérifier si l'élément cliqué n'est pas la div search-genre, img-search ou img-plus
         const selectedGenre = clickedElement.textContent;
 
         // Vérifier si le genre sélectionné n'est pas déjà dans la liste
@@ -148,17 +163,6 @@ function handleGenreSelection(event) {
         } else {
             alert('Ce genre est déjà sélectionné.');
         }
-    }
-}
-
-// Fonction appelée lors du clic sur un genre sélectionné
-function handleSelectedGenreClick(event) {
-    const clickedElement = event.target;
-
-    // Vérifier si l'élément cliqué est un genre sélectionné
-    if (clickedElement.classList.contains('selected-genre')) {
-        const selectedGenre = clickedElement.textContent;
-        removeSelectedGenre(selectedGenre);
     }
 }
 
@@ -174,22 +178,88 @@ function isGenreAlreadySelected(genre) {
     return false;
 }
 
-// Fonction pour ajouter un genre à la liste des genres sélectionnés
 function addSelectedGenre(genre) {
     // Créer un nouvel élément li avec la classe 'selected-genre'
     const selectedGenreLi = document.createElement('li');
     selectedGenreLi.textContent = genre;
     selectedGenreLi.classList.add('selected-genre');
 
+    // Ajouter le bouton de suppression spécifique à ce genre
+    const removeButton = createRemoveButton();
+    selectedGenreLi.appendChild(removeButton);
+
     // Ajouter le nouvel élément à la liste des genres sélectionnés
     const selectedGenresList = document.getElementById('selectedGenresList');
     selectedGenresList.appendChild(selectedGenreLi);
 
     // Afficher le bouton "Effacer tous les genres" s'il y a au moins 1 genre sélectionné
-    const clearGenresButton = document.querySelector('#selectedGenresList button.clear-all');
+    const clearGenresButton = document.querySelector('button.clear-all');
     if (selectedGenresList.children.length > 0) {
         clearGenresButton.style.display = 'block';
     }
+}
+
+
+function createRemoveButton() {
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Supprimer';
+    removeButton.classList.add('remove-genre');
+
+    // Ajouter un gestionnaire d'événements pour supprimer le genre associé
+    removeButton.addEventListener('click', function () {
+        removeSelectedGenre(this.closest('li.selected-genre'));
+    });
+
+    return removeButton;
+}
+
+
+// Ajout d'un gestionnaire d'événements à la liste des genres sélectionnés
+const selectedGenresList = document.getElementById('selectedGenresList');
+selectedGenresList.addEventListener('click', handleSelectedGenreClick);
+
+function handleSelectedGenreClick(event) {
+    const clickedElement = event.target;
+
+    // Vérifier si l'élément cliqué est un bouton de suppression
+    if (clickedElement.classList.contains('remove-genre')) {
+        // Récupérer l'élément li parent
+        const selectedGenreLi = clickedElement.closest('li.selected-genre');
+
+        // Appeler la fonction pour supprimer le genre sélectionné
+        removeSelectedGenre(selectedGenreLi);
+    }
+}
+
+// Fonction pour supprimer un genre sélectionné
+function removeSelectedGenre(selectedGenreLi) {
+    // Supprimer l'élément li correspondant au genre sélectionné
+    if (selectedGenreLi) {
+        selectedGenreLi.remove();
+
+        // Si la liste des genres sélectionnés est vide, masquer le bouton "Effacer tous les genres"
+        const selectedGenresList = document.getElementById('selectedGenresList');
+        const clearGenresButton = document.querySelector('#selectedGenresList button.clear-all');
+
+        if (clearGenresButton && selectedGenresList.children.length === 0) {
+            clearGenresButton.style.display = 'none';
+        }
+    }
+}
+
+
+
+
+// ==============================
+
+// GESTION DES MUSIQUES
+
+// ==============================
+
+
+// Fonction pour permettre le glisser-déposer des fichiers audio
+function allowDropAudio(event) {
+    event.preventDefault();
 }
 
 // Fonction pour ouvrir le gestionnaire de fichiers en cliquant sur la section
@@ -207,32 +277,35 @@ function dropAudioFile(event) {
     if (files.length > 0) {
         // Vérifiez si le fichier déposé est un fichier audio
         if (isAudioFile(files[0])) {
+            console.log('Fichier audio déposé :', files[0]);
             handleAudioFiles(files);
         } else {
             alert("Veuillez déposer un fichier audio valide.");
         }
     }
 }
-// Ajoutez cette ligne au début de votre fichier js/publier.js
-let lastMusicId = 0;
 
-// Modifiez la fonction handleAudioFiles comme suit
+// Fonction pour vérifier si un fichier est un fichier audio
+function isAudioFile(file) {
+    return file.type.startsWith('audio/');
+}
+
+
+// Fonction pour traiter les fichiers audio et afficher dans la liste
 function handleAudioFiles(files) {
     const musiquesListe = document.getElementById('musiques-liste');
 
     // Incrémente l'identifiant pour la nouvelle musique
-    lastMusicId++;
+    musiqueID++;
 
     // Créer un nouvel élément li pour chaque fichier audio
     const nouvelleMusique = document.createElement('li');
     nouvelleMusique.draggable = true; // Rendre l'élément déplaçable
-
-    // Ajouter un identifiant à l'élément li
-    nouvelleMusique.setAttribute('data-music-id', lastMusicId);
+    nouvelleMusique.dataset.musicId = musiqueID;
 
     // Afficher l'ID avant l'image
     const idParagraphe = document.createElement('p');
-    idParagraphe.textContent = lastMusicId + '.';
+    idParagraphe.textContent = musiqueID + '.';
     nouvelleMusique.appendChild(idParagraphe);
 
     // Ajouter une image de l'album à chaque nouvel élément li
@@ -245,8 +318,7 @@ function handleAudioFiles(files) {
     // Afficher le nom du fichier audio
     const nomFichierParagraphe = document.createElement('p');
     nomFichierParagraphe.textContent = 'Fichier : ' + files[0].name;
-
-    // Ajouter le nom du fichier audio au nouvel élément li
+    nomFichierParagraphe.classList.add('fichier-audio');
     nouvelleMusique.appendChild(nomFichierParagraphe);
 
     // Créer une div pour regrouper le paragraphe titre et l'input
@@ -273,9 +345,9 @@ function handleAudioFiles(files) {
     // Créer un bouton "Supprimer" pour chaque fichier audio
     const boutonSupprimer = document.createElement('button');
     boutonSupprimer.textContent = 'Supprimer';
-    boutonSupprimer.onclick = function () {
+    boutonSupprimer.addEventListener('click', function () {
         musiquesListe.removeChild(nouvelleMusique);
-    };
+    });
     nouvelleMusique.appendChild(boutonSupprimer);
 
     musiquesListe.appendChild(nouvelleMusique);
