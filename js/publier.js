@@ -85,20 +85,10 @@ window.onload = function () {
     showSection('publier');
     showTitre('publier');
 
-    const genresList = document.getElementById('genresList');
-    const voirPlusLink = genresList.querySelector('.img-plus');
-
-    voirPlusLink.addEventListener('click', handleVoirPlusClick);
-
     // Ajout d'un gestionnaire d'événements à la liste des genres sélectionnés
     const selectedGenresList = document.getElementById('selectedGenresList');
     selectedGenresList.addEventListener('click', handleSelectedGenreClick);
 };
-
-// Fonction appelée lors du clic sur le bouton "Voir plus" des genres
-function handleVoirPlusClick() {
-    addNewGenre();
-}
 
 // Fonction pour ajouter un nouveau genre
 function addNewGenre() {
@@ -181,7 +171,23 @@ function isGenreAlreadySelected(genre) {
 function addSelectedGenre(genre) {
     // Créer un nouvel élément li avec la classe 'selected-genre'
     const selectedGenreLi = document.createElement('li');
-    selectedGenreLi.textContent = genre;
+    
+    // Créer un nouvel élément input avec le type 'hidden'
+    const selectedGenreInput = document.createElement('input');
+    selectedGenreInput.type = 'hidden';
+    selectedGenreInput.name = 'genre[]'; // Utiliser des crochets pour envoyer un tableau PHP
+    selectedGenreInput.value = genre;
+
+    // Ajouter l'input au li
+    selectedGenreLi.appendChild(selectedGenreInput);
+
+    // Créer un nouvel élément span pour afficher le genre
+    const selectedGenreSpan = document.createElement('span');
+    selectedGenreSpan.textContent = genre;
+
+    // Ajouter le span au li
+    selectedGenreLi.appendChild(selectedGenreSpan);
+
     selectedGenreLi.classList.add('selected-genre');
 
     // Ajouter le bouton de suppression spécifique à ce genre
@@ -197,7 +203,23 @@ function addSelectedGenre(genre) {
     if (selectedGenresList.children.length > 0) {
         clearGenresButton.style.display = 'block';
     }
+    updateSelectedGenresInput();
 }
+
+
+function updateSelectedGenresInput() {
+    const selectedGenresInput = document.getElementById('genre');
+    const selectedGenresList = document.getElementById('selectedGenresList');
+    
+    // Récupérer tous les genres sélectionnés
+    const selectedGenres = Array.from(selectedGenresList.children)
+        .filter(element => element.classList.contains('selected-genre'))
+        .map(element => element.textContent.trim());
+
+    // Mettre à jour la valeur de l'input caché avec les genres sélectionnés sous forme de chaîne JSON
+    selectedGenresInput.value = JSON.stringify(selectedGenres);
+}
+
 
 function createRemoveButton() {
     const removeButton = document.createElement('button');
@@ -236,7 +258,6 @@ function handleSelectedGenreClick(event) {
     }
 }
 
-// Fonction pour supprimer un genre sélectionné
 function removeSelectedGenre(selectedGenreLi) {
     // Supprimer l'élément li correspondant au genre sélectionné
     if (selectedGenreLi) {
@@ -249,8 +270,12 @@ function removeSelectedGenre(selectedGenreLi) {
         if (clearGenresButton && selectedGenresList.children.length === 0) {
             clearGenresButton.style.display = 'none';
         }
+
+        // Appeler la fonction pour mettre à jour l'input caché
+        updateSelectedGenresInput();
     }
 }
+
 
 // Ajoutez cette ligne au début de votre fichier js/publier.js
 document.addEventListener('DOMContentLoaded', function () {
@@ -403,3 +428,4 @@ function handleAudioFiles(files) {
 
     musiquesListe.appendChild(nouvelleMusique);
 }
+

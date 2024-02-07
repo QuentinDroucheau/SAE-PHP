@@ -41,35 +41,18 @@ class ControllerPublier extends Controller{
             $albumDB = new AlbumDB();
             $albumDB->insererAlbum($titreAlbum, $dateAlbum, $imagePath);
             
+            $selectedGenres = $_POST['genre'];
 
-            // insert des genres
-            
-            // Récupérer les genres du formulaire
-            $genres = $_POST['genres'];
-
-
-            // affiche les genres
-            echo 
-            "<script>
-            alert('Les genres sont : ' + " . json_encode($genres) . ");
-            alert($genres);
-            let $genres = " . json_encode($genres) . ";
-
-            for (let genre of $genres) {
-                alert(genre);
-            }
-            </script>";
-
-            // Insérer les genres dans la base de données s'ils n'existent pas encore
-            $genreDB = new GenreDB();
-            foreach ($genres as $genre) {
-                // Vérifier si le genre existe déjà dans la base de données
-                if (!$genreDB->genreExiste($genre)) {
-                    // Si le genre n'existe pas, l'ajouter à la base de données
-                    $genreDB->insererGenre($genre);
+            // Faites quelque chose avec les genres récupérés
+            if (!empty($selectedGenres)) {
+                // Traitement des genres ici
+                foreach ($selectedGenres as $selectedGenre) {
+                    // Faites ce que vous devez faire avec chaque genre
+                    echo "<script>alert('$selectedGenre');</script>";
                 }
+            } else {
+                echo "<script>alert('Aucun genre sélectionné');</script>";
             }
-
 
             // Traitement des fichiers audio
             // $fichiersAudio = $this->traiterFichiersAudio();

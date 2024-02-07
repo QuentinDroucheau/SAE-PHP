@@ -26,7 +26,10 @@
                         <label for="description">Description</label>
                         <textarea name="description" id="description" cols="30" rows="10" placeholder="Description de l'album" required></textarea>
                         <label for="genres">Genres</label>
-                        <div id="selectedGenresList" class="selected-genres-list"></div>
+
+                        <ul id="selectedGenresList" class="selected-genres-list">
+                        </ul>
+
                         <ul id="genreList" class="list-genre" onclick="handleGenreSelection(event)">
                             <li class="li-search-genre">
                                 <div class="search-genre">
@@ -53,8 +56,6 @@
                                     echo "</li>";
                                 }
                             }
-                        
-                        
                             ?>
                             <li class="new-genre">
                                 <div class="img-plus" onclick="addNewGenre()">
