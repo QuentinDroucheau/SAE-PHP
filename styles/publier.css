@@ -1,7 +1,10 @@
 /* Styles pour la section mouvante */
 .section-mouvante {
-    padding: 2rem 5rem 2rem 5rem;
-    display: flex;
+    padding: 2rem 5rem;
+}
+
+.section-mouvante form {
+    width: 100%;
 }
 
 /* Styles pour les informations de publication */
@@ -64,11 +67,11 @@ h1 {
 /* Styles pour la zone de dépôt d'image */
 .drop-zone {
     flex-basis: 35%;
-    flex-grow: 0;
+    flex-grow: 1;
     height: 20rem;
     width: 20rem;
     border-radius: 5px;
-    margin: 0 0 0 3rem;
+    margin: 3rem 1rem 0 3rem;
     text-align: center;
     display: flex;
     align-items: center;

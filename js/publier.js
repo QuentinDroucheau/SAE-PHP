@@ -254,6 +254,62 @@ function removeSelectedGenre(selectedGenreLi) {
 
 
 
+// Ajoutez cette ligne au début de votre fichier js/publier.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Ajoutez un gestionnaire d'événements à l'élément de saisie de recherche
+    const searchInput = document.querySelector('.li-search-genre input');
+    searchInput.addEventListener('input', filterGenres);
+});
+
+
+// Ajoutez cette ligne au début de votre fichier js/publier.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Ajoutez un gestionnaire d'événements à l'élément de saisie de recherche
+    const searchInput = document.querySelector('.li-search-genre input');
+    searchInput.addEventListener('input', filterGenres);
+});
+
+function filterGenres(event) {
+    // Récupérer la valeur saisie dans l'élément de saisie de recherche
+    const searchValue = event.target.value.toLowerCase();
+    
+    // Récupérer la liste des genres
+    const genresList = document.querySelector('.list-genre');
+    const genres = genresList.querySelectorAll('li');
+
+    // Parcourir la liste des genres
+    for (const genre of genres) {
+        // Exclure l'élément de recherche et le bouton "Voir plus" de la filtration
+        if (!genre.classList.contains('li-search-genre') && !genre.classList.contains('new-genre')) {
+            const genreName = genre.textContent.toLowerCase();
+            if (searchValue === "") {
+                // Si la recherche est vide, afficher les 5 premiers genres a l'aide d'un compteur
+                let count = 0;
+                for (const genre of genres) {
+                    if (!genre.classList.contains('li-search-genre') && !genre.classList.contains('new-genre')) {
+                        if (count < 5) {
+                            genre.style.display = 'block';
+                            count++;
+                        } else {
+                            genre.style.display = 'none';
+                        }
+                    }
+                }
+            } else {
+                // Sinon, appliquer le filtre en fonction de la recherche
+                if (genreName.includes(searchValue)) {
+                    genre.style.display = 'block';
+                } else {
+                    genre.style.display = 'none';
+                }
+            }
+        }
+    }
+}
+
+
+
+
 
 // ==============================
 
