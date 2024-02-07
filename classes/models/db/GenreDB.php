@@ -36,7 +36,7 @@ class GenreDB {
     public function insererGenre($nomGenre) {
         $db = Database::getInstance();
         $stmt = $db->prepare("INSERT INTO genre(idG, nomG) VALUES (:idG, :nomGenre)");
-        $idG = GenreDB::creerIdArtiste();
+        $idG = GenreDB::creerIdGenre();
         $stmt->bindParam(":idG", $idG);
         $stmt->bindParam(":nomGenre", $nomGenre);
         $stmt->execute();
@@ -52,7 +52,7 @@ class GenreDB {
         return $result;
     }
 
-    public static function creerIdArtiste(){
+    public static function creerIdGenre(){
         $db = Database::getInstance();
         $stmt = $db->query('SELECT MAX(idG) FROM genre');
         $result = $stmt->fetch();

@@ -45,13 +45,17 @@ class ControllerPublier extends Controller{
 
             // Faites quelque chose avec les genres récupérés
             if (!empty($selectedGenres)) {
+                $genreDB = new GenreDB();
                 // Traitement des genres ici
                 foreach ($selectedGenres as $selectedGenre) {
-                    // Faites ce que vous devez faire avec chaque genre
-                    echo "<script>alert('$selectedGenre');</script>";
+                    $trimmedGenre = trim($selectedGenre);
+                    if (!empty($trimmedGenre)) {
+                        // Vérifiez si le genre existe déjà
+                        if (!$genreDB->genreExiste($trimmedGenre)) {
+                            $genreDB->insererGenre($trimmedGenre);
+                        }
+                    }
                 }
-            } else {
-                echo "<script>alert('Aucun genre sélectionné');</script>";
             }
 
             // Traitement des fichiers audio
