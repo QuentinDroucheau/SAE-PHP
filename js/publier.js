@@ -252,16 +252,6 @@ function removeSelectedGenre(selectedGenreLi) {
     }
 }
 
-
-
-// Ajoutez cette ligne au début de votre fichier js/publier.js
-document.addEventListener('DOMContentLoaded', function () {
-    // Ajoutez un gestionnaire d'événements à l'élément de saisie de recherche
-    const searchInput = document.querySelector('.li-search-genre input');
-    searchInput.addEventListener('input', filterGenres);
-});
-
-
 // Ajoutez cette ligne au début de votre fichier js/publier.js
 document.addEventListener('DOMContentLoaded', function () {
     // Ajoutez un gestionnaire d'événements à l'élément de saisie de recherche

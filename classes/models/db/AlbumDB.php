@@ -3,6 +3,7 @@
 namespace models\db;
 
 use models\Album;
+use models\db\ArtisteDB;
 
 class AlbumDB {
 
@@ -59,4 +60,22 @@ class AlbumDB {
         }
         return $albums;
     }
+
+    // Insertion d'un album
+    public static function insererAlbum($titreAlbum, $anneeAlbum, $imgAlbum){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('INSERT INTO album (titreAlbum, anneeAlbum, imgAlbum, idA) VALUES (:titreAlbum, :anneeAlbum, :imgAlbum, :idA)');
+        $stmt->bindParam(':titreAlbum', $titreAlbum);
+        $stmt->bindParam(':anneeAlbum', $anneeAlbum);
+        $stmt->bindParam(':imgAlbum', $imgAlbum);
+
+        $idA = ArtisteDB::creerIdArtiste();
+        // $idA = ArtisteDB::getIdArtiste($nom);
+
+        $stmt->bindParam(':idA', $idA);
+        $stmt->execute();
+        return $db->lastInsertId();
+    }
+
+
 }

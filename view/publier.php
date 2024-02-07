@@ -18,7 +18,7 @@
         </ul>
     </nav>
     <section id="publier-section" class="section-mouvante">
-            <form action="/publier?action=publierContenue" method="post">
+            <form action="/publier?action=publierContenue" method="post" enctype="multipart/form-data">
                 <section class="infos-publication">    
                     <section>
                         <label for="titreAlbum">Nom de l'album</label>
@@ -40,31 +40,21 @@
 
                             <?php
                             $cpt = 0;
-                            $voirPlus = false;
-                            if (!$voirPlus){
-                                foreach($genres as $genre) {
-                                    if ($cpt < 5) {
-                                        echo "<li>";
-                                        echo $genre->getNom();
-                                        echo "</li>";
-                                        $cpt++;
-                                    }
-                                    else {
-                                        // placer les li en display none
-                                        echo "<li style='display: none;'>";
-                                        echo $genre->getNom();
-                                        echo "</li>";
-                                    }
-                                }
-                            }
-                            else {
-                                foreach($genres as $genre) {
+                            foreach($genres as $genre) {
+                                if ($cpt < 5) {
                                     echo "<li>";
+                                    echo $genre->getNom();
+                                    echo "</li>";
+                                    $cpt++;
+                                }
+                                else {
+                                    echo "<li style='display: none;'>";
                                     echo $genre->getNom();
                                     echo "</li>";
                                 }
                             }
-                            
+                        
+                        
                             ?>
                             <li class="new-genre">
                                 <div class="img-plus" onclick="addNewGenre()">
@@ -75,7 +65,7 @@
                     </section>
                     <div class="drop-zone" ondrop="drop(event)" ondragover="over(event)">
                         <img id="upload-image" src="img/img_upload.png" alt="Image pour glisser-déposer" onclick="openFileInput()">
-                        <input type="file" id="file-input" style="display: none;" onchange="handleFiles(this.files)">
+                        <input type="file" id="file-input" style="display: none;" onchange="handleFiles(this.files)" name="image">
                     </div>
                 </section>
                 <section class="musiques">
