@@ -7,14 +7,9 @@ use form\type\Submit;
 use form\type\Text;
 use models\db\UtilisateurDB;
 use utils\Utils;
+use view\BaseTemplate;
 
 class ControllerLogin extends Controller{
-
-    public function view(): void{
-        $this->render("element/login", [
-            "form" => $this->getForm()
-        ]);
-    }
 
     /**
      * retourne le formulaire de connexion

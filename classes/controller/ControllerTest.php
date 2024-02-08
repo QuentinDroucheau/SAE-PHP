@@ -2,13 +2,15 @@
 
 namespace controller;
 
+use view\BaseTemplate;
+use view\Template;
+
 class ControllerTest extends Controller{
 
     public function view(){
-        $this->render("base", [
-            "header" => $this->get("element/header"),
-            "menu" => $this->get("element/menu"),
-            "content" => $this->get("test")
-        ]);
+        $base = new BaseTemplate();
+        $base->setContent("test");
+        $base->addParam("a", "nenfbeubf");
+        $base->render();
     }
 }
