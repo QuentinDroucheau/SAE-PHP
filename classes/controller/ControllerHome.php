@@ -11,10 +11,15 @@ class ControllerHome extends Controller{
     public function view(): void{
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
         $playlistDB = new PlaylistDB();
-        $playlists = $playlistDB->getPlaylists(Utils::getIdUtilisateurConnecte());
         $albumsByCategory = [];
         foreach ($categories as $category) {
             $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
+        }
+        try {
+            $userId = Utils::getIdUtilisateurConnecte();
+            $playlists = $playlistDB->getPlaylists($userId);
+        } catch (\Exception $e) {
+            $playlists = null;
         }
         $this->render("base", [
             "header" => $this->get("element/header"),
