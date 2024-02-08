@@ -3,6 +3,8 @@
 
 namespace controller;
 use models\db\AlbumDB;
+use view\BaseTemplate;
+
 class ControllerHome extends Controller{
     
     public function view(): void{
@@ -11,16 +13,10 @@ class ControllerHome extends Controller{
         foreach ($categories as $category) {
             $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
         }
-        $this->render("base", [
-            "header" => $this->get("element/header"),
-            "content" => $this->get("accueil", [
-                "albumsByCategory" => $albumsByCategory
-            ]),
-            "menu" => $this->get("element/menu"),
-        ]);
-    }
 
-    public function add(): void{
-        $this->render("test", []);
+        $base = new BaseTemplate();
+        $base->setContent("accueil");
+        $base->addParam("albumsByCategory", $albumsByCategory);
+        $base->render();
     }
 }

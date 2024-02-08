@@ -16,7 +16,6 @@ $routes = [
     new Route("/test", "GET", ControllerTest::class, "view"),
     new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
-    new Route("/login", "GET", ControllerLogin::class, "view"),
     new Route("/login", "POST", ControllerLogin::class)
 ];
 
