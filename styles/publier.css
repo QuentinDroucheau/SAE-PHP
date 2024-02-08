@@ -302,9 +302,8 @@ h1 {
 #musiques-liste li div {
     display: flex;
     align-items: center;
-    margin-right: 3rem;
-    margin-left: 5rem;
-    flex-grow: 0;
+    justify-content: center;
+    flex-grow: 1;
 }
 
 #musiques-liste li div p {
