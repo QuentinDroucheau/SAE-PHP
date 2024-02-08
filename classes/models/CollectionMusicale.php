@@ -1,22 +1,20 @@
 <?php
 
-namespace models\db;
+namespace models;
 use models\Musique;
 
 class CollectionMusicale {
     protected int $id;
     protected string $titre;
-    protected $auteur; // Artiste pour Album, auteurPlaylist pour Playlist
+    protected int $idArtiste; // Artiste pour Album, auteurPlaylist pour Playlist
     protected string $datePublication;
     protected ?string $image;
     protected string $description;
-    protected array $musiques = [];
 
-    public function __construct(int $id, string $titre, $auteur, ?string $images, string $datePublication, string $description, array $musiques = []) {
+    public function __construct(int $id, string $titre, int $idArtiste, ?string $images, string $datePublication, string $description) {
       $this->id = $id;
       $this->titre = $titre;
-      $this->musiques = $musiques;
-      $this->auteur = $auteur;
+      $this->idArtiste = $idArtiste;
       $this->image = $images;
       $this->datePublication = $datePublication;
       $this->description = $description;
@@ -30,12 +28,8 @@ class CollectionMusicale {
         return $this->titre;
     }
 
-    public function getMusiques(): array {
-        return $this->musiques;
-    }
-
-    public function getAuteur() {
-        return $this->auteur;
+    public function getIdAuteur(): int {
+        return $this->idArtiste;
     }
 
     public function setId(int $id): void {
@@ -46,12 +40,8 @@ class CollectionMusicale {
         $this->titre = $titre;
     }
 
-    public function setMusiques(array $musiques): void {
-        $this->musiques = $musiques;
-    }
-
-    public function setAuteur($auteur): void {
-        $this->auteur = $auteur;
+    public function setIdAuteur(int $idArtiste): void {
+        $this->idArtiste = $idArtiste;
     }
 
     public function getImage(): string{
@@ -65,8 +55,4 @@ class CollectionMusicale {
     public function getDescription() : string{
       return $this->description;
     }
-
-    public function addMusique(Musique $musique): void {
-      $this->musiques[] = $musique;
-  }
 }

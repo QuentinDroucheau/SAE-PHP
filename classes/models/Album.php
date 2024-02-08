@@ -2,7 +2,7 @@
 
 namespace models;
 
-use models\db\CollectionMusicale;
+use models\CollectionMusicale;
 use view\Template;
 
 class Album extends CollectionMusicale {
@@ -10,13 +10,12 @@ class Album extends CollectionMusicale {
     public function __construct(
         int $id,
         string $titreAlbum,
-        Artiste $artiste,
+        int $idArtiste,
         ?string $imageAlbum,
         string $datePublication,
-        array $musiques = [],
-        string $description = ''
+        string $descriptionA = ''
     ) {
-        parent::__construct($id, $titreAlbum, $artiste, $imageAlbum, $datePublication, $description, $musiques);
+        parent::__construct($id, $titreAlbum, $idArtiste, $imageAlbum, $datePublication, $descriptionA);
         $this->datePublication = $datePublication;
     }
 
@@ -24,18 +23,14 @@ class Album extends CollectionMusicale {
         return \DateTime::createFromFormat('d/m/Y', $this->datePublication);
     }
 
-    public function getMusiques(): array {
-        return $this->musiques;
-    }
-
     public function render(): string{
         return Template::get("element/album", [
             "image" => $this->getImage(),
             "id" => $this->getId(),
             "titre" => $this->getTitre(),
-            "musiques" => $this->getMusiques(),
-            "auteurNom" => $this->getAuteur()->getNom(),
-            "anneeAlbum" => $this->getAnneeAlbum()->format("d/m/Y")
+            "idArtiste" => $this->getIdAuteur(),
+            "anneeAlbum" => $this->getAnneeAlbum()->format("d/m/Y"),
+            "descriptionA" => $this->getDescription()
         ]);
     }
 }

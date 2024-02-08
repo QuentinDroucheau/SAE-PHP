@@ -1,6 +1,7 @@
 /* Styles pour la scetion retour */
 .retour {
     margin: 3rem 0 2rem 5rem;
+    display: inline-block;
 }
 
 .retour a {
@@ -11,7 +12,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+    transition: color 0.5s ease-in-out;
 }
 
 .retour a:hover {

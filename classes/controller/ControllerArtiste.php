@@ -25,10 +25,10 @@ class ControllerArtiste extends Controller{
             "header" => $this->get("element/header"),
             "menu" => $this->get("element/menu"),
             "content" => $this->get("artiste",[ 
-                "albums" => $albums,
-                "musiquesArtiste" => $musiquesArtiste,
-                "artiste" => $artiste,
-                "genres" => $genres
+                // "albums" => $albums,
+                // "musiquesArtiste" => $musiquesArtiste,
+                // "artiste" => $artiste,
+                // "genres" => $genres
             ]),
         ]);
     }

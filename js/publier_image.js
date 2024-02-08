@@ -39,13 +39,17 @@ function handleFiles(files) {
 
     // Vérifiez si le fichier est une image avec des extensions autorisées
     if (isImageFile(files[0])) {
-        // Mettez à jour la source de l'image avec l'URL de l'image déposée
-        imageElement.src = URL.createObjectURL(files[0]);
+        // Vérifiez si la taille du fichier ne dépasse pas 2 Mo
+        if (files[0].size <= 2 * 1024 * 1024) {
+            // Mettez à jour la source de l'image avec l'URL de l'image déposée
+            imageElement.src = URL.createObjectURL(files[0]);
+        } else {
+            alert("La taille de l'image dépasse la limite autorisée de 2 Mo.");
+        }
     } else {
         alert("Veuillez déposer une image avec une extension autorisée (jpg, jpeg, png).");
     }
 }
-
 
 // Fonction pour ouvrir le gestionnaire de fichiers en cliquant sur l'image
 function openFileInput() {
