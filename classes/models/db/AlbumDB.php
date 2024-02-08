@@ -79,7 +79,7 @@ class AlbumDB {
     }
 
     // Insertion d'un album
-    public static function insererAlbum($titreAlbum, $anneeAlbum, $imgAlbum){
+    public static function insererAlbum($titreAlbum, $artiste, $imageAlbum, $datePublication, $description, $musiques){
         $db = Database::getInstance();
         $stmt = $db->prepare('INSERT INTO album (titreAlbum, anneeAlbum, imgAlbum, idA) VALUES (:titreAlbum, :anneeAlbum, :imgAlbum, :idA)');
         $stmt->bindParam(':titreAlbum', $titreAlbum);

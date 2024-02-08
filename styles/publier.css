@@ -1,3 +1,31 @@
+/* Styles pour la scetion retour */
+.retour {
+    margin: 3rem 0 2rem 5rem;
+}
+
+.retour a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+}
+
+.retour a:hover {
+    text-decoration: underline;
+    color: var(--couleur1);
+}
+
+.retour img {
+    width: 1.5rem;
+    height: auto;
+    display: block;
+    margin-right: 1rem;
+}
+
 /* Styles pour la section mouvante */
 .section-mouvante {
     padding: 2rem 5rem;
@@ -68,7 +96,7 @@ h1 {
 .drop-zone {
     flex-basis: 35%;
     flex-grow: 1;
-    height: 20rem;
+    height: auto;
     width: 20rem;
     border-radius: 5px;
     margin: 3rem 1rem 0 3rem;

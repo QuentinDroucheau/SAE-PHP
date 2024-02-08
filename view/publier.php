@@ -1,5 +1,12 @@
 <link rel="stylesheet" href="styles/publier.css">
 <script src="js/publier.js"></script>
+<script src="js/publier_genres.js"></script>
+<script src="js/publier_musiques.js"></script>
+<script src="js/publier_page.js"></script>
+<script src="js/publier_image.js"></script>
+<section class="retour">
+    <a href="/"><img src="img/retour.png" alt="retour à l'accueil"><p>Retour</p></a>
+</section>
 <div>
     <h1 id="publier-titre">
         PUBLIER DU CONTENU
