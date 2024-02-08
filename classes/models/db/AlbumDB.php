@@ -77,5 +77,14 @@ class AlbumDB {
         return $db->lastInsertId();
     }
 
+    // Récupération de l'id d'un album
+    public static function getIdAlbum($titreAlbum){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('SELECT idAlbum FROM album WHERE titreAlbum = :titreAlbum');
+        $stmt->bindParam(':titreAlbum', $titreAlbum);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
 
 }

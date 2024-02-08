@@ -408,6 +408,7 @@ function handleAudioFiles(files) {
     // Créer un champ d'entrée pour le nom de la musique
     const nomMusiqueInput = document.createElement('input');
     nomMusiqueInput.type = 'text';
+    nomMusiqueInput.name = 'nomM';
     nomMusiqueInput.placeholder = 'Nom de la musique';
     nomMusiqueInput.classList.add('nom-musique');
 

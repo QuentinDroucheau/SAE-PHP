@@ -5,6 +5,7 @@ namespace controller;
 use models\db\AlbumDB;
 use models\db\ArtisteDB;
 use models\db\GenreDB;
+use models\db\MusiqueDB;
 
 class ControllerPublier extends Controller{
 
@@ -30,6 +31,7 @@ class ControllerPublier extends Controller{
 
             $description = $_POST['description'];
 
+
             // insert de l'album
 
             $titreAlbum = $_POST['titre'];
@@ -40,6 +42,9 @@ class ControllerPublier extends Controller{
             }
             $albumDB = new AlbumDB();
             $albumDB->insererAlbum($titreAlbum, $dateAlbum, $imagePath);
+
+
+            // Insertion des nouveaux genres
             
             $selectedGenres = $_POST['genre'];
 
@@ -53,26 +58,39 @@ class ControllerPublier extends Controller{
                         // Vérifiez si le genre existe déjà
                         if (!$genreDB->genreExiste($trimmedGenre)) {
                             $genreDB->insererGenre($trimmedGenre);
+                            echo "<script>alert('Le genre $trimmedGenre a été ajouté.');</script>";
                         }
                     }
                 }
             }
 
-            // Traitement des fichiers audio
-            // $fichiersAudio = $this->traiterFichiersAudio();
 
+            // Insertion des musiques
+        
+            // if (!empty($_FILES['audio'])) {
+            //     $musiqueDB = new MusiqueDB();
+            //     $albumId = $albumDB->getIdAlbum($titreAlbum);
+            //     echo "<script>alert('AlbumID: $albumId');</script>";
 
-            // Insérer les genres associés à ce contenu dans la base de données
-            // $genreDB = new GenreDB();
-            // foreach ($genres as $genre) {
-            //     $genreDB->insererGenre($genre);
+            //     foreach ($_FILES['audio']['tmp_name'] as $key => $tmpName) {
+            //         $uploadFile = $this->traiterFichierAudio($tmpName, $_FILES['audio']['name'][$key]);
+            //         $nomMusique = $_POST['nomM'][$key];
+            //         $musiqueDB->insererMusique($nomMusique, $uploadFile, $albumId);
+            //         // Ajout de cette ligne pour déboguer
+            //         echo "<script>alert('UploadFile: $uploadFile, NomMusique: $nomMusique, AlbumID: $albumId');</script>";
+
+            //     }
+            // }
+            // else {
+            //     echo "<script>alert('Aucun fichier audio n'a été téléchargé.');</script>";
             // }
 
             echo 
             "<script>
-            alert('L\'album a bien été ajouté'); 
-            window.location.href='/publier';
+            alert('L\'album a bien été ajouté');
+            window.location.href='/publier'; 
             </script>";
+            // 
         }
     }
 
@@ -90,24 +108,22 @@ class ControllerPublier extends Controller{
             echo 
             "<script>
             alert('Erreur lors du téléchargement du fichier.'); 
-            window.location.href='/publier';
             </script>";
         }
     }
 
     // Fonction pour traiter les fichiers audio
-    private function traiterFichiersAudio(){
-        $fichiersAudio = [];
-        $uploadDir = 'audio/';
-        foreach ($_FILES['audio']['tmp_name'] as $key => $tmpName) {
-            $uploadFile = $uploadDir . basename($_FILES['audio']['name'][$key]);
-            if (move_uploaded_file($tmpName, $uploadFile)) {
-                $fichiersAudio[] = $uploadFile;
-            } else {
-                // Gestion d'erreur si l'upload échoue
-                die('Erreur lors du téléchargement du fichier.');
-            }
+    private function traiterFichierAudio($tmpName, $originalName)
+    {
+        $uploadDir = 'musiques/';
+        $uploadFile = $uploadDir . basename($originalName);
+
+        // Vérifier si le fichier a été correctement uploadé
+        if (move_uploaded_file($tmpName, $uploadFile)) {
+            return $uploadFile;
+        } else {
+            // Gestion d'erreur si l'upload échoue
+            echo "<script>alert('Erreur lors du téléchargement du fichier audio.');</script>";
         }
-        return $fichiersAudio;
     }
 }
