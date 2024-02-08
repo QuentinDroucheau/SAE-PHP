@@ -8,7 +8,7 @@ class Route{
         private string $url,
         private string $method,
         private string $controller,
-        private string $action,
+        private ?string $action = null,
         private array $roles = [],
         private array $params = []
     ){}
@@ -25,7 +25,11 @@ class Route{
         return $this->method;
     }
 
-    public function getAction(): string{
+    /**
+     * action par défaut
+     * @return string|null
+     */
+    public function getAction(): ?string{
         return $this->action;
     }
 

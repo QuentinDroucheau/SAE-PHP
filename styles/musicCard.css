@@ -1,0 +1,14 @@
+
+
+.img-album{
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+
+/* .top-infos-card h3{
+  font-weight: 600;
+} */

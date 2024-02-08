@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS album (
   idAlbum INTEGER NOT NULL,
-  anneeAlbum INTEGER,
+  anneeAlbum TEXT,
   titreAlbum TEXT,
   imgAlbum TEXT,
   idA INTEGER NOT NULL,
@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS noter (
 CREATE TABLE IF NOT EXISTS playlist (
   idP INTEGER NOT NULL,
   nomP TEXT,
+  anneeP TEXT,
+  dateMajP TEXT,
   imgPlaylist TEXT,
   descriptionP TEXT,
   idU INTEGER NOT NULL,
@@ -77,6 +79,7 @@ CREATE TABLE IF NOT EXISTS playlist (
 CREATE TABLE IF NOT EXISTS utilisateur (
   idU INTEGER NOT NULL,
   pseudoU TEXT,
+  mailU TEXT,
   mdpU TEXT,
   roleU TEXT,
   PRIMARY KEY (idU)

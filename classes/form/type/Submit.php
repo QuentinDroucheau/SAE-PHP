@@ -6,7 +6,7 @@ class Submit extends Input{
 
     protected string $type = "submit";
 
-    public function __construct(string $name){
-        parent::__construct($name, true, "", "");
+    public function __construct(string $name, string $id){
+        parent::__construct($name, true, "", $id);
     }
 }

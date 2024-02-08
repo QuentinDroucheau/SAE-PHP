@@ -10,15 +10,17 @@ use route\Route;
 
 require "classes/autoload.php";
 
+session_start();
 
 $routes = [
     new Route("/", "GET", ControllerHome::class, "view", []),
-    new Route("/add", "GET", ControllerHome::class, "add", ["t"]),
     new Route("/test", "GET", ControllerTest::class, "view"),
     new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
     new Route("/publier", "GET", ControllerPublier::class, "view", []),
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", [])
+    new Route("/login", "GET", ControllerLogin::class, "view"),
+    new Route("/login", "POST", ControllerLogin::class)
 ];
 
 
@@ -27,6 +29,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 $url = $uri["path"] ?? "/";
 $role = $_SESSION["utilisateur"]["role"] ?? "user";
 $params = $_REQUEST;
+$action = $_REQUEST["action"] ?? null;
 
 $notFound = true;
 
@@ -34,6 +37,7 @@ foreach($routes as $route){
     if(!($url === $route->getUrl()))continue;
     if(!($method === $route->getMethod()))continue;
     if(count($route->getRoles()) > 0 and !in_array($role, $route->getRoles()))continue;
+    if(is_null($route->getAction()) and is_null($action))continue;
 
     $p = false;
     foreach($route->getParams() as $param){
@@ -44,9 +48,13 @@ foreach($routes as $route){
     if($p)continue;
 
     $controller = $route->getController();
-    $action = $route->getAction();
+    $actionRoute = $route->getAction();
 
-    (new $controller($params))->$action();
+    if(is_null($actionRoute)){
+        (new $controller($params))->$action();
+    }else{
+        (new $controller($params))->$actionRoute();
+    }
 
     $notFound = false;
 

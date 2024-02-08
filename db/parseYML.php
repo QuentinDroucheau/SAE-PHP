@@ -6,11 +6,11 @@ require_once 'db/Spyc.php';
      return Spyc::YAMLLoadString($yamlContent);
  }
 
- try {
-     $sql = file_get_contents("db/table.sql");
-     $db = new \PDO("sqlite:db/database.sqlite3");
-     $db->exec($sql);
-     $db = null;
+try {
+    $sql = file_get_contents("db/table.sql");
+    $db = new \PDO("sqlite:db/database.sqlite3");
+    $db->exec($sql);
+    $db = null;
 
     // Charger le fichier YAML
     $yamlContent = file_get_contents('fixtures/extrait.yml');
@@ -19,6 +19,18 @@ require_once 'db/Spyc.php';
     // Connexion à la base de données SQLite
     $db = new PDO('sqlite:db/database.sqlite3');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $db->prepare('INSERT INTO utilisateur (pseudoU, mdpU, mailU, roleU) VALUES (:pseudoU, :mdpU, :mailU, :roleU)');
+    $pseudo = "quentin";
+    $mdp = "motdepasse";
+    $mail = "quentin@gmail.com";
+    $role = "user";
+
+    $stmt->bindParam(':pseudoU', $pseudo);
+    $stmt->bindParam(':mdpU', $mdp);
+    $stmt->bindParam(':mailU', $mail);
+    $stmt->bindParam(':roleU', $role);
+    $stmt->execute();
 
     // Boucle sur les données YAML et insertion dans la base de données
     foreach ($data as $album) {
