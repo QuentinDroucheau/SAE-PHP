@@ -1,9 +1,13 @@
-var swiper = new Swiper('.swiper-container', {
-  slidesPerView: 4, // nombre de cards a faire apparaitre
-  slidesPerGroup: 3, // le nombre qu'on veut faire apparaitre chaque action
-  spaceBetween: 30, // espace entre les cards
-  navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-  },
+var swipers = document.querySelectorAll('.swiper-container');
+
+swipers.forEach(function(swiper, index) {
+  new Swiper(swiper, {
+    slidesPerView: 4,
+    slidesPerGroup: 3,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: swiper.parentNode.querySelector('.swiper-button-next'),
+      prevEl: swiper.parentNode.querySelector('.swiper-button-prev'),
+    },
+  });
 });

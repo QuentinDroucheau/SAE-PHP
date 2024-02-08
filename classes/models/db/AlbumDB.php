@@ -46,10 +46,10 @@ class AlbumDB {
         $db = Database::getInstance();
         $conditions = '';
         switch ($category) {
-            case 'recents':
+            case 'Récents':
                 $conditions = 'ORDER BY album.anneeAlbum DESC';
                 break;
-            case 'populaires':
+            case 'Populaires':
                 // a faire quand on aura le nb d'écoute
                 break;
             default:
