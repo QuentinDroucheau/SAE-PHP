@@ -34,4 +34,8 @@ class Utils{
     public static function isConnected(): bool{
         return isset($_SESSION["utilisateur"]);
     }
+
+    public static function getIdUtilisateurConnecte(): int{
+        return self::getConnexion()->getId();
+    }
 }

@@ -50,3 +50,20 @@
   gap: 0.8rem;
 
 }
+
+.add-to-playlist-button {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.main-album:hover .add-to-playlist-button {
+  opacity: 1;
+}
