@@ -48,4 +48,8 @@ class Database{
         }
         return self::$instance;
     }
+    
+    public function lastInsertId(){
+        return $this->db->lastInsertId();
+    }
 }

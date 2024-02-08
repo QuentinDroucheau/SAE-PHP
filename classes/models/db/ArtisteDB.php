@@ -42,4 +42,20 @@ class ArtisteDB{
         $result = $stmt->fetch();
         return new Artiste($result["idA"], $result["nomA"]);
     }
+
+    public static function creerIdArtiste(){
+        $db = Database::getInstance();
+        $stmt = $db->query('SELECT MAX(idA) FROM artiste');
+        $result = $stmt->fetch();
+        return $result[0] + 1;
+    }
+
+    public static function getIdArtiste($nom){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT idA FROM artiste WHERE nomA = :nom");
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result[0];
+    }
 }
