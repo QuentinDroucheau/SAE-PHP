@@ -14,7 +14,11 @@ abstract class Controller{
      * @param string $url
      * @param string $action méthode à appeller 
      */
-    public function redirect(string $url, string $action): void{
+    public function redirect(string $url, ?string $action = null): void{
+        if(is_null($action)){
+            header("Location: ".$url);
+            exit;
+        }
         header("Location: ".$url."&action=".$action);
         exit;
     }

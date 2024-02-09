@@ -23,41 +23,58 @@
             </div>
         </div>
         <div class="profil-container">
-            <div class="profil" onclick='openLogin();'>
                 <?php
 
                     use utils\Utils;
 
-                    if(Utils::isConnected()){
-                        echo "<a>".Utils::getConnexion()->getPseudoU()."</a>";
+                    if(is_null(Utils::getConnexion())){
+                        echo '<div class="profil" onclick="openConnexion();">';
                     }else{
-                        echo "<a>Connexion</a>";
+                        echo '<div class="profil" onclick="openUpdate();">';
                     }
-
                 ?>
+                <a><?php echo $utilisateur;?></a>
                 <img class="profil-icon" src="img/profil.png" alt="">
+            </div>
+            <div class="connexion">
+                <div class="close">
+                    <img src="img/close.svg" alt="" onclick="closeConnexion();">
+                </div>
+                <div class="profil">    
+                    <a><?php echo $utilisateur;?></a>
+                    <img class="profil-icon" src="img/profil.png" alt="">
+                </div>
+            </div>
+            <div class="password">
+                <div class="close">
+                    <img src="img/close.svg" alt="" onclick="closePassword();">
+                </div>
+                <div class="profil">    
+                    <a><?php echo $utilisateur;?></a>
+                    <img class="profil-icon" src="img/profil.png" alt="">
+                </div>
+            </div>
+            <div class="profil-update">
+                <div class="close">
+                    <img src="img/close.svg" alt="" onclick="closeUpdate();">
+                </div>
+                <div class="profil">    
+                    <a><?php echo $utilisateur;?></a>
+                    <img class="profil-icon" src="img/profil.png" alt="">
+                </div>
+                <div class="action">
+                    <ul>
+                        <li>
+                            <a onclick="openPassword();">Modifier mon mot de passe</a>
+                        </li>
+                        <li>
+                            <a href="/login?action=logout">Se déconnecter</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </header>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    function openLogin(){
-        let right = document.querySelector('.profil-container');
-        $.ajax({
-            url: "/login",
-            type: "POST",
-            async: false,
-            data: {
-                "action": "ajaxGetLoginForm"
-            },
-            success: function(reponse){
-                let obj = JSON.parse(reponse);
-                let test = document.createElement('div');
-                test.innerHTML = obj;
-                right.append(test);
-                // right.innerHTML = obj + right.innerHTML;
-            }
-        });
-    }
-</script>
+<script src="js/header.js"></script>

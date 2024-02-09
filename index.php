@@ -19,7 +19,8 @@ $routes = [
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
     new Route("/publier", "GET", ControllerPublier::class, "view", []),
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),
-    new Route("/login", "POST", ControllerLogin::class)
+    new Route("/login", "POST", ControllerLogin::class),
+    new Route("/login", "GET", ControllerLogin::class),
 ];
 
 

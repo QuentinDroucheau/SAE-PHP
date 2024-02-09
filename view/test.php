@@ -22,13 +22,13 @@
         let close = document.querySelector('.close');
         profil2.removeChild(close);
         
-        profil2.style.animation = "closefadeIn 0.4s ease-in-out";
+        profil2.style.animation = "close 0.4s ease-in-out";
 
         setTimeout(function(){
             let profil = document.querySelector('.test-profil');
             profil.style.display = "flex";
             profil2.style.display = "none";
-            profil2.style.animation = "fadeIn 0.4s ease-in-out";
+            profil2.style.animation = "open 0.4s ease-in-out";
             profil2.appendChild(close);
         }, 300);
     }
@@ -52,7 +52,7 @@
                 let form = document.querySelector('.test-profil2');
                 setTimeout(function() {
                     form.innerHTML = form.innerHTML + obj;
-                    loadScript("js/login.js");
+                    loadScript("js/header.js");
                 }, 400);
             }
         });
@@ -82,7 +82,7 @@
     margin-top: 10%;
 }
 
-@keyframes closefadeIn {
+@keyframes close {
     0% {
         height: 300px;
         width: 300px;
@@ -93,7 +93,7 @@
     }
 }
 
-@keyframes fadeIn {
+@keyframes open {
     0% {
         height: 0px;
         width: 200px;
@@ -132,7 +132,7 @@
     right: 0;
     top: 0;
     display: none;
-    animation: fadeIn 0.4s ease-in-out;
+    animation: open 0.4s ease-in-out;
     flex-wrap: wrap;
     flex-direction: column;
 }
