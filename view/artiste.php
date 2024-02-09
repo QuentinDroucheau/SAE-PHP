@@ -73,16 +73,26 @@
                     <?php
                     $albumCpt = 0;
                     foreach ($albums as $album) {
-                        if ($albumCpt < 2) {
-                            echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
-                            echo "<p>" . $album->getTitreAlbum() . "</p>";
-                            echo "<span>" . $album->getAnneeAlbum() . "</span>";
-
-                            $albumCpt++;
+                        echo "<script>console.log(" . json_encode($album) . ")</script>";
+                        
+                        // Vérifiez si $album est un objet Album avant d'accéder à ses propriétés
+                        if ($album instanceof \models\Album) {
+                            echo "<script>console.log('" . $album->getImage() . "')</script>";
+                            if ($albumCpt < 2) {
+                                echo "<img src='" . $album->getImage() . "' alt='cover de l'album >";
+                                echo "<p>" . $album->getTitre() . "</p>";
+                                echo "<span>" . $album->getAnneeAlbum() . "</span>";
+                    
+                                $albumCpt++;
+                            } else {
+                                break;
+                            }
                         } else {
-                            break;
+                            // Gérer le cas où $album n'est pas un objet Album
+                            echo "<p>Erreur: l'album n'est pas un objet Album</p>";
                         }
                     }
+                    
                     ?>
 
                     <!-- rajouter le css/html de l'album -->

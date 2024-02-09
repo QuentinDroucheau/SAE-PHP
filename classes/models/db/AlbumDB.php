@@ -13,13 +13,18 @@ class AlbumDB {
         $db = Database::getInstance();
         $result = $db->query("SELECT album.*, artiste.*, musique.* FROM album JOIN artiste ON album.idA = artiste.idA LEFT JOIN musique ON musique.idAlbum = album.idAlbum WHERE album.idAlbum = $id");
         $album = null;
+
         foreach ($result as $r) {
             if (!$album) {
                 $descriptionA = $r["descriptionA"] ?? '';
                 $album = new Album($r["idAlbum"], $r["titreAlbum"], $r["idA"], $r["imgAlbum"], $r["anneeAlbum"], $descriptionA);
-
             }
         }
+
+        if (!$album) {
+            return null;
+        }
+
         return $album;
     }
 
@@ -88,8 +93,16 @@ class AlbumDB {
     public static function getIdAlbum() {
         $db = Database::getInstance();
         $stmt = $db->query('SELECT MAX(idAlbum) FROM album');
-        $result = $stmt->fetch();
-        return $result[0];
+        $result = $stmt->fetchColumn();
+        return $result;
+    }
+
+    public static function getImageAlbum($idAlbum) {
+        $db = Database::getInstance();
+        $stmt = $db->prepare('SELECT imgAlbum FROM album WHERE idAlbum = :idAlbum');
+        $stmt->bindParam(':idAlbum', $idAlbum);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
 

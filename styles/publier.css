@@ -97,7 +97,7 @@ h1 {
 .drop-zone {
     flex-basis: 35%;
     flex-grow: 1;
-    height: auto;
+    height: 20rem;
     width: 20rem;
     border-radius: 5px;
     margin: 3rem 1rem 0 3rem;

@@ -152,6 +152,7 @@ function handleAudioFiles(files) {
 
 
 
+
     // SUPPRIMER LA MUSIQUE
 
     
@@ -171,9 +172,13 @@ function handleAudioFiles(files) {
 
     // Créer un tableau pour stocker les informations sur la musique
     const musiqueInfo = {
+        musicId: musiqueID,
         nomMusique: nomMusiqueInput.value,
         audioPath: files[0].name,
+        genreMusique: selectGenreAudio.value,
     };
+
+
 
 
     // Vérifier si le champ 'musiquesListe' existe déjà dans le formulaire
@@ -200,6 +205,93 @@ function handleAudioFiles(files) {
     // Ajouter des déclarations console.log pour le débogage
     console.log('Nouvelle musique ajoutée :', musiqueInfo);
     console.log('Liste actuelle des musiques :', musiquesList);
+
+    // nomMusiqueInput.addEventListener('input', function() {
+    //     miseAJour(musiqueID, nomMusiqueInput.value, musiqueInfo);
+    // });
+
+    // selectGenreAudio.addEventListener('change', function() {
+    //     const nouveauGenre = selectGenreAudio.value;
+    //     musiqueInfo.genreMusique = nouveauGenre;
+    //     miseAJour(musiqueID, nomMusiqueInput.value, nouveauGenre, musiqueInfo);
+    // });   
+    
+    
+    // Utilisation dans votre code
+    nomMusiqueInput.addEventListener('input', function() {
+        majNomMusique(musiqueID, nomMusiqueInput.value, musiqueInfo);
+    });
+
+    selectGenreAudio.addEventListener('change', function() {
+        const nouveauGenre = selectGenreAudio.value;
+        majGenreMusique(musiqueID, nouveauGenre, musiqueInfo);
+    });
+
+}
+// Fonction pour mettre à jour le nom de la musique
+function majNomMusique(id, nouveauNom, musiqueInfo) {
+    musiqueInfo.nomMusique = nouveauNom;
+
+    // Mettre à jour le champ caché avec la liste des musiques en tant que chaîne JSON
+    const musiquesListeInput = document.getElementById('musiques-liste-input');
+    if (musiquesListeInput) {
+        // Vérifier si le champ 'musiquesListe' existe déjà dans le formulaire
+        let musiquesList = [];
+
+        // Si le champ existe, récupérer et parser sa valeur
+        if (musiquesListeInput.value.trim() !== "") {
+            try {
+                musiquesList = JSON.parse(musiquesListeInput.value);
+            } catch (error) {
+                console.error('Erreur lors de l\'analyse JSON :', error);
+            }
+        }
+
+        // Mettre à jour le nom de la musique dans la liste des musiques
+        const musiqueToUpdate = musiquesList.find(musique => musique.musicId === id);
+        if (musiqueToUpdate) {
+            musiqueToUpdate.nomMusique = nouveauNom;
+        }
+
+        // Mettre à jour le champ caché avec la liste des musiques en tant que chaîne JSON
+        musiquesListeInput.value = JSON.stringify(musiquesList);
+
+        // Ajouter des déclarations console.log pour le débogage
+        console.log(`Nom de la musique ${id} mis à jour : ${nouveauNom}`);
+        console.log('Liste actuelle des musiques :', musiquesList);
+    }
 }
 
+// Fonction pour mettre à jour le genre de la musique
+function majGenreMusique(id, nouveauGenre, musiqueInfo) {
+    musiqueInfo.genreMusique = nouveauGenre;
 
+    // Mettre à jour le champ caché avec la liste des musiques en tant que chaîne JSON
+    const musiquesListeInput = document.getElementById('musiques-liste-input');
+    if (musiquesListeInput) {
+        // Vérifier si le champ 'musiquesListe' existe déjà dans le formulaire
+        let musiquesList = [];
+
+        // Si le champ existe, récupérer et parser sa valeur
+        if (musiquesListeInput.value.trim() !== "") {
+            try {
+                musiquesList = JSON.parse(musiquesListeInput.value);
+            } catch (error) {
+                console.error('Erreur lors de l\'analyse JSON :', error);
+            }
+        }
+
+        // Mettre à jour le genre de la musique dans la liste des musiques
+        const musiqueToUpdate = musiquesList.find(musique => musique.musicId === id);
+        if (musiqueToUpdate) {
+            musiqueToUpdate.genreMusique = nouveauGenre;
+        }
+
+        // Mettre à jour le champ caché avec la liste des musiques en tant que chaîne JSON
+        musiquesListeInput.value = JSON.stringify(musiquesList);
+
+        // Ajouter des déclarations console.log pour le débogage
+        console.log(`Genre de la musique ${id} mis à jour : ${nouveauGenre}`);
+        console.log('Liste actuelle des musiques :', musiquesList);
+    }
+}
