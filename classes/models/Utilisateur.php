@@ -25,4 +25,8 @@ class Utilisateur {
     public function getRoleU(): string{
         return $this->roleU;
     }
+
+    public function setMdpU(string $mdpU){
+        $this->mdpU = $mdpU;
+    }
 }

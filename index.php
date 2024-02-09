@@ -5,6 +5,7 @@ use controller\ControllerHome;
 use controller\ControllerLogin;
 use controller\ControllerTest;
 use controller\ControllerArtiste;
+use controller\ControllerPublier;
 use route\Route;
 
 require "classes/autoload.php";
@@ -16,8 +17,10 @@ $routes = [
     new Route("/test", "GET", ControllerTest::class, "view"),
     new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
-    new Route("/login", "GET", ControllerLogin::class, "view"),
-    new Route("/login", "POST", ControllerLogin::class)
+    new Route("/publier", "GET", ControllerPublier::class, "view", []),
+    new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),
+    new Route("/login", "POST", ControllerLogin::class),
+    new Route("/login", "GET", ControllerLogin::class),
 ];
 
 

@@ -3,6 +3,7 @@
 namespace models;
 
 use models\db\CollectionMusicale;
+use view\Composant;
 use view\Template;
 
 class Album extends CollectionMusicale {
@@ -29,13 +30,13 @@ class Album extends CollectionMusicale {
     }
 
     public function render(): string{
-        return Template::get("element/album", [
-            "image" => $this->getImage(),
-            "id" => $this->getId(),
-            "titre" => $this->getTitre(),
-            "musiques" => $this->getMusiques(),
-            "auteurNom" => $this->getAuteur()->getNom(),
-            "anneeAlbum" => $this->getAnneeAlbum()->format("d/m/Y")
-        ]);
+        $composant = new Composant("album");
+        $composant->addParam("image", $this->getImage());
+        $composant->addParam("id", $this->getId());
+        $composant->addParam("titre", $this->getTitre());
+        $composant->addParam("musiques", $this->getMusiques());
+        $composant->addParam("auteurNom", $this->getAuteur()->getNom());
+        $composant->addParam("anneeAlbum", $this->getAnneeAlbum()->format("d/m/Y"));
+        return $composant->get();
     }
 }

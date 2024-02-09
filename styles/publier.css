@@ -1,0 +1,368 @@
+/* Styles pour la section mouvante */
+.section-mouvante {
+    padding: 2rem 5rem;
+}
+
+.section-mouvante form {
+    width: 100%;
+}
+
+/* Styles pour les informations de publication */
+.infos-publication {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Styles pour la zone de dépôt */
+.drop-zone {
+    cursor: grab;
+}
+
+.drop-zone:active {
+    cursor: grabbing;
+}
+
+/* Styles pour la navigation des artistes */
+.nav-artiste {
+    margin-left: 3rem;
+}
+
+.nav-artiste a.active {
+    border-bottom: 3px solid var(--couleur1);
+}
+
+.nav-artiste a {
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    color: var(--couleur4);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nav-artiste a:hover {
+    color: var(--couleur1);
+}
+
+.nav-artiste li {
+    list-style: none;
+}
+
+.nav-artiste ul {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles pour les titres h1 */
+h1 {
+    margin: 3rem 0 2rem 5rem;
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+/* Styles pour la zone de dépôt d'image */
+.drop-zone {
+    flex-basis: 35%;
+    flex-grow: 1;
+    height: 20rem;
+    width: 20rem;
+    border-radius: 5px;
+    margin: 3rem 1rem 0 3rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drop-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Styles pour la section d'informations de publication */
+.infos-publication section {
+    flex-basis: 60%;
+    flex-grow: 1;
+}
+
+.infos-publication form,
+.infos-publication section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.infos-publication section label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Styles pour les champs de texte et zones de texte */
+#name-album,
+#description {
+    font-size: 1rem;
+    border: 1px solid var(--couleur3);
+    background-color: var(--couleur3);
+    border-radius: 5px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+/* Placeholder pour le textearea */
+.infos-publication #description:placeholder,
+#name-album::placeholder {
+    font-style: italic;
+    color: var(--couleur4);
+}
+
+#description {
+    height: 5rem;
+}
+
+/* Styles pour la liste de genres */
+.list-genre li.new-genre {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.list-genre li.new-genre.show {
+    opacity: 1;
+}
+
+.list-genre li {
+    list-style: none;
+    margin: 0.5rem;
+    font-weight: bold;
+    color: var(--couleur4);
+    border: 5px;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    background-color: var(--couleur3);
+    cursor: pointer;
+}
+
+.list-genre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Styles pour la recherche de genre */
+.search-genre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-genre input {
+    height: 20px;
+    width: 7.5rem;
+    background-color: var(--couleur3);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: none;
+    border-right: 1px solid var(--couleur3);
+    border-bottom: 1px solid var(--couleur3);
+    border-top: 1px solid var(--couleur3);
+}
+
+.search-genre input:focus {
+    outline: none;
+}
+
+.img-search {
+    background-color: var(--couleur3);
+    border-left: 1px solid var(--couleur3);
+    border-bottom: 1px solid var(--couleur3);
+    border-top: 1px solid var(--couleur3);
+    height: 20px;
+    width: 40px;
+}
+
+.img-search img {
+    width: 50%;
+    display: block;
+}
+
+.img-plus {
+    width: 20px;
+    height: 20px;
+}
+
+.img-plus img {
+    width: 100%;
+    display: block;
+}
+
+/* Styles pour les genres sélectionnés */
+.selected-genre {
+    list-style: none;
+    margin: 0.5rem;
+    font-weight: bold;
+    color: var(--couleur2);
+    border: 5px;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    background-color: var(--couleur1);
+}
+
+#selectedGenresList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.new-genre button {
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+    border: 2px solid var(--couleur4);
+    border-radius: 10px;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin: 0.5rem;
+}
+
+.new-genre-container.hide {
+    display: none;
+}
+
+/* Styles pour la section de musiques */
+.musiques {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.drop-musique {
+    flex-grow: 1;
+    border-radius: 5px;
+    margin: 3rem;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    border: 3px solid var(--couleur3);
+    background-color: var(--couleur2);
+}
+
+.drop-musique h2 {
+    display: block;
+    margin-top: 3rem;
+    flex-basis: 90%;
+}
+
+.drop-musique p {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Styles pour les musiques ajoutées */
+
+.liste-musiques {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.liste-musiques h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#musiques-liste {
+    list-style: none;
+    text-align: center;
+}
+
+#musiques-liste li {
+    background-color: var(--couleur2);
+    border: 1px solid var(--couleur3);
+    border-radius: 5px;
+    margin: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.fichier-audio {
+    flex-basis: 25%;
+    flex-grow: 0;
+}
+
+#musiques-liste li div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+#musiques-liste li div p {
+    margin: 0 1rem;
+}
+
+/* Styles pour le bouton "Supprimer" */
+.liste-musiques button {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.album-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 0 3rem 0 1rem;
+}
+
+/* Styles pour le bouton "PUBLIER" */
+.publier-album {
+    display: flex;
+    justify-content: center;
+}
+
+.bouton-publier {
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex-grow: 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.bouton-publier:hover {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+}
+
+/* Styles pour le bouton supprimer des genres */
+
+.remove-genre {
+    margin-left: 0.5rem;
+    background-color: var(--couleur1);
+    border: none;
+}
+
+.remove-genre img {
+    width: 1.25rem;
+    height: auto;
+    display: block;
+}

@@ -6,6 +6,7 @@ use models\db\AlbumDB;
 use models\db\MusiqueDB;
 use models\db\ArtisteDB;
 use models\db\GenreDB;
+use view\BaseTemplate;
 
 class ControllerArtiste extends Controller{
 
@@ -21,15 +22,12 @@ class ControllerArtiste extends Controller{
             $genres = array_merge($genres, $currentGenres);
         }
 
-        $this->render("base", [
-            "header" => $this->get("element/header"),
-            "menu" => $this->get("element/menu"),
-            "content" => $this->get("artiste",[ 
-                "albums" => $albums,
-                "musiquesArtiste" => $musiquesArtiste,
-                "artiste" => $artiste,
-                "genres" => $genres
-            ]),
-        ]);
+        $base = new BaseTemplate();
+        $base->setContent("artiste");
+        $base->addParam("albums", $albums);
+        $base->addParam("musiquesArtiste", $musiquesArtiste);
+        $base->addParam("artiste", $artiste);
+        $base->addParam("genres", $genres);
+        $base->render();
     }
 }

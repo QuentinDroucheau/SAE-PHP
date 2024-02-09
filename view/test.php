@@ -3,9 +3,9 @@
         <a>Connexion</a>
         <img class="test-profil-icon" src="img/profil.png" alt="">
     </div>
-    <div class="test-profil2" onclick="openProfil();">
+    <div class="test-profil2">
         <div class="close">
-            <img src="img/close.svg" alt="">
+            <img src="img/close.svg" alt="" onclick="closeProfil();">
         </div>
         <div class="test-profil">    
             <a>Connexion</a>
@@ -13,8 +13,25 @@
         </div>
     </div>
 </div>
-
 <script>
+
+    function closeProfil(){
+        let profil2 = document.querySelector('.test-profil2');
+        profil2.removeChild(document.querySelector('#login-form'));
+
+        let close = document.querySelector('.close');
+        profil2.removeChild(close);
+        
+        profil2.style.animation = "close 0.4s ease-in-out";
+
+        setTimeout(function(){
+            let profil = document.querySelector('.test-profil');
+            profil.style.display = "flex";
+            profil2.style.display = "none";
+            profil2.style.animation = "open 0.4s ease-in-out";
+            profil2.appendChild(close);
+        }, 300);
+    }
 
     function openProfil(){
         let profil = document.querySelector('.test-profil');
@@ -35,18 +52,51 @@
                 let form = document.querySelector('.test-profil2');
                 setTimeout(function() {
                     form.innerHTML = form.innerHTML + obj;
-                }, 500);
+                    loadScript("js/header.js");
+                }, 400);
             }
         });
+    }
+
+    function loadScript(src){
+        let script = document.createElement('script');
+        script.src = src;
+        document.head.append(script);
     }
 
 </script>
 <style>
 
-@keyframes fadeIn {
+@keyframes form {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#login-form{
+    animation: form 0.6s ease-in-out;
+    margin-top: 10%;
+}
+
+@keyframes close {
+    0% {
+        height: 300px;
+        width: 300px;
+    }
+    100% {
+        height: 0px;
+        width: 200px;
+    }
+}
+
+@keyframes open {
     0% {
         height: 0px;
-        width: 0px;
+        width: 200px;
     }
     100% {
         height: 300px;
@@ -82,7 +132,7 @@
     right: 0;
     top: 0;
     display: none;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: open 0.4s ease-in-out;
     flex-wrap: wrap;
     flex-direction: column;
 }
