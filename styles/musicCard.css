@@ -1,6 +1,8 @@
 .main-album{
   font-size: 0.9375rem;
   transition: box-shadow 0.3s ease-in-out;
+  z-index: -1;
+  position: relative; /* Ajoutez cette ligne */
 }
 
 .img-album-container {
@@ -28,6 +30,7 @@
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   border-radius: 8px;
+  z-index: 1;
 }
 
 .img-album-container:hover::after {
@@ -52,18 +55,13 @@
 }
 
 .add-to-playlist-button {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  position: absolute;
-  bottom: 10px;
+  /* opacity: 1;
+  transition: opacity 0.3s ease-in-out; */
+  position: absolute; 
+  top: 10px; 
   right: 10px;
-  background: #fff;
+  background: white;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 1;
-}
-
-.main-album:hover .add-to-playlist-button {
-  opacity: 1;
 }
