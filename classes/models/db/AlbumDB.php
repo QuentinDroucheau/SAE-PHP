@@ -68,7 +68,7 @@ class AlbumDB {
     }
 
     // Récupération de l'id d'un album
-    public static function getIdAlbum($titreAlbum){
+    public static function getIdAlbumByTitle($titreAlbum){
         $db = Database::getInstance();
         $stmt = $db->prepare('SELECT idAlbum FROM album WHERE titreAlbum = :titreAlbum');
         $stmt->bindParam(':titreAlbum', $titreAlbum);
@@ -83,6 +83,13 @@ class AlbumDB {
         $stmt->bindParam(':idA', $idArtiste);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public static function getIdAlbum() {
+        $db = Database::getInstance();
+        $stmt = $db->query('SELECT MAX(idAlbum) FROM album');
+        $result = $stmt->fetch();
+        return $result[0];
     }
 
 

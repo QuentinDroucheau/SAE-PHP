@@ -91,6 +91,7 @@
                 <section class="liste-musiques" id="liste-musiques">
                     <h2>Musiques déposées :</h2>
                     <ul id="musiques-liste"></ul>
+                    <input type="hidden" id="musiques-liste-input" name="musiquesListe">
                 </section>
                 <div class="publier-album">
                     <input type="submit" class="bouton-publier" value="PUBLIER">

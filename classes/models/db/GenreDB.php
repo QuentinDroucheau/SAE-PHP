@@ -58,5 +58,23 @@ class GenreDB {
         $result = $stmt->fetch();
         return $result[0] + 1;
     }
+
+    public function getGenre($idG){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM genre WHERE idG = :idG");
+        $stmt->bindParam(":idG", $idG);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return new Genre($result["idG"], $result["nomG"]);
+    }
+
+    public function getGenreByName($nomG){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM genre WHERE nomG = :nomG");
+        $stmt->bindParam(":nomG", $nomG);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return new Genre($result["idG"], $result["nomG"]);
+    }
     
 }

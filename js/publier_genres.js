@@ -67,7 +67,7 @@ function addSelectedGenre(genre) {
     // Créer un nouvel élément input avec le type 'hidden'
     const selectedGenreInput = document.createElement('input');
     selectedGenreInput.type = 'hidden';
-    selectedGenreInput.name = 'genre[]'; // Utiliser des crochets pour envoyer un tableau PHP
+    selectedGenreInput.name = 'genre[]';
     selectedGenreInput.value = genre;
 
     // Ajouter l'input au li
@@ -75,6 +75,7 @@ function addSelectedGenre(genre) {
 
     // Créer un nouvel élément span pour afficher le genre
     const selectedGenreSpan = document.createElement('span');
+    selectedGenreSpan.classList.add('genres-selectionnes');
     selectedGenreSpan.textContent = genre;
 
     // Ajouter le span au li
