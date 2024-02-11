@@ -7,6 +7,7 @@ use models\db\ArtisteDB;
 use models\db\GenreDB;
 use models\db\MusiqueDB;
 use models\db\ContientDB;
+use view\BaseTemplate;
 use utils\Utils;
 
 class ControllerPublier extends Controller
@@ -16,14 +17,12 @@ class ControllerPublier extends Controller
         $artistes = ArtisteDB::getArtistes();
         $genres = GenreDB::getGenres();
 
-        $this->render("base", [
-            "header" => $this->get("element/header"),
-            "menu" => $this->get("element/menu"),
-            "content" => $this->get("publier", [
-                "artistes" => $artistes,
-                "genres" => $genres
-            ]),
-        ]);
+        $base = new BaseTemplate();
+        $base->setContent("publier");
+        $base->addParam("artistes", $artistes);
+        $base->addParam("genres", $genres);
+        $base->render();
+
     }
 
     public function publierContenue()
@@ -86,7 +85,7 @@ class ControllerPublier extends Controller
                     $idGenre = $genreDB->getGenreByName($genre)->getId();
                     $contientDB->insererContient($idMusique, $idGenre);
 
-                    echo "<script>alert('La musique : $nomMusique, avec le genre : $genre, a été ajoutée.');</script>";
+                    echo "<script>alert('La musique : $nomMusique avec le genre : $genre a été ajoutée.');</script>";
                 }
             }
 
