@@ -3,6 +3,9 @@
 namespace models;
 
 use models\CollectionMusicale;
+use view\Composant;
+use models\db\ArtisteDB;
+use models\db\MusiqueDB;
 use view\Template;
 
 class Album extends CollectionMusicale {
@@ -29,14 +32,31 @@ class Album extends CollectionMusicale {
         return $this->idArtiste;
     }
 
+    public function getArtiste(): Artiste {
+        return ArtisteDB::getArtiste($this->idArtiste);
+    }
+
+    public function getMusiques(): array {
+        return MusiqueDB::getMusiquesAlbum($this->id);
+    }
+
     public function render(): string{
-        return Template::get("element/album", [
-            "image" => $this->getImage(),
-            "id" => $this->getId(),
-            "titre" => $this->getTitre(),
-            "idArtiste" => $this->getIdArtiste(),
-            "anneeAlbum" => $this->getAnneeAlbum()->format("d/m/Y"),
-            "descriptionA" => $this->getDescription()
-        ]);
+        // return Template::get("element/album", [
+        //     "image" => $this->getImage(),
+        //     "id" => $this->getId(),
+        //     "titre" => $this->getTitre(),
+        //     "idArtiste" => $this->getIdArtiste(),
+        //     "anneeAlbum" => $this->getAnneeAlbum()->format("d/m/Y"),
+        //     "descriptionA" => $this->getDescription()
+        // ]);
+
+        $composant = new Composant("album");
+        $composant->addParam("image", $this->getImage());
+        $composant->addParam("id", $this->getId());
+        $composant->addParam("titre", $this->getTitre());
+        $composant->addParam("musiques", $this->getMusiques());
+        $composant->addParam("auteurNom", $this->getArtiste()->getNom());
+        $composant->addParam("anneeAlbum", $this->getAnneeAlbum()->format("d/m/Y"));
+        return $composant->get();
     }
 }

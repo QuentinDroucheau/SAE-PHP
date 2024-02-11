@@ -5,6 +5,7 @@ namespace controller;
 use models\db\AlbumDB;
 use models\db\PlaylistDB;
 use utils\Utils;
+use view\BaseTemplate;
 
 class ControllerHome extends Controller{
     
@@ -15,22 +16,18 @@ class ControllerHome extends Controller{
         foreach ($categories as $category) {
             $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
         }
-        try {
+
+        try{
             $userId = Utils::getIdUtilisateurConnecte();
             $playlists = $playlistDB->getPlaylists($userId);
+
         } catch (\Exception $e) {
             $playlists = null;
         }
-        $this->render("base", [
-            "header" => $this->get("element/header"),
-            "content" => $this->get("accueil", [
-                "albumsByCategory" => $albumsByCategory
-            ], $playlists),
-            "menu" => $this->get("element/menu"),
-        ]);
-    }
-
-    public function add(): void{
-        $this->render("test", []);
+        
+        $base = new BaseTemplate();
+        $base->setContent("accueil");
+        $base->addParam("albumsByCategory", $albumsByCategory);
+        $base->render();
     }
 }
