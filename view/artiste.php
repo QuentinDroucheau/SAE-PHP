@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="styles/artiste.css">
+<script src="js/artiste.js"></script>
 <div>
     <section class="infos-artistes">
         <div class="img-artiste">
@@ -147,24 +148,3 @@
     </section>
 </div>
 
-<script>
-    function updateActiveLink(sectionId) {
-        document.querySelectorAll('.nav-artiste a').forEach(function(link) {
-            link.classList.remove('active');
-        });
-        document.querySelector('.nav-artiste a[href="#"][onclick="showSection(\'' + sectionId + '\')"]').classList.add('active');
-    }
-
-    function showSection(sectionId) {
-        document.querySelectorAll('.section-mouvante').forEach(function(section) {
-            section.style.display = 'none';
-        });
-        document.getElementById(sectionId + '-section').style.display = 'flex';
-        updateActiveLink(sectionId);
-    }
-
-    window.onload = function () {
-        showSection('musiques');
-    };
-
-</script>

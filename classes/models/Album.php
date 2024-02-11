@@ -3,30 +3,25 @@
 namespace models;
 
 use models\db\CollectionMusicale;
-use view\Composant;
 use view\Template;
+use view\Composant;
 
 class Album extends CollectionMusicale {
 
     public function __construct(
         int $id,
         string $titreAlbum,
-        Artiste $artiste,
+        int $idArtiste,
         ?string $imageAlbum,
         string $datePublication,
-        array $musiques = [],
-        string $description = ''
+        string $descriptionA = ''
     ) {
-        parent::__construct($id, $titreAlbum, $artiste, $imageAlbum, $datePublication, $description, $musiques);
+        parent::__construct($id, $titreAlbum, $idArtiste, $imageAlbum, $datePublication, $descriptionA);
         $this->datePublication = $datePublication;
     }
 
     public function getAnneeAlbum(): \DateTime {
         return \DateTime::createFromFormat('d/m/Y', $this->datePublication);
-    }
-
-    public function getMusiques(): array {
-        return $this->musiques;
     }
 
     public function render(): string{
