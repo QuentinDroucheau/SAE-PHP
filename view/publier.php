@@ -1,5 +1,12 @@
 <link rel="stylesheet" href="styles/publier.css">
 <script src="js/publier.js"></script>
+<script src="js/publier_genres.js"></script>
+<script src="js/publier_musiques.js"></script>
+<script src="js/publier_page.js"></script>
+<script src="js/publier_image.js"></script>
+<section class="retour">
+    <a href="/"><img src="img/retour.png" alt="retour à l'accueil"><p>Retour</p></a>
+</section>
 <div>
     <h1 id="publier-titre">
         PUBLIER DU CONTENU
@@ -74,7 +81,7 @@
                         <h2>
                             Glisser/Déposer vos fichiers ici
                         </h2>
-                        <input type="file" accept="audio/*" id="audio-input" style="display: none;" onchange="handleAudioFiles(this.files)">
+                        <input type="file" accept="audio/*" id="audio-input" style="display: none;" onchange="handleAudioFiles(this.files)" name="audio">
                         <p>
                             (Formats acceptés: .mp3, .wav, .flac, .ogg)
                         </p>
@@ -84,6 +91,7 @@
                 <section class="liste-musiques" id="liste-musiques">
                     <h2>Musiques déposées :</h2>
                     <ul id="musiques-liste"></ul>
+                    <input type="hidden" id="musiques-liste-input" name="musiquesListe">
                 </section>
                 <div class="publier-album">
                     <input type="submit" class="bouton-publier" value="PUBLIER">

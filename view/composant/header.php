@@ -2,7 +2,7 @@
 <header class="header">
     <div class="left">
         <div class="container">
-            <img class="logo" src="img/logo.png" alt="">
+            <a href="/"><img class="logo" src="img/logo.png" alt=""></a>
             <div class="search-bar">
                 <div class="icon_search">
                     <img src="img/search.png" alt="">
@@ -12,7 +12,7 @@
         </div>
         <div class="publier">
             <img class="icon_publier" src="img/icon_publier.png" alt="">
-            <a href="">PUBLIER</a>
+            <a href="/publier">PUBLIER</a>
         </div>
     </div>
     <div class="right">

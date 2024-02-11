@@ -3,262 +3,272 @@
   imgAlbum: Superdrag-Stereo_360_Sound.jpg
   anneeAlbum: 19/07/1998
   titreAlbum: Stereo 360 Sound
+  descriptionA: "Album de Superdrag sorti en 1998."
   musiques: 
     - idM: 1
       nomG: Rock
-      lienM:
+      lienM: lien_1.mp3
       nomM: Head Trip in Every Key
     - idM: 2
       nomG: Punk
-      lienM:
+      lienM: lien_2.mp3
       nomM: Last Call for Vitriol
 - nomA: 16 Horsepower
   idAlbum: 10575
   imgAlbum: 220px-Folklore_hp.jpg
   anneeAlbum: 12/02/2002
   titreAlbum: Folklore
+  descriptionA: "Album de 16 Horsepower sorti en 2002."
   musiques:
     - idM: 3
       nomG: Alternative country
-      lienM:
+      lienM: lien_3.mp3
       nomM: Sackcloth 'n' Ashes
     - idM: 4
       nomG: Neofolk
-      lienM:
+      lienM: lien_4.mp3
       nomM: Secret South
 - nomA: Ryan Adams
   idAlbum: 10637
   imgAlbum: 220px-RyanAdamsHeartbreaker.jpg
   anneeAlbum: 01/12/2000
   titreAlbum: Heartbreaker
+  descriptionA: "Album de Ryan Adams sorti en 2000."
   musiques:
     - idM: 5
       nomG: Alternative country
-      lienM:
+      lienM: lien_5.mp3
       nomM: Heartbreaker
     - idM: 6
       nomG: Country
-      lienM: 
+      lienM: lien_6.mp3
       nomM: Gold
 - nomA: Ryan Adams
   idAlbum: 10644
   imgAlbum: 220px-RyanadamsselftitreAlbumd.jpg
   anneeAlbum: 05/10/2014
   titreAlbum: Ryan Adams
+  descriptionA: "Album de Ryan Adams sorti en 2014."
   musiques:
     - idM: 7
       nomG: Rock
-      lienM:
+      lienM: lien_7.mp3
       nomM: Danse with the One
     - idM: 8
       nomG: Alternative country
-      lienM:
+      lienM: lien_8.mp3
       nomM: Road to Nowhere
     - idM: 9
       nomG: Pop rock
-      lienM:
+      lienM: lien_9.mp3
       nomM: Prisoner of Love
 - nomA: Whiskeytown
   idAlbum: 10660
   imgAlbum: 220px-WhiskeytownPneumonia.jpg
   anneeAlbum: 10/02/2001
   titreAlbum: Pneumonia
+  descriptionA: "Album de Whiskeytown sorti en 2001."
   musiques:
     - idM: 10
       nomG: Alternative country
-      lienM:
+      lienM: lien_10.mp3
       nomM: Pneumonia
 - nomA: Jesse Malin
   idAlbum: 10668
   imgAlbum: The_Fine_Art_of_Self_Destruction.jpg
   anneeAlbum: 23/10/2002
   titreAlbum: The Fine Art of Self Destruction
+  descriptionA: "Album de Jesse Malin sorti en 2002."
   musiques:
     - idM: 11
-      nomG: 
-      lienM:
+      lienM: lien_11.mp3
       nomM: Queen of the Underworld
     - idM: 12
-      nomG: 
-      lienM:
+      lienM: lien_12.mp3
       nomM: TKO
     - idM: 13
-      nomG: 
-      lienM:
+      lienM: lien_13.mp3
       nomM: Wendy and Lucy (Live)
 - nomA: The Finger
   idAlbum: 10669
-  imgAlbum: null
   anneeAlbum: 30/01/2003
   titreAlbum: We Are Fuck You
+  descriptionA: "Album de The Finger sorti en 2003."
   musiques:
     - idM: 14
       nomG: Rock
-      lienM:
+      lienM: lien_14.mp3
       nomM: Are Fuck You
 - nomA: Ryan Adams
   idAlbum: 10675
   imgAlbum: 220px-Love_Is_Hell.jpg
   anneeAlbum: 13/06/2004
   titreAlbum: Love Is Hell
+  descriptionA: "Album de Ryan Adams sorti en 2004."
   musiques:
     - idM: 15
       nomG: Rock
-      lienM:
+      lienM: lien_15.mp3
       nomM: I'm Not Your Jesus
 - nomA: Joan Baez
   idAlbum: 10679
   imgAlbum: 220px-DarkChords.jpg
   anneeAlbum: 03/10/2003
   titreAlbum: Dark Chords on a Big Guitar
+  descriptionA: "Album de Joan Baez sorti en 2003."
   musiques:
-    -  idM: 16
-       nomG: Rock
-       lienM:
-       nomM: When I Paint My Masterpiece
+    - idM: 16
+      nomG: Rock
+      lienM: lien_16.mp3
+      nomM: When I Paint My Masterpiece
 - nomA: Willie Nelson
   idAlbum: 10697
   imgAlbum: 220px-Songbird_Willie_Nelson.jpg
   anneeAlbum: 12/09/2006
   titreAlbum: Songbird
+  descriptionA: "Album de Willie Nelson sorti en 2006."
   musiques:
     - idM: 18
       nomG: Alternative country
-      lienM:
+      lienM: lien_18.mp3
       nomM: The Mystery of Life
 - nomA: Cowboy Junkies
   idAlbum: 10707
   imgAlbum: 220px-Trinityrevisited.jpg
   anneeAlbum: 03/10/2007
   titreAlbum: Trinity Revisited
+  descriptionA: "Album de Cowboy Junkies sorti en 2007."
   musiques:
     - idM: 19
       nomG: Country rock
-      lienM:
+      lienM: lien_19.mp3
       nomM: You Don't Own Me
     - idM: 20
       nomG: Alternative country
-      lienM:
+      lienM: lien_20.mp3
       nomM: I'm So Open
 - nomA: Ryan Adams
   idAlbum: 10714
   imgAlbum: 220px-Ryan-adams-orion.jpg
   anneeAlbum: 03/02/2010
   titreAlbum: Orion
+  descriptionA: "Album de Ryan Adams sorti en 2010."
   musiques:
     - idM: 21
       nomG: Heavy metal
-      lienM:
+      lienM: lien_21.mp3
       nomM: Electrosnake
     - idM: 22
       nomG: hard rock
-      lienM:
+      lienM: lien_22.mp3
       nomM: Fire and Ice
 - nomA: Whiskeytown
   idAlbum: 10770
-  imgAlbum: null
   anneeAlbum: 12/07/2012
   titreAlbum: Forever Valentine
+  descriptionA: "Album de Whiskeytown sorti en 2012."
   musiques:
     - idM: 23
       nomG: Alternative country
-      lienM:
+      lienM: lien_23.mp3
       nomM: Forever Valentine
 - nomA: Alabama Shakes
   idAlbum: 10809
   imgAlbum: 220px-Alabama_Shakes_-_Sound_%26_Color_album_cover.jpg
   anneeAlbum: 12/10/2015
   titreAlbum: Sound & Color
+  descriptionA: "Album de Alabama Shakes sorti en 2015."
   musiques:
     - idM: 24
       nomG: Blues rock
-      lienM:
+      lienM: lien_24.mp3
       nomM: Don't Wanna Fight
     - idM: 25
       nomG: roots rock
-      lienM:
+      lienM: lien_25.mp3
       nomM: Gimme All Your Love
     - idM: 26
       nomG: soul
-      lienM:
+      lienM: lien_26.mp3
       nomM: This Feeling
     - idM: 27
       nomG: Southern rock
-      lienM:
+      lienM: lien_27.mp3
       nomM: Future People
     - idM: 28
       nomG: garage rock
-      lienM:
+      lienM: lien_28.mp3
       nomM: Guess Who
     - idM: 29
       nomG: Americana
-      lienM:
+      lienM: lien_29.mp3
       nomM: The Greatest Show on Earth
 - nomA: Terry Allen
   idAlbum: 10890
-  imgAlbum: Terry_Allen_Lubbock%28on_everything%29.jpg
   anneeAlbum: 20/10/1979
   titreAlbum: Lubbock
+  descriptionA: "Album de Terry Allen sorti en 1979."
   musiques:
     - idM: 30
       nomG: Country
-      lienM:
+      lienM: lien_30.mp3
       nomM: Amarillo Highway
 - nomA: Terry Allen
   idAlbum: 10893
-  imgAlbum: TerryAllen_Juarez.jpg
   anneeAlbum: 10/03/1975
   titreAlbum: Juarez
+  descriptionA: "Album de Terry Allen sorti en 1975."
   musiques:
     - idM: 31
       nomG: Country
-      lienM:
+      lienM: lien_31.mp3
       nomM: Border Palace
 - nomA: Terry Allen
   idAlbum: 10895
-  imgAlbum: Terry_Allen_Pedal_Steal.jpg
   anneeAlbum: 27/01/1985
   titreAlbum: Pedal Steal
+  descriptionA: "Album de Terry Allen sorti en 1985."
   musiques:
     - idM: 32
       nomG: Country
-      lienM:
+      lienM: lien_32.mp3
       nomM: The Beautiful Waitress
 - nomA: Terry Allen
   idAlbum: 10899
-  imgAlbum: Terry_Allen_Human_Remains.jpg
   anneeAlbum: 01/01/1996
   titreAlbum: Human Remains
+  descriptionA: "Album de Terry Allen sorti en 1996."
   musiques:
     - idM: 33
       nomG: Country
-      lienM:
+      lienM: lien_33.mp3
       nomM: The Gift of Your Love
 - nomA: X
   idAlbum: 10913
   imgAlbum: XSeeHowWeAre.jpg
   anneeAlbum: 09/10/1987
   titreAlbum: See How We Are
+  descriptionA: "Album de X sorti en 1987."
   musiques:
     - idM: 34
       nomG: Alternative rock
-      lienM:
+      lienM: lien_34.mp3
       nomM: I'm Lost
     - idM: 35
       nomG: Alternative country
-      lienM:
+      lienM: lien_35.mp3
       nomM: 4th of July (Tonight)
 - nomA: Dave Alvin
   idAlbum: 10919
-  imgAlbum: null
   anneeAlbum: 20/10/2011
   titreAlbum: Eleven Eleven
+  descriptionA: "Album de Dave Alvin sorti en 2011."
   musiques:
     - idM: 36
       nomG: Folk rock
-      lienM:
+      lienM: lien_36.mp3
       nomM: Harlan County Line
     - idM: 37
       nomG: country rock
-      lienM:
+      lienM: lien_37.mp3
       nomM: Johnny Ace Is Dead
