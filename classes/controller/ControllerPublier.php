@@ -76,24 +76,17 @@ class ControllerPublier extends Controller
                 $contientDB = new ContientDB();
 
                 foreach ($musiquesListe as $musique) {
-                    // Récupérer les informations nécessaires pour chaque musique
                     $nomMusique = $musique['nomMusique'];
                     $lienMusique = $musique['audioPath'];
                     $idAlbum = $albumDB->getIdAlbum();
 
-                    // Insérer la musique dans la base de données
-                    $musiqueDB->insererMusique($nomMusique, $lienMusique, $idAlbum);
-                    // $idMusique = $musiqueDB->insererMusique($nomMusique, $lienMusique, $idAlbum);
+                    $idMusique = $musiqueDB->insererMusique($nomMusique, $lienMusique, $idAlbum);
 
-                    // foreach ($selectedGenres as $selectedGenre) {
-                    //     if (is_array($selectedGenre)) {
-                    //         $idGenre = $genreDB->getGenre($selectedGenre['idG'])->getId();
+                    $genre = $musique['genreMusique'];
+                    $idGenre = $genreDB->getGenreByName($genre)->getId();
+                    $contientDB->insererContient($idMusique, $idGenre);
 
-                    //     // Insérer la relation dans la table 'contient'
-                    //     $contientDB->insererContient($idMusique, $idGenre);
-                    // }
-
-                    echo "<script>alert('La musique $nomMusique a été ajoutée avec les genres associés.');</script>";
+                    echo "<script>alert('La musique : $nomMusique, avec le genre : $genre, a été ajoutée.');</script>";
                 }
             }
 
@@ -101,7 +94,7 @@ class ControllerPublier extends Controller
                 "<script>
             alert('L\'album a bien été ajouté');
             window.location.href='/publier';
-            </script>";// 
+            </script>";//
         }
     }
 

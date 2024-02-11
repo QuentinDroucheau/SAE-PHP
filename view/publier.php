@@ -81,7 +81,7 @@
                         <h2>
                             Glisser/Déposer vos fichiers ici
                         </h2>
-                        <input type="file" accept="audio/*" id="audio-input" style="display: none;" onchange="handleAudioFiles(this.files)">
+                        <input type="file" accept="audio/*" id="audio-input" style="display: none;" onchange="handleAudioFiles(this.files)" name="audio">
                         <p>
                             (Formats acceptés: .mp3, .wav, .flac, .ogg)
                         </p>

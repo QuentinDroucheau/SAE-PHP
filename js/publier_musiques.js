@@ -205,16 +205,6 @@ function handleAudioFiles(files) {
     // Ajouter des déclarations console.log pour le débogage
     console.log('Nouvelle musique ajoutée :', musiqueInfo);
     console.log('Liste actuelle des musiques :', musiquesList);
-
-    // nomMusiqueInput.addEventListener('input', function() {
-    //     miseAJour(musiqueID, nomMusiqueInput.value, musiqueInfo);
-    // });
-
-    // selectGenreAudio.addEventListener('change', function() {
-    //     const nouveauGenre = selectGenreAudio.value;
-    //     musiqueInfo.genreMusique = nouveauGenre;
-    //     miseAJour(musiqueID, nomMusiqueInput.value, nouveauGenre, musiqueInfo);
-    // });   
     
     
     // Utilisation dans votre code
