@@ -5,15 +5,15 @@
 <link rel="stylesheet" href="styles/swiper.css">
 <link rel="stylesheet" href="styles/musicCard.css">
 
-<?php foreach ($albumsByCategory as $category => $lesAlbums) : ?>
+<?php foreach ($albumsDetails as $category => $albumDetails) : ?>
     <section class="section-categorie-album">
         <h2><?= $category ?></h2>
         <div class="container-for-swiper">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <?php foreach ($lesAlbums as $album) : ?>
+                    <?php foreach ($albumDetails as $albumDetail) : ?>
                         <div class="swiper-slide">
-                            <?= $album->render() ?>
+                            <?= $albumDetail['album']->render() ?>
                             <div class="add-to-playlist-button">+</div>
                             <div class="submenu" style="display: none;">
                                 <?php foreach ($playlists as $playlist) : ?>
@@ -21,7 +21,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div> <!-- ferme le swiper-slide -->
-                    <?php endforeach ?>
+                    <?php endforeach; ?>
                 </div> <!-- ferme le wrapper -->
             </div>
             <div class="swiper-button-next"></div>

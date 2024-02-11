@@ -12,13 +12,13 @@ class PlaylistDB {
         $stmt = $db->prepare("INSERT INTO playlist(titrePlaylist, datePlaylist, imgPlaylist, description, idU) VALUES (:titre, :date, :imagePl, :description, :idU)");
         $titrePlaylist = $playlist->getTitre();
         $stmt->bindParam(":titre", $titrePlaylist);
-        $date = $playlist->getAnnee();
+        $date = $playlist->getDatePublication();
         $stmt->bindParam(":date", $date);
         $imgPlaylist = $playlist->getImage();
         $stmt->bindParam(":imagePl", $imgPlaylist);
         $description = $playlist->getDescription();
         $stmt->bindParam(":description", $description);
-        $idU = $playlist->getAuteur()->getId();
+        $idU = $playlist->getIdAuteur();
         $stmt->bindParam(":idU", $idU);
         return $stmt->execute();
     }
@@ -31,12 +31,8 @@ class PlaylistDB {
             if (!$playlist) {
                 $auteur = new Utilisateur($r["idU"], $r["pseudoU"], $r["mdpU"], $r["roleU"]);
                 $description = $r["description"] ?? '';
-                $playlist = new Playlist($r["idPlaylist"], $r["titrePlaylist"], $auteur, $r["imgPlaylist"], $r["datePlaylist"], $description, $r["dateMAJ"]);
+                $playlist = new Playlist($r["idPlaylist"], $r["titrePlaylist"], $auteur->getId(), $r["imgPlaylist"], $r["datePlaylist"], $description, $r["dateMAJ"]);
 
-            }
-    
-            if ($r["idM"]) {
-                $playlist->addMusique(new Musique($r["idM"], $r["nomM"],"lien"));
             }
         }
     

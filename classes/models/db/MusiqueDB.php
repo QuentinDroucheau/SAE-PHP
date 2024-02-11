@@ -93,4 +93,10 @@ class MusiqueDB{
         return $db->lastInsertId();
     }
 
+    public static function getNbMusiquesAlbum(int $idAlbum): int{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT COUNT(*) FROM musique WHERE idAlbum = $idAlbum");
+        $r = $result->fetch();
+        return $r[0];
+    }
 }

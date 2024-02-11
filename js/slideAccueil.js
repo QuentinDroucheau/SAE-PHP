@@ -2,7 +2,7 @@ var swipers = document.querySelectorAll('.swiper-container');
 
 swipers.forEach(function(swiper, index) {
   new Swiper(swiper, {
-    slidesPerView: 4,
+    slidesPerView: 5,
     slidesPerGroup: 3,
     spaceBetween: 30,
     navigation: {

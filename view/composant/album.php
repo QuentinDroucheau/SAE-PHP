@@ -4,8 +4,8 @@
         <div class="top-infos-card">
             <h3><?php echo $titre; ?></h3>
             <p>
-                <?php echo (count($musiques) == 1 ? 'Single' : count($musiques)) . " Titres"; ?>
-            </p>
+            <?php echo $nbMusiques == 1 ? 'Single' : $nbMusiques." Titres";?> 
+        </p>
         </div>
         <div class="bottom-infos-card">
             <div class="bottom-infos-card-artist">
