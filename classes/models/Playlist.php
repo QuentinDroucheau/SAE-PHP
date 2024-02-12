@@ -2,28 +2,27 @@
 
 namespace models;
 
-use models\db\CollectionMusicale;
+use models\CollectionMusicale;
 
 class Playlist extends CollectionMusicale {
     private string $dateMAJ;
-    private Utilisateur $auteur;
+    private int $idUtilisateur;
 
     public function __construct(
         int $id,
         string $titre,
-        Utilisateur $auteur,
+        int $idUtilisateur,
         string $image,
         string $datePublication,
         string $description,
         string $dateMAJ,
-        array $musiques = []
     ) {
-        parent::__construct($id, $titre, $auteur, $image, $datePublication, $description, $musiques);
+        parent::__construct($id, $titre, $idUtilisateur, $image, $datePublication, $description);
         $this->dateMAJ = $dateMAJ;
     }
 
-    public function getAuteur(): Utilisateur {
-        return $this->auteur;
+    public function getIdUtilisateur(): int {
+        return $this->idUtilisateur;
     }
 
     public function getDateMAJ(): string {

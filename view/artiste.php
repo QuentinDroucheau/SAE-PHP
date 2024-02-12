@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="styles/artiste.css">
+<script src="js/artiste.js"></script>
 <div>
     <section class="infos-artistes">
         <div class="img-artiste">
@@ -73,15 +74,16 @@
                     $albumCpt = 0;
                     foreach ($albums as $album) {
                         if ($albumCpt < 2) {
-                            echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
-                            echo "<p>" . $album->getTitreAlbum() . "</p>";
-                            echo "<span>" . $album->getAnneeAlbum() . "</span>";
-
+                            echo "<img src='" . $album->getImage() . "' alt='cover de l'album >";
+                            echo "<p>" . $album->getTitre() . "</p>";
+                            echo "<span>" . $album->getAnneeAlbum()->format('Y-m-d') . "</span>";
+                
                             $albumCpt++;
                         } else {
                             break;
                         }
                     }
+                    
                     ?>
 
                     <!-- rajouter le css/html de l'album -->
@@ -147,24 +149,3 @@
     </section>
 </div>
 
-<script>
-    function updateActiveLink(sectionId) {
-        document.querySelectorAll('.nav-artiste a').forEach(function(link) {
-            link.classList.remove('active');
-        });
-        document.querySelector('.nav-artiste a[href="#"][onclick="showSection(\'' + sectionId + '\')"]').classList.add('active');
-    }
-
-    function showSection(sectionId) {
-        document.querySelectorAll('.section-mouvante').forEach(function(section) {
-            section.style.display = 'none';
-        });
-        document.getElementById(sectionId + '-section').style.display = 'flex';
-        updateActiveLink(sectionId);
-    }
-
-    window.onload = function () {
-        showSection('musiques');
-    };
-
-</script>

@@ -3,10 +3,12 @@ CREATE TABLE IF NOT EXISTS album (
   anneeAlbum TEXT,
   titreAlbum TEXT,
   imgAlbum TEXT,
+  descriptionA TEXT,
   idA INTEGER NOT NULL,
   PRIMARY KEY (idAlbum),
   FOREIGN KEY (idA) REFERENCES artiste (idA)
 );
+
 
 CREATE TABLE IF NOT EXISTS artiste (
   idA INTEGER NOT NULL,

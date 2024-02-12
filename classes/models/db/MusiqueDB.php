@@ -83,14 +83,14 @@ class MusiqueDB{
         return null;
     }
 
-    public function insererMusique($nomM, $lienM, $idAlbum)
-    {
+    public function insererMusique($nomM, $lienM, $idAlbum){
         $db = Database::getInstance();
         $stmt = $db->prepare("INSERT INTO musique(nomM, lienM, idAlbum) VALUES (:nomM, :lienM, :idAlbum)");
         $stmt->bindParam(":nomM", $nomM);
         $stmt->bindParam(":lienM", $lienM);
         $stmt->bindParam(":idAlbum", $idAlbum);
         $stmt->execute();
+        return $db->lastInsertId();
     }
 
 }
