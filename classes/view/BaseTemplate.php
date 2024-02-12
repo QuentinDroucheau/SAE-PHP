@@ -20,10 +20,9 @@ class BaseTemplate extends Template{
         ob_start();
         require "view/".$this->content.".php";
         $content = ob_get_clean();
-
         $header = (new Composant("header", $this->params))->get();
         $menu = (new Composant("menu", $this->params))->get();
-
+        $popup = (new Composant("popup", $this->params))->get();
         require "view/template/base.php";
     }
 }

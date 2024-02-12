@@ -16,9 +16,9 @@ class Album extends CollectionMusicale {
         int $idArtiste,
         ?string $image,
         string $datePublication,
-        string $description = ''
+        string $descriptionA = ''
     ) {
-        parent::__construct($id, $titre, $idArtiste, $image, $datePublication, $description);
+        parent::__construct($id, $titre, $idArtiste, $image, $datePublication, $descriptionA);
     }
 
     public function getAnneeAlbum(): \DateTime {

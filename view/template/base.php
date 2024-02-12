@@ -4,12 +4,14 @@
     <link rel="stylesheet" href="styles/base.css">
 </head>
 <body>
+    <div id="overlay"></div>
     <?php echo isset($header) ? $header : "";?>
     <div class="contenu">
         <div class="page">
             <?php echo isset($content) ? $content : ""; ?>
         </div>
         <?php echo isset($menu) ? $menu : "";?>
+        <?php echo isset($popup) ? $popup : "";?>
     </div>
 </body>
 </html>

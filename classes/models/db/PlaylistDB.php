@@ -7,19 +7,30 @@ use models\Musique;
 use models\Utilisateur;
 
 class PlaylistDB {
-    public static function addPlaylist(Playlist $playlist): bool {
+    // public static function addPlaylist(Playlist $playlist): bool {
+    //     $db = Database::getInstance();
+    //     $stmt = $db->prepare("INSERT INTO playlist(titrePlaylist, datePlaylist, imgPlaylist, description, idU) VALUES (:titre, :date, :imagePl, :description, :idU)");
+    //     $titrePlaylist = $playlist->getTitre();
+    //     $stmt->bindParam(":titre", $titrePlaylist);
+    //     $date = $playlist->getDatePublication();
+    //     $stmt->bindParam(":date", $date);
+    //     $imgPlaylist = $playlist->getImage();
+    //     $stmt->bindParam(":imagePl", $imgPlaylist);
+    //     $description = $playlist->getDescription();
+    //     $stmt->bindParam(":description", $description);
+    //     $idU = $playlist->getIdAuteur();
+    //     $stmt->bindParam(":idU", $idU);
+    //     return $stmt->execute();
+    // }
+
+    public static function insererPlaylist(string $titre, string $description, int $auteur, string $dateMaj, string $image): bool {
         $db = Database::getInstance();
-        $stmt = $db->prepare("INSERT INTO playlist(titrePlaylist, datePlaylist, imgPlaylist, description, idU) VALUES (:titre, :date, :imagePl, :description, :idU)");
-        $titrePlaylist = $playlist->getTitre();
-        $stmt->bindParam(":titre", $titrePlaylist);
-        $date = $playlist->getDatePublication();
-        $stmt->bindParam(":date", $date);
-        $imgPlaylist = $playlist->getImage();
-        $stmt->bindParam(":imagePl", $imgPlaylist);
-        $description = $playlist->getDescription();
+        $stmt = $db->prepare("INSERT INTO playlist(titrePlaylist, datePlaylist, imgPlaylist, description, idU, dateMAJ) VALUES (:titre, NOW(), :imagePl, :description, :idU, :dateMaj)");
+        $stmt->bindParam(":titre", $titre);
+        $stmt->bindParam(":imagePl", $image);
         $stmt->bindParam(":description", $description);
-        $idU = $playlist->getIdAuteur();
-        $stmt->bindParam(":idU", $idU);
+        $stmt->bindParam(":idU", $auteur);
+        $stmt->bindParam(":dateMaj", $dateMaj);
         return $stmt->execute();
     }
 
