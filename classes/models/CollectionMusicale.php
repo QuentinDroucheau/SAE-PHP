@@ -38,7 +38,7 @@ class CollectionMusicale {
 
   public function getImage(): string {
       return ($this->image ? "fixtures/images/" . $this->image : "../../img/default_album.png");
-  }
+    }
 
   public function getDatePublication(): string {
       return $this->datePublication;

@@ -74,15 +74,12 @@
                     $albumCpt = 0;
                     foreach ($albums as $album) {
                         if ($albumCpt < 2) {
-                            echo "<img src='".$album->getImageAlbum()."' alt='cover de l'album >";
-                            echo "<p>" . $album->getTitreAlbum() . "</p>";
-                            echo "<span>" . $album->getAnneeAlbum() . "</span>";
-
-                            $albumCpt++;
+                            $album->render();
                         } else {
                             break;
                         }
                     }
+                    
                     ?>
 
                     <!-- rajouter le css/html de l'album -->

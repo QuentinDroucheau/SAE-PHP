@@ -10,18 +10,14 @@ class Playlist extends CollectionMusicale {
     public function __construct(
         int $id,
         string $titre,
-        int $auteurId,
+        int $utilisateurId,
         string $image,
         string $datePublication,
         string $description,
         string $dateMAJ,
     ) {
-        parent::__construct($id, $titre, $auteurId, $image, $datePublication, $description);
+        parent::__construct($id, $titre, $utilisateurId, $image, $datePublication, $description);
         $this->dateMAJ = $dateMAJ;
-    }
-
-    public function getIdAuteur(): int {
-        return $this->auteurId;
     }
 
     public function getDateMAJ(): string {
