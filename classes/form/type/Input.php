@@ -27,7 +27,7 @@ abstract class Input implements InputRender{
 
     public function render(): string{
         $required = $this->required ? "required=true" : "";
-        $value = $this->value === "" ? "" : "value=".$this->value;
+        $value = $this->value === "" ? "" : "value='".$this->value."'";
 
         $input = sprintf("<input type='%s' %s %s id='%s' name='%s'>", $this->type, $required, $value, $this->id, $this->name);
 
