@@ -58,4 +58,13 @@ class ArtisteDB{
         $result = $stmt->fetch();
         return $result[0];
     }
+
+    public static function getNomArtisteById(int $id){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT nomA FROM artiste WHERE idA = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result[0];
+    }
 }

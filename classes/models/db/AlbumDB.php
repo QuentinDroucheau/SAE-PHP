@@ -17,7 +17,8 @@ class AlbumDB {
         foreach ($result as $r) {
             if (!$album) {
                 $descriptionA = $r["descriptionA"] ?? '';
-                $album = new Album($r["idAlbum"], $r["titreAlbum"], $r["idA"], $r["imgAlbum"], $r["anneeAlbum"], $descriptionA);
+                $idArtiste = $r["idA"];
+                $album = new Album($r["idAlbum"], $r["titreAlbum"], $idArtiste, $r["imgAlbum"], $r["anneeAlbum"], $descriptionA);
             }
         }
 

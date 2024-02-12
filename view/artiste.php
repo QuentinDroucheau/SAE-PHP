@@ -74,11 +74,7 @@
                     $albumCpt = 0;
                     foreach ($albums as $album) {
                         if ($albumCpt < 2) {
-                            echo "<img src='" . $album->getImage() . "' alt='cover de l'album >";
-                            echo "<p>" . $album->getTitre() . "</p>";
-                            echo "<span>" . $album->getAnneeAlbum()->format('Y-m-d') . "</span>";
-                
-                            $albumCpt++;
+                            $album->render();
                         } else {
                             break;
                         }
