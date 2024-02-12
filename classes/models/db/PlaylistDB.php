@@ -23,9 +23,9 @@ class PlaylistDB {
     //     return $stmt->execute();
     // }
 
-    public static function insererPlaylist(string $titre, string $description, int $auteur, string $dateMaj, string $image): bool {
+    public static function insererPlaylist(string $titre, string $descriptionP, int $auteur, string $dateMaj, string $image): bool {
         $db = Database::getInstance();
-        $stmt = $db->prepare("INSERT INTO playlist(titrePlaylist, datePlaylist, imgPlaylist, description, idU, dateMAJ) VALUES (:titre, NOW(), :imagePl, :description, :idU, :dateMaj)");
+        $stmt = $db->prepare("INSERT INTO playlist(nomP, anneeP, imgP, descriptionP, imgP, idU, dateMAJ) VALUES (:titre, NOW(), :imagePl, :description, :idU, :dateMaj)");
         $stmt->bindParam(":titre", $titre);
         $stmt->bindParam(":imagePl", $image);
         $stmt->bindParam(":description", $description);
@@ -34,19 +34,21 @@ class PlaylistDB {
         return $stmt->execute();
     }
 
-    public static function getPlaylists(int $id): ?Playlist {
+    public static function getPlaylists(int $userId): array {
         $db = Database::getInstance();
-        $result = $db->query("SELECT playlist.*, musique.*, utilisateur.* FROM playlist LEFT JOIN musique ON musique.idPlaylist = playlist.idPlaylist LEFT JOIN utilisateur ON utilisateur.idU = playlist.idU WHERE playlist.idPlaylist = $id");
-        $playlist = null;
+        $result = $db->query("SELECT * FROM playlist WHERE idU = $userId");
+        $playlists = [];
         foreach ($result as $r) {
-            if (!$playlist) {
-                $auteur = new Utilisateur($r["idU"], $r["pseudoU"], $r["mdpU"], $r["roleU"]);
-                $description = $r["description"] ?? '';
-                $playlist = new Playlist($r["idPlaylist"], $r["titrePlaylist"], $auteur->getId(), $r["imgPlaylist"], $r["datePlaylist"], $description, $r["dateMAJ"]);
-
-            }
+            $playlists[] = new Playlist(
+                $r["idP"],
+                $r["nomP"],
+                $r["idU"],
+                $r["imgPlaylist"],
+                $r["anneeP"],
+                $r["descriptionP"],
+                $r["dateMajP"]
+            );
         }
-    
-        return $playlist;
+        return $playlists;
     }
 }
