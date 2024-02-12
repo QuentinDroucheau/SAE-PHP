@@ -6,15 +6,15 @@ use models\Musique;
 class CollectionMusicale {
     protected int $id;
     protected string $titre;
-    protected int $idUser;
+    protected int $AuteurId;
     protected string $datePublication;
     protected ?string $image;
     protected string $description;
 
-    public function __construct(int $id, string $titre, int $idUser, ?string $images, string $datePublication, string $description) {
+    public function __construct(int $id, string $titre, int $AuteurId, ?string $images, string $datePublication, string $description) {
       $this->id = $id;
       $this->titre = $titre;
-      $this->idUser = $idUser;
+      $this->AuteurId = $AuteurId;
       $this->image = $images;
       $this->datePublication = $datePublication;
       $this->description = $description;
@@ -36,8 +36,8 @@ class CollectionMusicale {
         $this->titre = $titre;
     }
 
-    public function getIdUser(): int{
-      return $this->idUser;
+    public function getAuteurId(): int{
+      return $this->AuteurId;
     }
 
     public function getImage(): string{
