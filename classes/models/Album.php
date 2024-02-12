@@ -51,12 +51,12 @@ class Album extends CollectionMusicale {
         // ]);
 
         $composant = new Composant("album");
-        $composant->addParam("image", $this->getImage());
         $composant->addParam("id", $this->getId());
         $composant->addParam("titre", $this->getTitre());
+        $composant->addParam("image", $this->getImage());
+        $composant->addParam("anneeAlbum", $this->getAnneeAlbum()->format("d/m/Y"));
         $composant->addParam("musiques", $this->getMusiques());
         $composant->addParam("auteurNom", $this->getArtiste()->getNom());
-        $composant->addParam("anneeAlbum", $this->getAnneeAlbum()->format("d/m/Y"));
         return $composant->get();
     }
 }

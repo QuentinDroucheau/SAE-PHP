@@ -32,6 +32,18 @@ try {
     $stmt->bindParam(':roleU', $role);
     $stmt->execute();
 
+    $stmt = $db->prepare('INSERT INTO utilisateur (pseudoU, mdpU, mailU, roleU) VALUES (:pseudoU, :mdpU, :mailU, :roleU)');
+    $pseudo = "kev";
+    $mdp = "adm";
+    $mail = "kevin@gmail.com";
+    $role = "user";
+
+    $stmt->bindParam(':pseudoU', $pseudo);
+    $stmt->bindParam(':mdpU', $mdp);
+    $stmt->bindParam(':mailU', $mail);
+    $stmt->bindParam(':roleU', $role);
+    $stmt->execute();
+
    // Boucle sur les données YAML et insertion dans la base de données
     foreach ($data as $album) {
         // Vérifier si l'artiste existe
