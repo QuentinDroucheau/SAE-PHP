@@ -87,8 +87,17 @@ class AlbumDB {
         $stmt = $db->prepare('SELECT * FROM album WHERE idA = :idA');
         $stmt->bindParam(':idA', $idArtiste);
         $stmt->execute();
-        return $stmt->fetchAll();
+    
+        $albums = [];
+        while ($row = $stmt->fetch()) {
+            $descriptionA = $row["descriptionA"] ?? '';
+            $album = new Album($row["idAlbum"], $row["titreAlbum"], $row["idA"], $row["imgAlbum"], $row["anneeAlbum"], $descriptionA);
+            $albums[] = $album;
+        }
+    
+        return $albums;
     }
+
 
     public static function getIdAlbum() {
         $db = Database::getInstance();
