@@ -24,12 +24,12 @@ class ControllerHome extends Controller
 
         try {
             $userId = Utils::getIdUtilisateurConnecte();
-            $playlists = $playlistDB->getPlaylists($userId);
+            $lesPlaylists = $playlistDB->getPlaylists($userId);
+            $params = ['playlists' => $lesPlaylists];
         } catch (\Exception $e) {
-            $playlists = null;
+            $lesPlaylists = null;
         }
-
-        $base = new BaseTemplate();
+        $base = new BaseTemplate($params);
         $base->setContent("accueil");
 
         $albumsDetails = [];
@@ -48,6 +48,7 @@ class ControllerHome extends Controller
             }
         }
         $base->addParam("albumsDetails", $albumsDetails);
+        $base->addParam("lesPlaylists", $lesPlaylists);
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
         $base->render();
     }

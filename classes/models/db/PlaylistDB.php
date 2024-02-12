@@ -7,30 +7,15 @@ use models\Musique;
 use models\Utilisateur;
 
 class PlaylistDB {
-    // public static function addPlaylist(Playlist $playlist): bool {
-    //     $db = Database::getInstance();
-    //     $stmt = $db->prepare("INSERT INTO playlist(titrePlaylist, datePlaylist, imgPlaylist, description, idU) VALUES (:titre, :date, :imagePl, :description, :idU)");
-    //     $titrePlaylist = $playlist->getTitre();
-    //     $stmt->bindParam(":titre", $titrePlaylist);
-    //     $date = $playlist->getDatePublication();
-    //     $stmt->bindParam(":date", $date);
-    //     $imgPlaylist = $playlist->getImage();
-    //     $stmt->bindParam(":imagePl", $imgPlaylist);
-    //     $description = $playlist->getDescription();
-    //     $stmt->bindParam(":description", $description);
-    //     $idU = $playlist->getIdAuteur();
-    //     $stmt->bindParam(":idU", $idU);
-    //     return $stmt->execute();
-    // }
-
-    public static function insererPlaylist(string $titre, string $descriptionP, int $auteur, string $dateMaj, string $image): bool {
+    public static function insererPlaylist(string $titre, string $descriptionP, int $auteur, string $dateMaj, string $image, string $anneeP): bool {
         $db = Database::getInstance();
-        $stmt = $db->prepare("INSERT INTO playlist(nomP, anneeP, imgP, descriptionP, imgP, idU, dateMAJ) VALUES (:titre, NOW(), :imagePl, :description, :idU, :dateMaj)");
+        $stmt = $db->prepare("INSERT INTO playlist(nomP, descriptionP, idU, dateMajP, imgPlaylist, anneeP) VALUES (:titre, :descriptionP, :idU, :dateMaj, :imagePl, :anneeP)");
         $stmt->bindParam(":titre", $titre);
-        $stmt->bindParam(":imagePl", $image);
-        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":descriptionP", $descriptionP);
         $stmt->bindParam(":idU", $auteur);
         $stmt->bindParam(":dateMaj", $dateMaj);
+        $stmt->bindParam(":imagePl", $image);
+        $stmt->bindParam(":anneeP", $anneeP);
         return $stmt->execute();
     }
 

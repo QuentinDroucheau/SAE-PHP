@@ -16,9 +16,6 @@
                             <?= $albumDetail['album']->render() ?>
                             <div class="add-to-playlist-button">+</div>
                             <div class="submenu" style="display: none;">
-                                <?php foreach ($playlists as $playlist) : ?>
-                                    <a href="#"><?= $playlist ?></a>
-                                <?php endforeach; ?>
                             </div>
                         </div> <!-- ferme le swiper-slide -->
                     <?php endforeach; ?>
