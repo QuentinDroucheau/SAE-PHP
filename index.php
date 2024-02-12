@@ -6,6 +6,7 @@ use controller\ControllerLogin;
 use controller\ControllerTest;
 use controller\ControllerArtiste;
 use controller\ControllerPublier;
+use controller\ControllerPubliePlaylist;
 use route\Route;
 
 require "classes/autoload.php";
@@ -19,6 +20,7 @@ $routes = [
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
     new Route("/publier", "GET", ControllerPublier::class, "view", []),
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),
+    new Route("/publierPlaylist", "POST", ControllerPubliePlaylist::class, "publierPlaylist", []),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
 ];

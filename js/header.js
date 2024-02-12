@@ -204,18 +204,5 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("popup").style.display = "none";
         document.getElementById("overlay").style.display = "none";
       });
-    let form = document.getElementById("form-publie-playlist");
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      let formData = new FormData(form);
-      console.log(formData);
-      fetch("/publierPlaylist", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.text()) // Utilisez .text() si la réponse n'est pas JSON
-        .then((data) => console.log(data))
-        .catch((error) => console.error(error));
-    });
   }
 });

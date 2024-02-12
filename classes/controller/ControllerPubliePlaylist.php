@@ -6,7 +6,7 @@ use models\db\PlaylistDB;
 use utils\Utils;
 
 
-class ControllerPublier extends Controller
+class ControllerPubliePlaylist extends Controller
 { 
   public function view(): void
   {

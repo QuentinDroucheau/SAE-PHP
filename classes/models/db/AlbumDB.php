@@ -44,7 +44,7 @@ class AlbumDB {
                 break;
         }
     
-        $stmt = $db->query("SELECT album.*, artiste.*, musique.* FROM album JOIN artiste ON album.idA = artiste.idA LEFT JOIN musique ON musique.idAlbum = album.idAlbum $conditions");
+        $stmt = $db->query("SELECT * from ALBUM $conditions");
         $albums = [];
     
         foreach ($stmt as $s) {
