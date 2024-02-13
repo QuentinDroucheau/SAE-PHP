@@ -58,4 +58,9 @@ class Utils{
         }
         return false;
     }
+
+    public static function convertirDateFormat($date, $format = 'd/m/Y') {
+        $dateObj = new \DateTime($date);
+        return $dateObj->format($format);
+    }
 }

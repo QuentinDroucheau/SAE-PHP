@@ -1,4 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/publier_image.js" defer></script>
+<script src="js/publier_playlist.js" defer></script>
 <div id="popup" style="display: none;">
     <div id="top-pop-up">
         <h1>Création de la playlist</h1>

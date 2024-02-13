@@ -25,10 +25,10 @@ class ControllerHome extends Controller
         try {
             $userId = Utils::getIdUtilisateurConnecte();
             $lesPlaylists = $playlistDB->getPlaylists($userId);
-            $params = ['playlists' => $lesPlaylists];
         } catch (\Exception $e) {
             $lesPlaylists = null;
         }
+        $params = ['playlists' => $lesPlaylists];
         $base = new BaseTemplate($params);
         $base->setContent("accueil");
 

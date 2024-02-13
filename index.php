@@ -21,6 +21,7 @@ $routes = [
     new Route("/publier", "GET", ControllerPublier::class, "view", []),
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),
     new Route("/publierPlaylist", "POST", ControllerPubliePlaylist::class, "publierPlaylist", []),
+    // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
 ];

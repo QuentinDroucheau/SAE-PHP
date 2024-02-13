@@ -21,15 +21,18 @@ class ControllerPubliePlaylist extends Controller
       $titre = $_POST['titre'];
       $description = $_POST['description'];
       $auteur = Utils::getIdUtilisateurConnecte();
-      $dateMaj = date('Y-m-d');
-      $anneeP = date('Y-m-d');
+      $dateMaj = date('d/m/Y');
+      $anneeP = date('d/m/Y');
       if (isset($_FILES['image'])) {
         $image = Utils::traiterImage();
         $imagePath = str_replace('fixtures/images/', '', $image);
       } else {
         $imagePath = 'default.jpg';
       }
-      $playlistDB->insererPlaylist($titre, $description, $auteur, $dateMaj, $image, $anneeP);
+      $response = $playlistDB->insererPlaylist($titre, $description, $auteur, $dateMaj, $imagePath, $anneeP);
+      header('Content-Type: application/json');
+      echo $response;
+      exit;
     }
   }
 }

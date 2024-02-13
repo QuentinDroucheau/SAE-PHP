@@ -16,7 +16,7 @@ abstract class Controller{
      */
     public function redirect(string $url, ?string $action = null): void{
         if(is_null($action)){
-            header("Location: ".$url);
+            header( "Location: ".$url);
             exit;
         }
         header("Location: ".$url."&action=".$action);

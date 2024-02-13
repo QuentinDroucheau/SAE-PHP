@@ -99,4 +99,13 @@ class MusiqueDB{
         $r = $result->fetch();
         return $r[0];
     }
+
+    public static function getNbMusiquesPlaylist(int $idPlaylist): int{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT COUNT(*) FROM musique m 
+                              JOIN composer c ON m.idM = c.idM 
+                              WHERE c.idP = $idPlaylist");
+        $r = $result->fetch();
+        return $r[0];
+    }
 }
