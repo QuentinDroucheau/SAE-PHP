@@ -24,7 +24,7 @@ class ControllerHome extends Controller
 
         try {
             $userId = Utils::getIdUtilisateurConnecte();
-            $playlists = $playlistDB->getPlaylists($userId);
+            // $playlists = $playlistDB->getPlaylists($userId);
         } catch (\Exception $e) {
             $playlists = null;
         }

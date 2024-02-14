@@ -81,9 +81,6 @@
                     }
                     
                     ?>
-
-                    <!-- rajouter le css/html de l'album -->
-
                 </div>
             </div>
 
@@ -126,8 +123,18 @@
 
         <section id="artistesimilaire-section" class="section-mouvante">
             <h2>
-                artiste similaire
+                Artistes avec le même genre de musiques :
             </h2>
+            <div class="artistes-similaires">
+                <?php
+                foreach ($artisteSimilaires as $artisteData) {
+                    $artisteNom = $artisteData["nomA"];
+                    echo "<div class='artiste-similaire'>";
+                    echo "<img src='img/default_profil.webp' alt='photo de profil'>";
+                    echo "<p>" . $artisteNom . "</p>";
+                    echo "</div>";
+                }
+                ?>
         </section>
 
         <section id="playlist-section" class="section-mouvante">

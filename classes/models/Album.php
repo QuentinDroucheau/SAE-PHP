@@ -9,7 +9,6 @@ use models\db\MusiqueDB;
 
 class Album extends CollectionMusicale {
 
-
     public function __construct(
         int $id,
         string $titre,
