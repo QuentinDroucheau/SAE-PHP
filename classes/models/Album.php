@@ -6,6 +6,8 @@ use models\CollectionMusicale;
 use view\Composant;
 use models\db\ArtisteDB;
 use models\db\MusiqueDB;
+use models\db\PlaylistDB;
+use utils\Utils;
 
 class Album extends CollectionMusicale {
 
@@ -29,6 +31,17 @@ class Album extends CollectionMusicale {
         return MusiqueDB::getMusiquesAlbum($this->id);
     }
 
+    public function toJsonArray(): array {
+        return [
+            "id" => $this->getId(),
+            "titre" => $this->getTitre(),
+            "image" => $this->getImage(),
+            "anneeAlbum" => $this->getAnneeAlbum()->format("d/m/Y"),
+            "auteurNom" => ArtisteDB::getArtiste($this->getAuteurId())->getNom(),
+            "lesMusiques" => $this->getMusiques(),
+        ];
+    }
+
     public function render(): string{
         $composant = new Composant("album");
         $composant->addParam("id", $this->getId());
@@ -37,6 +50,14 @@ class Album extends CollectionMusicale {
         $composant->addParam("anneeAlbum", $this->getAnneeAlbum()->format("d/m/Y"));
         $composant->addParam("auteurNom", ArtisteDB::getArtiste($this->getAuteurId())->getNom());
         $composant->addParam("nbMusiques", MusiqueDB::getNbMusiquesAlbum($this->getId()));
+        try{
+            $composant->addParam("lesPlaylists", PlaylistDB::getPlaylists(Utils::getIdUtilisateurConnecte() ?? 0));
+
+        }
+        catch(\Exception $e){
+            $composant->addParam("lesPlaylists", []);
+        }
+        $composant->addParam("lesMusiques", $this->getMusiques());
         return $composant->get();
     }
 }

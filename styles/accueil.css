@@ -16,7 +16,6 @@
 .swiper-container {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   position: relative;
 }
 
@@ -71,6 +70,34 @@
 }
 
 
-.container-for-swiper {
+.section-categorie-album{
+  padding: 30px 0;
+}
+
+.section-categorie-album h2 {
+  margin-bottom: 1.25rem;
+  font-size: 2.5rem;
+  color: #323232;
+}
+
+.submenu{
   position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column; 
+  gap: 1rem;
+  background-color: var(--couleur2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: auto; 
+  height: 12.25rem;
+}
+
+.playlist-item, .song-item {
+  padding: 0.25rem; 
+  cursor: pointer;
+}
+
+.playlist-item:hover, .song-item:hover {
+  background-color: var(--couleur1); 
+  color: #ffffff;
 }

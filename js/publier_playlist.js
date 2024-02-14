@@ -7,6 +7,7 @@ $('.form-publie-playlist').on('submit', function(e) {
   e.preventDefault();
 
   var formData = new FormData(this);
+  console.log('formData:', formData);
 
   $.ajax({
     type: 'POST',

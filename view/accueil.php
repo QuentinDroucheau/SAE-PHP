@@ -1,10 +1,13 @@
 <script src="js/swiper-bundle.min.js" defer></script>
 <script src="js/slideAccueil.js" defer></script>
+<script src="js/sub_menu_ajout_playlist.js" defer></script>
 
+<script>
+var albums = <?php echo $albumsDetailsJson; ?>;
+</script>
 <link rel="stylesheet" href="styles/accueil.css">
 <link rel="stylesheet" href="styles/swiper.css">
 <link rel="stylesheet" href="styles/musicCard.css">
-
 <?php foreach ($albumsDetails as $category => $albumDetails) : ?>
     <section class="section-categorie-album">
         <h2><?= $category ?></h2>
@@ -14,9 +17,6 @@
                     <?php foreach ($albumDetails as $albumDetail) : ?>
                         <div class="swiper-slide">
                             <?= $albumDetail['album']->render() ?>
-                            <div class="add-to-playlist-button">+</div>
-                            <div class="submenu" style="display: none;">
-                            </div>
                         </div> <!-- ferme le swiper-slide -->
                     <?php endforeach; ?>
                 </div> <!-- ferme le wrapper -->

@@ -7,6 +7,7 @@ use controller\ControllerTest;
 use controller\ControllerArtiste;
 use controller\ControllerPublier;
 use controller\ControllerPubliePlaylist;
+use models\Musique;
 use route\Route;
 
 require "classes/autoload.php";
@@ -15,6 +16,9 @@ session_start();
 
 $routes = [
     new Route("/", "GET", ControllerHome::class, "view", []),
+    new Route("/getPlaylistSub", "GET", ControllerHome::class, "view", []),
+    new Route("/publiersSonsPlaylist", "POST", ControllerHome::class, "view", []),
+    // new Route("/getMusiquesAlbumSelec", "GET", ControllerHome::class, "view", [], []),
     new Route("/test", "GET", ControllerTest::class, "view"),
     new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
