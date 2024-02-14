@@ -16,6 +16,7 @@ class ControllerHome extends Controller
 
     public function view(): void
     {
+        $artistes = ArtisteDB::getArtistes();
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
         $playlistDB = new PlaylistDB();
         $albumsByCategory = [];
@@ -70,6 +71,7 @@ class ControllerHome extends Controller
         $base->addParam("albumsDetails", $albumsDetails);
         $base->addParam("albumsDetailsJson", json_encode($albumsDetailsJson));
         $base->addParam("lesPlaylists", $lesPlaylists);
+        $base->addParam("artistes", $artistes);
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
         $base->render();
     }

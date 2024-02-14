@@ -1,6 +1,6 @@
 <section class="main-album">
-<div class="img-album-container" data-album-id="<?php echo $id; ?>">
-        <img class="img-album" src=<?php echo $image; ?> alt="" onclick="redirect(<?php echo $id; ?>);">
+<div class="img-album-container" data-album-id="<?php echo $id; ?>" onclick="redirect(<?php echo $id; ?>);">
+        <img class="img-album" src=<?php echo $image; ?> alt="">
         <div class="add-to-playlist-button">+</div>
         <div class="submenu" style="display: none;">
             <?php foreach ($lesPlaylists as $playlist) : ?>

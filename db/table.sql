@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS album (
 CREATE TABLE IF NOT EXISTS artiste (
   idA INTEGER NOT NULL,
   nomA TEXT,
+  imgArtiste TEXT,
   PRIMARY KEY (idA)
 );
 
