@@ -170,10 +170,15 @@
     flex-wrap: wrap;
 }
 
-/* Style de l'en-tête à l'intérieur de artistesimilaire-section */
+/* Style du titre pour artistes-similaires */
 #artistesimilaire-section h2 {
-    font-size: 2rem;
+    width: 100%;
+    margin-top: 2rem;
     margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    flex-grow: 1;
+    flex-basis: 100%;
 }
 
 /* Style du conteneur pour artistes-similaires */
@@ -182,7 +187,8 @@
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 1rem;
-    margin-top: 1rem;
+    margin: 1rem 5rem;
+    flex-basis: 100%;
 }
 
 /* Style de chaque artiste-similaire */
@@ -193,6 +199,7 @@
     border-radius: 0.5rem;
     width: 10rem;
     transition: background-color 0.5s ease, color 0.5s ease;
+    margin: 0.5rem 2.5rem;
 }
 
 /* Style de l'image dans artiste-similaire */
