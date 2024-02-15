@@ -15,7 +15,6 @@ use route\Route;
 require "classes/autoload.php";
 
 session_start();
-
 $routes = [
     new Route("/", "GET", ControllerHome::class, "view", []),
     new Route("/search", "POST", ControllerHeader::class, "view", []),
