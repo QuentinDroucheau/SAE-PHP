@@ -163,6 +163,7 @@
 .nav-artiste a.active {
     border-bottom: 3px solid var(--couleur1);
 }
+
 /* Appliquer un style général à la section artistesimilaire */
 #artistesimilaire-section {
     display: flex;
@@ -212,4 +213,28 @@
 .artiste-similaire:hover {
     background-color: var(--couleur1);
     color: var(--couleur2);
+}
+
+/* Style des liens et boutons dans artiste-similaire */
+.artiste-similaire a, .artiste-similaire button {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Style des liens actifs dans artiste-similaire */
+.artiste-similaire a.active {
+    font-weight: bold;
+}
+
+/* Style du bouton dans artiste-similaire */
+.artiste-similaire button {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+/* Style du bouton au survol dans artiste-similaire */
+.artiste-similaire button:hover {
+    text-decoration: underline;
 }

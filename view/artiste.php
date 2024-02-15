@@ -129,7 +129,7 @@
                 foreach ($artisteSimilaires as $artisteData) {
                     $artisteNom = $artisteData["nomA"];
                     $artisteId = $artisteData["idA"];
-                    
+
                     echo "<div class='artiste-similaire'>";
                     echo "<a href='/artiste?id=" . $artisteId . "'>";
                     echo "<button>";
@@ -140,6 +140,7 @@
                     echo "</div>";
                 }
                 ?>
+            </div>
         </section>
 
         <section id="playlist-section" class="section-mouvante">
