@@ -45,15 +45,15 @@ class ArtisteDB{
 
     /**
      * @param int $id
-     * @return Artiste
+     * @return ?Artiste
      */
-    public static function getArtiste(int $id): Artiste{
+    public static function getArtiste(int $id): ?Artiste{
         $db = Database::getInstance();
-        $stmt = $db->prepare("SELECT * FROM artiste WHERE idA = :id");
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
-        $result = $stmt->fetch();
-        return new Artiste($result["idA"], $result["nomA"], $result["imgArtiste"]);
+        $result = $db->query("SELECT * FROM artiste WHERE idA=$id");
+        foreach($result as $r){
+            return new Artiste($r["idA"], $r["nomA"], $r["imgArtiste"]);
+        }
+        return null;
     }
 
     public static function creerIdArtiste(){

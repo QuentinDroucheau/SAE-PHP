@@ -10,6 +10,8 @@ use models\db\AlbumDB;
 use models\db\NoteDB;
 use utils\Utils;
 use view\BaseTemplate;
+use models\db\PlaylistDB;
+use models\Playlist;
 
 class ControllerAlbum extends Controller{
 
@@ -28,6 +30,13 @@ class ControllerAlbum extends Controller{
         if((!is_null(Utils::getConnexion())) and !(NoteDB::hasCritique($albumId, Utils::getConnexion()->getId()))){
             $critique = true;
         }
+        try {
+            $userId = Utils::getIdUtilisateurConnecte();
+            $lesPlaylists = PlaylistDB::getPlaylists($userId);
+        } catch (\Exception $e) {
+            $lesPlaylists = null;
+        }
+        $base->addParam("playlists", $lesPlaylists);
         $base->addParam("critique", $critique);
         $base->render();
     }

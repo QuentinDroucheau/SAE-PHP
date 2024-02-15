@@ -1,5 +1,5 @@
 <section class="main-album">
-<div class="img-album-container" data-album-id="<?php echo $id; ?>" onclick="redirect(<?php echo $id; ?>);">
+<div class="img-album-container" data-album-id="<?php echo $id; ?>">
         <img class="img-album" src=<?php echo $image; ?> alt="">
         <div class="add-to-playlist-button">+</div>
         <div class="submenu" style="display: none;">
@@ -10,7 +10,7 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <section class="infos-card">
+    <section class="infos-card" onclick="redirect(<?php echo $id; ?>);">
         <div class="top-infos-card">
             <h3><?php echo $titre; ?></h3>
             <p>
