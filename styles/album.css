@@ -119,3 +119,15 @@ tr{
     margin-right: 30px;
     margin-top: 20px;
 }
+
+.container-add-playlist{
+    height: "200px";
+    width:"400px";
+    background-color: "var(--couleur1)";
+    position: "fixed";
+    left: "50%";
+    top: "50%";
+    transform: "translate(-50%, -50%)";
+    border-radius: "7px";
+    display: none;
+}

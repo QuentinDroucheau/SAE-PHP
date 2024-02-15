@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles/base.css">
+    <script src="js/base.js" defer></script>
 </head>
 <body>
     <div id="overlay"></div>

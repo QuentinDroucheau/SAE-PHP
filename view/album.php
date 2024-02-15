@@ -56,8 +56,8 @@
                     <td><?= $musique->getEcoute() ?></td>
                     <td>-:-</td>
                     <td>
-                        <a href="">
-                            <img class="plus-button" src="img/plus.png" alt="">
+                        <a>
+                            <img class="plus-buttonn" src="img/plus.png" alt="" onclick="openAddPlaylist();">
                         </a>
                     </td>
                 </tr>
@@ -99,7 +99,17 @@
         </tbody>
     </table>
 </div>
+<div class="container-add-playlist">
+
+</div>
+
 <script>
+
+    function openAddPlaylist(){
+        div = document.querySelector(".container-add-playlist");
+        div.style.display = "flex";
+    }
+
     function openMusique() {
         document.querySelector('.container-musique').style.display = 'block';
         document.querySelector('.container-critique').style.display = 'none';
