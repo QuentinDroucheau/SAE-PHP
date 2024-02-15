@@ -164,3 +164,77 @@
     border-bottom: 3px solid var(--couleur1);
 }
 
+/* Appliquer un style général à la section artistesimilaire */
+#artistesimilaire-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Style de l'en-tête à l'intérieur de artistesimilaire-section */
+#artistesimilaire-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Style du conteneur pour artistes-similaires */
+.artistes-similaires {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Style de chaque artiste-similaire */
+.artiste-similaire {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid var(--couleur3);
+    border-radius: 0.5rem;
+    width: 10rem;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Style de l'image dans artiste-similaire */
+.artiste-similaire img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+/* Style du nom dans artiste-similaire */
+.artiste-similaire p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Ajouter un effet de survol à artiste-similaire */
+.artiste-similaire:hover {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+}
+
+/* Style des liens et boutons dans artiste-similaire */
+.artiste-similaire a, .artiste-similaire button {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Style des liens actifs dans artiste-similaire */
+.artiste-similaire a.active {
+    font-weight: bold;
+}
+
+/* Style du bouton dans artiste-similaire */
+.artiste-similaire button {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+/* Style du bouton au survol dans artiste-similaire */
+.artiste-similaire button:hover {
+    text-decoration: underline;
+}
