@@ -7,6 +7,7 @@ use models\db\ArtisteDB;
 use models\db\GenreDB;
 use models\db\MusiqueDB;
 use models\db\ContientDB;
+use models\db\PlaylistDB;
 use view\BaseTemplate;
 use utils\Utils;
 
@@ -22,6 +23,13 @@ class ControllerPublier extends Controller
         $base->addParam("artistes", $artistes);
         $base->addParam("genres", $genres);
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+        try {
+            $userId = Utils::getIdUtilisateurConnecte();
+            $lesPlaylists = PlaylistDB::getPlaylists($userId);
+        } catch (\Exception $e) {
+            $lesPlaylists = null;
+        }
+        $base->addParam("playlists", $lesPlaylists);
         $base->render();
 
     }

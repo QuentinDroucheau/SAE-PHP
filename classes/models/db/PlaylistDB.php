@@ -4,6 +4,7 @@ namespace models\db;
 
 use models\Playlist;
 use models\db\MusiqueDB;
+use models\Utilisateur;
 
 class PlaylistDB
 {
@@ -42,7 +43,7 @@ class PlaylistDB
             $playlists[] = new Playlist(
                 $r["idP"],
                 $r["nomP"],
-                $r["idU"],
+                UtilisateurDB::getUtilisateurById($r["idU"]),
                 $r["imgPlaylist"],
                 $r["anneeP"],
                 $r["descriptionP"],
@@ -60,7 +61,7 @@ class PlaylistDB
         return new Playlist(
             $r["idP"],
             $r["nomP"],
-            $r["idU"],
+            UtilisateurDB::getUtilisateurById($r["idU"]),
             $r["imgPlaylist"],
             $r["anneeP"],
             $r["descriptionP"],

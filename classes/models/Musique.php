@@ -7,7 +7,8 @@ class Musique{
     public function __construct(
         private int $id, 
         private string $nom,
-        private string $lien
+        private string $lien,
+        private int $ecoute
     ){}
 
     public function getId(){
@@ -19,7 +20,11 @@ class Musique{
     }
 
     public function getLien(){
-        return $this->lien;
+        return ($this->lien ? "fixtures/images/" . $this->lien : "../../img/default_album.png");
+    }
+
+    public function getEcoute(){
+        return $this->ecoute;
     }
 
     public function toJsonArray(): array {
