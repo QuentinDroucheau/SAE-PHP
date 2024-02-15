@@ -210,14 +210,7 @@ class AlbumDB {
         $stmt = $db->prepare("SELECT * FROM album WHERE titreAlbum LIKE :search");
         $stmt->bindParam(":search", $search);
         $stmt->execute();
-        $albums = [];
-        while ($row = $stmt->fetch()) {
-            $descriptionA = $row["descriptionA"] ?? '';
-            $album = new Album($row["idAlbum"], $row["titreAlbum"], ArtisteDB::getArtiste($row["idA"]), 
-                $row["imgAlbum"], $row["anneeAlbum"], self::getNoteAlbum($row["idAlbum"]), 
-                self::getNbEcouteAlbum($row["idAlbum"]), $descriptionA, self::getMusiques($row["idAlbum"]));
-            $albums[] = $album;
-        }
-        return $albums;
+        $result = $stmt->fetchAll();
+        return $result;
     }
 }

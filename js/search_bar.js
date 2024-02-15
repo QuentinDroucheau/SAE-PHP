@@ -1,35 +1,57 @@
-$(document).ready(function() {
-  $('#search-input').keyup(function() {
+$(document).ready(function () {
+  $("#search-input").keyup(function () {
     let query = $(this).val();
     if (query.length > 0) {
       $.ajax({
-        url: '/search',
-        type: 'POST',
-        data: { 
-          search: query 
+        url: "/search",
+        type: "POST",
+        data: {
+          search: query,
         },
-        success: function(reponse) {
-          let html = '';
-          console.log(query);
-          console.log(reponse);
-          let data = JSON.parse(reponse);
+        success: function (response) {
+          let data = JSON.parse(response);
+          let html = "";
           if (data.artistes.length > 0) {
-            html += '<h2>Artistes</h2>';
-            data.artistes.forEach(function(artist) {
-              html += '<p>' + artistes.name + '</p>';
+            html += "<h2>Artistes</h2><ul>";
+            data.artistes.forEach(function (artist) {
+              console.log(artist);
+              html +=
+                "<li><a href='/artist?id=" +
+                artist.idA +
+                "'>" +
+                artist.nomA +
+                "</a></li>";
             });
+            html += "</ul>";
           }
           if (data.albums.length > 0) {
-            html += '<h2>Albums</h2>';
-            data.albums.forEach(function(album) {
-              html += '<p>' + albums.title + '</p>';
+            html += "<h2>Albums</h2><ul>";
+            data.albums.forEach(function (album) {
+              console.log(album);
+              html +=
+                "<li><a href='/album?id=" +
+                album.idAlbum +
+                "'>" +
+                album.titreAlbum +
+                "</a></li>";
             });
+            html += "</ul>";
           }
-          $('#search-results').html(html);
-        }
+
+          if (data.musiques.length > 0) {
+            html += "<h2>Musiques</h2><ul>";
+            data.musiques.forEach(function (musique) {
+              html += "<li>" + musique.nomM + "</li>";
+            });
+            html += "</ul>";
+          }
+          $("#search-results").html(html);
+          $("#search-results").show(); // Show the submenu
+        },
       });
     } else {
-      $('#search-results').html('');
+      $("#search-results").html("");
+      $("#search-results").hide(); // Hide the submenu
     }
   });
 });

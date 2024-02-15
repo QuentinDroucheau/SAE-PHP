@@ -95,5 +95,6 @@ class ControllerHome extends Controller
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid data received.']);
         }
+        
     }
 }

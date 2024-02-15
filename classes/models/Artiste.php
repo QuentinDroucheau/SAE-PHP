@@ -37,4 +37,13 @@ class Artiste
     {
         return ($this->image ? "fixtures/images/" . $this->image : "../../img/default_album.png");
     }
+
+    public function toJsonArray(): array
+    {
+        return [
+            "id" => $this->getId(),
+            "nom" => $this->getNom(),
+            "image" => $this->getImage(),
+        ];
+    }
 }

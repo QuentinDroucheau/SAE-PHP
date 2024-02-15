@@ -272,3 +272,35 @@ header .right .notif .nb-notif p{
     border-radius: 7px;
     background-color: var(--couleur3);
 }
+
+#search-results{
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    z-index: 100;
+    top: 3.5rem;
+    width: 325px;
+}
+
+#search-results ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#search-results li {
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+#search-results li:hover {
+    background-color: var(--couleur1);
+    color: black;
+}
+
+#search-results a {
+    text-decoration: none;
+    color: black;
+}
