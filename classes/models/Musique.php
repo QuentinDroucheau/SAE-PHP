@@ -21,4 +21,12 @@ class Musique{
     public function getLien(){
         return $this->lien;
     }
+
+    public function toJsonArray(): array {
+        return [
+            "id" => $this->getId(),
+            "nom" => $this->getNom(),
+            "lien" => $this->getLien(),
+        ];
+    }
 }

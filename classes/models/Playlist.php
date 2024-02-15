@@ -3,8 +3,12 @@
 namespace models;
 
 use models\CollectionMusicale;
+use models\db\UtilisateurDB;
+use models\db\MusiqueDB;
+use view\Composant;
 
-class Playlist extends CollectionMusicale {
+class Playlist extends CollectionMusicale
+{
     private string $dateMAJ;
 
     public function __construct(
@@ -20,8 +24,20 @@ class Playlist extends CollectionMusicale {
         $this->dateMAJ = $dateMAJ;
     }
 
-    public function getDateMAJ(): string {
-        return $this->dateMAJ;
+    public function getDateMAJ(): \DateTime
+    {
+        return \DateTime::createFromFormat('d/m/Y', $this->dateMAJ);
     }
 
+    public function render(): string
+    {
+        $composant = new Composant("playlist");
+        $composant->addParam("id", $this->getId());
+        $composant->addParam("titre", $this->getTitre());
+        $composant->addParam("image", $this->getImage());
+        $composant->addParam("dateMaj", $this->getDateMAJ()->format("d/m/Y"));
+        $composant->addParam("auteurNom", UtilisateurDB::getUtilisateurById($this->getAuteurId())->getPseudoU());
+        $composant->addParam("nbMusiques", MusiqueDB::getNbMusiquesPlaylist($this->getId()));
+        return $composant->get();
+    }
 }

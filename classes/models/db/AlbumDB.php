@@ -44,6 +44,35 @@ class AlbumDB {
                 break;
         }
     
+        $stmt = $db->query("SELECT * from ALBUM $conditions LIMIT 10");
+        $albums = [];
+    
+        foreach ($stmt as $s) {
+            $idAlbum = $s["idAlbum"];
+            if (!isset($albums[$idAlbum])) {
+                $descriptionA = $s["descriptionA"] ?? '';
+                $album = new Album($s["idAlbum"], $s["titreAlbum"], $s["idA"], $s["imgAlbum"], $s["anneeAlbum"], $descriptionA);
+                $albums[$idAlbum] = $album;
+            }
+        }
+        return array_values($albums);
+    }
+
+    public static function getAllAlbumsByCategory($category){
+        $db = Database::getInstance();
+        $conditions = '';
+        $stmt = $db->query("SELECT * from ALBUM $conditions");
+        switch($category){
+            case 'Récents':
+                $conditions = 'ORDER BY album.anneeAlbum DESC';
+                break;
+            case 'Populaires':
+                // a faire quand on aura le nb d'écoute
+                break;
+            default:
+                $conditions = "ORDER BY album.idAlbum DESC";
+                break;
+        }
         $stmt = $db->query("SELECT * from ALBUM $conditions");
         $albums = [];
     
@@ -125,6 +154,7 @@ class AlbumDB {
         }
         return $albums;
     }
+
 
 
 }

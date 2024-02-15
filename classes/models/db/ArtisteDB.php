@@ -14,10 +14,22 @@ class ArtisteDB{
         $artistes = [];
         $result = $db->query("SELECT * FROM artiste");
         foreach($result as $r){
-            $artistes[] = new Artiste($r["idA"], $r["nomA"]);
+            $artistes[] = new Artiste($r["idA"], $r["nomA"], $r["imgArtiste"]);
         }
         return $artistes;
     }
+
+
+    public static function getArtistesLimit(): array{
+        $db = Database::getInstance();
+        $artistes = [];
+        $result = $db->query("SELECT * FROM artiste LIMIT 10");
+        foreach($result as $r){
+            $artistes[] = new Artiste($r["idA"], $r["nomA"], $r["imgArtiste"]);
+        }
+        return $artistes;
+    }
+
 
     /**
      * @param Artiste $artiste
@@ -25,8 +37,9 @@ class ArtisteDB{
      */
     public static function addArtiste(Artiste $artiste): bool{
         $db = Database::getInstance();
-        $stmt = $db->prepare("INSERT INTO artiste(nomA) VALUES (:nom)");
+        $stmt = $db->prepare("INSERT INTO artiste(nomA, imgArtiste) VALUES (:nom, :image)");
         $stmt->bindParam(":nom", $artiste->getNom());
+        $stmt->bindParam(":image", $artiste->getImage());
         return $stmt->execute();
     }
 
@@ -40,7 +53,7 @@ class ArtisteDB{
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         $result = $stmt->fetch();
-        return new Artiste($result["idA"], $result["nomA"]);
+        return new Artiste($result["idA"], $result["nomA"], $result["imgArtiste"]);
     }
 
     public static function creerIdArtiste(){

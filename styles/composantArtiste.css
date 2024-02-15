@@ -1,0 +1,15 @@
+.artiste .circle {
+  width: 15.625rem;
+  height: 15.625rem;
+  background-color: #000;
+  border-radius: 50%;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.artiste .name {
+  text-align: center;
+  margin-top: 10px;
+}

@@ -40,4 +40,27 @@ class Utils{
             throw new \Exception("Utilisateur non connecté");
         return self::getConnexion()->getId();
     }
+
+    public static function traiterImage(){
+        // Taille maximale autorisée en octets (2 Mo)
+        $maxFileSize = 2 * 1024 * 1024;
+        $uploadDir = 'fixtures/images/';
+        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+    
+        if (file_exists($uploadFile)) {
+            return $uploadFile;
+        }
+        if ($_FILES['image']['size'] > $maxFileSize) {
+            return false;
+        }
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+            return $uploadFile;
+        }
+        return false;
+    }
+
+    public static function convertirDateFormat($date, $format = 'd/m/Y') {
+        $dateObj = new \DateTime($date);
+        return $dateObj->format($format);
+    }
 }
