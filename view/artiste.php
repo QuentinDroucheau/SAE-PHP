@@ -69,11 +69,15 @@
                     Dernières sorties
                 </h2>
                 <div class="album">
-                    <?php
+                <?php
                     $albumCpt = 0;
                     foreach ($albums as $album) {
                         if ($albumCpt < 2) {
-                            $album->render();
+                            echo "<img src='" . $album->getImage() . "' alt='cover de l'album >";
+                            echo "<p>" . $album->getTitre() . "</p>";
+                            echo "<span>" . $album->getAnneeAlbum()->format('Y-m-d') . "</span>";
+                
+                            $albumCpt++;
                         } else {
                             break;
                         }
@@ -124,7 +128,7 @@
             <h2>
                 Artistes avec le même genre de musiques :
             </h2>
-            <div class="artistes-similaires"><u></u>
+            <div class="artistes-similaires">
                 <?php
                 foreach ($artisteSimilaires as $artisteData) {
                     $artisteNom = $artisteData["nomA"];
