@@ -17,7 +17,7 @@ require "classes/autoload.php";
 session_start();
 $routes = [
     new Route("/", "GET", ControllerHome::class, "view", []),
-    new Route("/search", "POST", ControllerHeader::class, "view", []),
+    new Route("/search", "POST", ControllerHeader::class, "search", []),
     new Route("/getPlaylistSub", "GET", ControllerHome::class, "view", []),
     new Route("/publiersSonsPlaylist", "POST", ControllerHome::class, "view", []),
     // new Route("/getMusiquesAlbumSelec", "GET", ControllerHome::class, "view", [], []),

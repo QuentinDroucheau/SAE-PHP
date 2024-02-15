@@ -5,7 +5,9 @@ $(document).ready(function() {
       $.ajax({
         url: '/search',
         type: 'POST',
-        data: { search: query },
+        data: { 
+          search: query 
+        },
         success: function(reponse) {
           let html = '';
           console.log(query);
