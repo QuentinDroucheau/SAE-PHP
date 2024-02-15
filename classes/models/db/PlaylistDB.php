@@ -4,6 +4,7 @@ namespace models\db;
 
 use models\Playlist;
 use models\db\MusiqueDB;
+use models\Utilisateur;
 
 class PlaylistDB
 {
@@ -42,7 +43,7 @@ class PlaylistDB
             $playlists[] = new Playlist(
                 $r["idP"],
                 $r["nomP"],
-                $r["idU"],
+                UtilisateurDB::getUtilisateurById($r["idU"]),
                 $r["imgPlaylist"],
                 $r["anneeP"],
                 $r["descriptionP"],
@@ -60,11 +61,33 @@ class PlaylistDB
         return new Playlist(
             $r["idP"],
             $r["nomP"],
-            $r["idU"],
+            UtilisateurDB::getUtilisateurById($r["idU"]),
             $r["imgPlaylist"],
             $r["anneeP"],
             $r["descriptionP"],
             $r["dateMajP"]
         );
+    }
+
+    public static function searchPlaylists($search){
+        $db = Database::getInstance();
+        $search = '%' . $search . '%';
+        $stmt = $db->prepare("SELECT * FROM playlist WHERE nomP LIKE :search");
+        $stmt->bindParam(":search", $search);
+        $stmt->execute();
+        $playlists = [];
+        while ($row = $stmt->fetch()) {
+            $playlist = new Playlist(
+                $row["idP"],
+                $row["nomP"],
+                UtilisateurDB::getUtilisateurById($row["idU"]),
+                $row["imgPlaylist"],
+                $row["anneeP"],
+                $row["descriptionP"],
+                $row["dateMajP"]
+            );
+            $playlists[] = $playlist;
+        }
+        return $playlists;
     }
 }

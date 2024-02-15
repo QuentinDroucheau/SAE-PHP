@@ -16,6 +16,7 @@ class ControllerHome extends Controller
 
     public function view(): void
     {
+        $test = AlbumDB::searchAlbums("We");
         $artistes = ArtisteDB::getArtistesLimit();
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
         $playlistDB = new PlaylistDB();
@@ -23,13 +24,7 @@ class ControllerHome extends Controller
         foreach ($categories as $category) {
             $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
         }
-
-        try {
-            $userId = Utils::getIdUtilisateurConnecte();
-            $lesPlaylists = $playlistDB->getPlaylists($userId);
-        } catch (\Exception $e) {
-            $lesPlaylists = null;
-        }
+        $lesPlaylists = Utils::getPlaylistsMenu();
         $params = ['playlists' => $lesPlaylists];
         $base = new BaseTemplate($params);
         $base->setContent("accueil");
@@ -41,7 +36,7 @@ class ControllerHome extends Controller
         foreach ($albumsByCategory as $category => $lesAlbums) {
             foreach ($lesAlbums as $album) {
                 // récupère l'artiste et les musiques associés à l'album
-                $artiste = ArtisteDB::getArtiste($album->getAuteurId());
+                $artiste = $album->getAuteur();
                 $musiques = MusiqueDB::getMusiquesAlbum($album->getId());
 
                 // ajoute l'album, l'artiste, les musiques et la catégorie associés à l'album dans un tableau
@@ -70,6 +65,7 @@ class ControllerHome extends Controller
         $base->addParam("lesPlaylists", $lesPlaylists);
         $base->addParam("artistes", $artistes);
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+        $base->addParam("test", $test); // test
         $base->render();
     }
 

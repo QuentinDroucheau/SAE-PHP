@@ -8,6 +8,7 @@ use controller\ControllerArtiste;
 use controller\ControllerPublier;
 use controller\ControllerPubliePlaylist;
 use controller\ControllerCategory;
+use controller\ControllerHeader;
 use models\Musique;
 use route\Route;
 
@@ -17,6 +18,7 @@ session_start();
 
 $routes = [
     new Route("/", "GET", ControllerHome::class, "view", []),
+    new Route("/search", "POST", ControllerHeader::class, "view", []),
     new Route("/getPlaylistSub", "GET", ControllerHome::class, "view", []),
     new Route("/publiersSonsPlaylist", "POST", ControllerHome::class, "view", []),
     // new Route("/getMusiquesAlbumSelec", "GET", ControllerHome::class, "view", [], []),
@@ -30,6 +32,7 @@ $routes = [
     // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
+    new Route("/album", "POST", ControllerAlbum::class),
 ];
 
 

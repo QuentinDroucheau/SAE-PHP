@@ -10,18 +10,21 @@ use view\Composant;
 class Playlist extends CollectionMusicale
 {
     private string $dateMAJ;
+    private Utilisateur $auteur;
 
     public function __construct(
         int $id,
         string $titre,
-        int $utilisateurId,
+        Utilisateur $auteur,
         string $image,
         string $datePublication,
         string $description,
         string $dateMAJ,
+        array $musiques = []
     ) {
-        parent::__construct($id, $titre, $utilisateurId, $image, $datePublication, $description);
+        parent::__construct($id, $titre, $image, $datePublication, $description, $musiques);
         $this->dateMAJ = $dateMAJ;
+        $this->auteur = $auteur;
     }
 
     public function getDateMAJ(): \DateTime
@@ -36,8 +39,13 @@ class Playlist extends CollectionMusicale
         $composant->addParam("titre", $this->getTitre());
         $composant->addParam("image", $this->getImage());
         $composant->addParam("dateMaj", $this->getDateMAJ()->format("d/m/Y"));
-        $composant->addParam("auteurNom", UtilisateurDB::getUtilisateurById($this->getAuteurId())->getPseudoU());
+        $composant->addParam("auteurNom", $this->getAuteur()->getPseudoU());
         $composant->addParam("nbMusiques", MusiqueDB::getNbMusiquesPlaylist($this->getId()));
         return $composant->get();
     }
+
+    public function getAuteur(): Utilisateur {
+        return $this->auteur;
+    }
+
 }

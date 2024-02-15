@@ -15,8 +15,8 @@ class MusiqueDB
         $db = Database::getInstance();
         $musiques = [];
         $result = $db->query("SELECT * FROM musique");
-        foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+        foreach($result as $r){
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
@@ -29,8 +29,8 @@ class MusiqueDB
         $db = Database::getInstance();
         $result = $db->query("SELECT * FROM musique WHERE idM = $id");
         $r = $result->fetch();
-        if ($r) {
-            return new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+        if($r){
+            return new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($id));
         }
         return null;
     }
@@ -56,8 +56,8 @@ class MusiqueDB
         $db = Database::getInstance();
         $musiques = [];
         $result = $db->query("SELECT * FROM musique WHERE idAlbum = $id");
-        foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+        foreach($result as $r){
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
@@ -70,8 +70,9 @@ class MusiqueDB
         $db = Database::getInstance();
         $musiques = [];
         $result = $db->query("SELECT * FROM musique NATURAL JOIN album NATURAL JOIN artiste WHERE idA = $id");
-        foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+        foreach($result as $r){
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], 
+                self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
@@ -127,7 +128,7 @@ class MusiqueDB
                               JOIN composer c ON m.idM = c.idM 
                               WHERE c.idP = $idPlaylist");
         foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
@@ -141,24 +142,45 @@ class MusiqueDB
         $musiques = [];
         $result = $db->query("SELECT * FROM musique WHERE idAlbum = $idAlbum");
         foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
 
     public static function insererSonsPlaylists(array $songIds, int $playlistId): string
-{
-    $db = Database::getInstance();
-    foreach ($songIds as $songId) {
-        try {
-            $stmt = $db->prepare("INSERT INTO composer(idM, idP, dateAjout) VALUES (:songId, :playlistId, '22/03/2023')");
-            $stmt->bindParam(":songId", $songId);
-            $stmt->bindParam(":playlistId", $playlistId);
-            $stmt->execute();
-        } catch (\Exception $e) {
-            return "Erreur lors de l'insertion de la chanson dans la playlist : " . $e->getMessage();
+    {
+        $db = Database::getInstance();
+        foreach ($songIds as $songId) {
+            try {
+                $stmt = $db->prepare("INSERT INTO composer(idM, idP, dateAjout) VALUES (:songId, :playlistId, '22/03/2023')");
+                $stmt->bindParam(":songId", $songId);
+                $stmt->bindParam(":playlistId", $playlistId);
+                $stmt->execute();
+            } catch (\Exception $e) {
+                return "Erreur lors de l'insertion de la chanson dans la playlist : " . $e->getMessage();
+            }
         }
+        return "Les chansons ont été insérées avec succès dans la playlist.";
     }
-    return "Les chansons ont été insérées avec succès dans la playlist.";
-}
+
+    /**
+     * @param int $idM id de la musique
+     * @return int nombre d'écoute
+     */
+    public static function getNbEcoute(int $idM): int{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT count(*) FROM ecouter WHERE idM = $idM");
+        $r = $result->fetch();
+        return $r[0];
+    }
+
+    public static function searchMusiques($search): array{
+        $db = Database::getInstance();
+        $search = '%' . $search . '%';
+        $stmt = $db->prepare("SELECT * FROM musique WHERE nomM LIKE :search");
+        $stmt->bindParam(":search", $search);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 }

@@ -1,3 +1,4 @@
+<script src ="js/search_bar.js" defer></script>
 <link rel="stylesheet" href="styles/header.css">
 <header class="header">
     <div class="left">
