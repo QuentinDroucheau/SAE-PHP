@@ -30,6 +30,7 @@ $routes = [
     // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
+    new Route("/album", "POST", ControllerAlbum::class),
 ];
 
 

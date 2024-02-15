@@ -41,7 +41,7 @@ class ControllerHome extends Controller
         foreach ($albumsByCategory as $category => $lesAlbums) {
             foreach ($lesAlbums as $album) {
                 // récupère l'artiste et les musiques associés à l'album
-                $artiste = ArtisteDB::getArtiste($album->getAuteurId());
+                $artiste = $album->getAuteur();
                 $musiques = MusiqueDB::getMusiquesAlbum($album->getId());
 
                 // ajoute l'album, l'artiste, les musiques et la catégorie associés à l'album dans un tableau

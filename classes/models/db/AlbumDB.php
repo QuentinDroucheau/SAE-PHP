@@ -4,7 +4,6 @@ namespace models\db;
 
 use models\Album;
 use models\db\ArtisteDB;
-use models\Artiste;
 use models\Musique;
 
 class AlbumDB {
@@ -17,8 +16,9 @@ class AlbumDB {
         foreach ($result as $r) {
             if (!$album) {
                 $descriptionA = $r["descriptionA"] ?? '';
-                $idArtiste = $r["idA"];
-                $album = new Album($r["idAlbum"], $r["titreAlbum"], $idArtiste, $r["imgAlbum"], $r["anneeAlbum"], $descriptionA);
+                $album = new Album($r["idAlbum"], $r["titreAlbum"], ArtisteDB::getArtiste($r["idA"]), $r["imgAlbum"], 
+                    $r["anneeAlbum"], self::getNoteAlbum($id), 
+                    self::getNbEcouteAlbum($r["idAlbum"]), $descriptionA, self::getMusiques($r["idAlbum"]));
             }
         }
 
@@ -51,7 +51,8 @@ class AlbumDB {
             $idAlbum = $s["idAlbum"];
             if (!isset($albums[$idAlbum])) {
                 $descriptionA = $s["descriptionA"] ?? '';
-                $album = new Album($s["idAlbum"], $s["titreAlbum"], $s["idA"], $s["imgAlbum"], $s["anneeAlbum"], $descriptionA);
+                $album = new Album($s["idAlbum"], $s["titreAlbum"], ArtisteDB::getArtiste($s["idA"]), 
+                $s["imgAlbum"], $s["anneeAlbum"], self::getNoteAlbum($s["idAlbum"]), self::getNoteAlbum($s["idAlbum"]), $descriptionA, self::getMusiques($s["idAlbum"]));
                 $albums[$idAlbum] = $album;
             }
         }
@@ -80,7 +81,9 @@ class AlbumDB {
             $idAlbum = $s["idAlbum"];
             if (!isset($albums[$idAlbum])) {
                 $descriptionA = $s["descriptionA"] ?? '';
-                $album = new Album($s["idAlbum"], $s["titreAlbum"], $s["idA"], $s["imgAlbum"], $s["anneeAlbum"], $descriptionA);
+                $album = new Album($s["idAlbum"], $s["titreAlbum"], ArtisteDB::getArtiste($s["idA"]), $s["imgAlbum"], 
+                    $s["anneeAlbum"], self::getNoteAlbum($s["idAlbum"]), 
+                    self::getNbEcouteAlbum($s["idAlbum"]), $descriptionA, self::getMusiques($s["idAlbum"]));
                 $albums[$idAlbum] = $album;
             }
         }
@@ -121,7 +124,11 @@ class AlbumDB {
         $albums = [];
         while ($row = $stmt->fetch()) {
             $descriptionA = $row["descriptionA"] ?? '';
-            $album = new Album($row["idAlbum"], $row["titreAlbum"], $row["idA"], $row["imgAlbum"], $row["anneeAlbum"], $descriptionA);
+            $album = new Album($row["idAlbum"], $row["titreAlbum"], ArtisteDB::getArtiste($row["idA"]), 
+                $row["imgAlbum"], $row["anneeAlbum"], 
+                self::getNoteAlbum($row["idAlbum"]), 
+                self::getNbEcouteAlbum($row["idAlbum"]), $descriptionA, 
+                self::getMusiques($row["idAlbum"]));
             $albums[] = $album;
         }
     
@@ -149,12 +156,51 @@ class AlbumDB {
         $albums = [];
         while ($row = $stmt->fetch()) {
             $descriptionA = $row["descriptionA"] ?? '';
-            $album = new Album($row["idAlbum"], $row["titreAlbum"], $row["idA"], $row["imgAlbum"], $row["anneeAlbum"], $descriptionA);
+            $album = new Album($row["idAlbum"], 
+            $row["titreAlbum"], ArtisteDB::getArtiste($row["idA"]), $row["imgAlbum"], 
+            $row["anneeAlbum"], self::getNoteAlbum($row["idAlbum"]), 
+            self::getNbEcouteAlbum($row["idAlbum"]), 
+            $descriptionA,
+            self::getMusiques($row["idAlbum"]));
+            
             $albums[] = $album;
         }
         return $albums;
     }
 
 
+    /**
+     * @return Musique[]
+     */
+    public static function getMusiques(int $idAlbum): array{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT * FROM musique WHERE idAlbum = $idAlbum");
+        $musiques = [];
+        foreach($result as $r){
+            $musique = new Musique($r["idM"], $r["nomM"], $r["lienM"], 
+                MusiqueDB::getNbEcoute($r["idM"]));
+            $musiques[] = $musique;
+        }
+        return $musiques;
+    }
 
+    /**
+     * @return float
+     */
+    public static function getNoteAlbum(int $idAlbum): float{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT IFNULL(AVG(note), 0) FROM noter WHERE idAlbum = $idAlbum");
+        $r = $result->fetch();
+        return $r[0];
+    }
+
+    /**
+     * @return int
+     */
+    public static function getNbEcouteAlbum(int $idAlbum): int{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT IFNULL(COUNT(*), 0) FROM ecouter natural join musique WHERE idAlbum = $idAlbum");
+        $r = $result->fetch();
+        return $r[0];
+    }
 }

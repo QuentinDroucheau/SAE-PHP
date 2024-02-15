@@ -1,14 +1,70 @@
 .header-album{
     display: flex;
     flex-wrap: wrap;
-    background-color: antiquewhite;
-    margin: 10px;
+    margin-top: 10px;
+    margin-left: 30px;
 }
 
 .img-album{
     height: 200px;
     width: 200px;
     display: flex;
+}
+
+.musique-title{
+    display: flex;
+    justify-content: center;
+}
+
+.button-critique{
+    background-color: var(--couleur1);
+    border-radius: 7px;
+    font-family: 'Nunito';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    width: 200px;
+    height: 40px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.critique-auditeur .left img{
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.musique-title .right{
+    margin-left: 20px;
+}
+
+.container-critique .critique{
+    background-color: var(--couleur3);
+    border-radius: 10px;
+    padding: 5px;
+    height: auto;
+    width: 45rem;
+}
+
+.critique-auditeur{
+    display: flex;
+    justify-content: center;
+}
+
+.critique-auditeur img{
+    height: 70px;
+    width: 70px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr{
+    text-align: center;
 }
 
 .img-album .note{
@@ -31,12 +87,14 @@
 
 .info{
     flex-basis: 60%;
+    margin: 20px;
 }
 
 .navbar-album{
     display: flex;
     list-style: none;
     text-decoration: none;
+    margin-top: 20px;
 }
 
 .navbar-album li{
@@ -49,10 +107,15 @@
 
 .container-musique{
     flex-basis: 100%;
-    background-color: black;
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-right: 30px;
 }
 
 .container-critique{
     flex-basis: 100%;
-    background-color: red;
+    display: none;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
 }

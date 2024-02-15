@@ -7,13 +7,13 @@ use form\InputRender;
 abstract class Input implements InputRender{
 
     protected string $type;
-    private string $label = "";
+    protected string $label = "";
 
     public function __construct(
-        private string $value,
-        private bool $required,
-        private string $name,
-        private string $id
+        protected string $value,
+        protected bool $required,
+        protected string $name,
+        protected string $id
     ){}
 
     public function __toString() {
