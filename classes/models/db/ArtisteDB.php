@@ -19,6 +19,18 @@ class ArtisteDB{
         return $artistes;
     }
 
+
+    public static function getArtistesLimit(): array{
+        $db = Database::getInstance();
+        $artistes = [];
+        $result = $db->query("SELECT * FROM artiste LIMIT 10");
+        foreach($result as $r){
+            $artistes[] = new Artiste($r["idA"], $r["nomA"], $r["imgArtiste"]);
+        }
+        return $artistes;
+    }
+
+
     /**
      * @param Artiste $artiste
      * @return bool

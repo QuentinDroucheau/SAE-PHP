@@ -11,37 +11,45 @@
 <link rel="stylesheet" href="styles/composantArtiste.css">
 <?php foreach ($albumsDetails as $category => $albumDetails) : ?>
     <section class="section-categorie-album">
-        <h2><?= $category ?></h2>
-        <div class="container-for-swiper">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <?php foreach ($albumDetails as $albumDetail) : ?>
-                        <div class="swiper-slide">
-                            <?= $albumDetail['album']->render() ?>
-                        </div> <!-- ferme le swiper-slide -->
-                    <?php endforeach; ?>
-                </div> <!-- ferme le wrapper -->
+        <div class="top-section-categorie-album">
+            <div class="header-section">
+                <h2><?= $category ?></h2>
+                <a class="btn-voir-plus" href="categorie?category=<?= $category ?>">Voir plus</a>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
+            <div>
+                <div class="container-for-swiper">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($albumDetails as $albumDetail) : ?>
+                                <div class="swiper-slide">
+                                    <?= $albumDetail['album']->render() ?>
+                                </div> <!-- ferme le swiper-slide -->
+                            <?php endforeach; ?>
+                        </div> <!-- ferme le wrapper -->
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
     </section>
-    
-    
-    <?php endforeach ?>
-    <section class="section-categorie-artiste">
+
+
+<?php endforeach ?>
+<section class="section-categorie-artiste">
+    <div class="header-section">
         <h2>Des artistes...</h2>
-        <div class="container-for-swiper">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <?php foreach ($artistes as $artiste) : ?>
-                        <div class="swiper-slide">
-                            <?= $artiste->render() ?>
-                        </div> <!-- ferme le swiper-slide -->
-                    <?php endforeach; ?>
-                </div> <!-- ferme le wrapper -->
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+        <a class="btn-voir-plus" href="categorie?category=artistes">Voir plus</a>
+    </div>
+    <div class="container-for-swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <?php foreach ($artistes as $artiste) : ?>
+                    <div class="swiper-slide">
+                        <?= $artiste->render() ?>
+                    </div> <!-- ferme le swiper-slide -->
+                <?php endforeach; ?>
+            </div> <!-- ferme le wrapper -->
         </div>
-    </section>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>

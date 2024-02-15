@@ -7,6 +7,7 @@ use controller\ControllerTest;
 use controller\ControllerArtiste;
 use controller\ControllerPublier;
 use controller\ControllerPubliePlaylist;
+use controller\ControllerCategory;
 use models\Musique;
 use route\Route;
 
@@ -25,6 +26,7 @@ $routes = [
     new Route("/publier", "GET", ControllerPublier::class, "view", []),
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),
     new Route("/publierPlaylist", "POST", ControllerPubliePlaylist::class, "publierPlaylist", []),
+    new Route("/categorie", "GET", ControllerCategory::class, "view", [], ["category"]),
     // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),

@@ -1,5 +1,5 @@
 function redirect(id) {
-  window.location.href = "playlist?id=" + id;
+
 }
 
 $(document).ready(function() {
@@ -23,7 +23,7 @@ $('.form-publie-playlist').on('submit', function(e) {
         alert('Playlist publiée avec succès');
         var playlistItem = '<div class="element">' +
                               '<div>' +
-                              '<img class="pochette" src="fixtures/images/' + response.image + '" alt="" onclick="redirect(' + response.playlistId + ')">' +
+                              '<img class="pochette" src="fixtures/images/' + response.image + '" alt=""' +
                               '</div>' +
                               '<div class="text">' +
                                 '<div class="title">' +

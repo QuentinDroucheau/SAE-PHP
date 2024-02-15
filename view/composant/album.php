@@ -30,8 +30,3 @@
         </div>
     </section>
 </section>
-<script>
-    function redirect(id) {
-        window.location.href = "album?id=" + id;
-    }
-</script>

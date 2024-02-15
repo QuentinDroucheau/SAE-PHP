@@ -12,8 +12,3 @@
     <p>Mis a jour le <?php echo $dateMaj  ?></p>
   </div>
 </div>
-<script>
-    function redirect(id) {
-        window.location.href = "playlist?id=" + id;
-    }
-</script>

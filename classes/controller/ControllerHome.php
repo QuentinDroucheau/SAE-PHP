@@ -16,7 +16,7 @@ class ControllerHome extends Controller
 
     public function view(): void
     {
-        $artistes = ArtisteDB::getArtistes();
+        $artistes = ArtisteDB::getArtistesLimit();
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
         $playlistDB = new PlaylistDB();
         $albumsByCategory = [];
@@ -65,9 +65,6 @@ class ControllerHome extends Controller
             }
         }
 
-
-
-
         $base->addParam("albumsDetails", $albumsDetails);
         $base->addParam("albumsDetailsJson", json_encode($albumsDetailsJson));
         $base->addParam("lesPlaylists", $lesPlaylists);
@@ -77,30 +74,30 @@ class ControllerHome extends Controller
     }
 
     public function publiersSonsPlaylist(): void
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $songIds = $_POST['songIds'] ?? null;
-        if($songIds === null){
-            echo json_encode(['status' => 'error', 'message' => 'DataIDS NULL .']);
-            return;
-        }
-        $playlistId = $_POST['playlistId'] ?? null;
-        if($playlistId === null){
-            echo json_encode(['status' => 'error', 'message' => 'PlaylistID NULL .']);
-            return;
-        }
-        try {
-            $result = MusiqueDB::insererSonsPlaylists($songIds, $playlistId);
-            if ($result === "Les chansons ont été insérées avec succès dans la playlist.") {
-                echo json_encode(['status' => 'success', 'message' => $result]);
-            } else {
-                echo json_encode(['status' => 'error', 'message' => $result]);
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $songIds = $_POST['songIds'] ?? null;
+            if ($songIds === null) {
+                echo json_encode(['status' => 'error', 'message' => 'DataIDS NULL .']);
+                return;
             }
-        } catch (\Exception $e) {
-            echo json_encode(['status' => 'error', 'message' => 'An error occurred while adding songs to the playlist: ' . $e->getMessage()]);
+            $playlistId = $_POST['playlistId'] ?? null;
+            if ($playlistId === null) {
+                echo json_encode(['status' => 'error', 'message' => 'PlaylistID NULL .']);
+                return;
+            }
+            try {
+                $result = MusiqueDB::insererSonsPlaylists($songIds, $playlistId);
+                if ($result === "Les chansons ont été insérées avec succès dans la playlist.") {
+                    echo json_encode(['status' => 'success', 'message' => $result]);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => $result]);
+                }
+            } catch (\Exception $e) {
+                echo json_encode(['status' => 'error', 'message' => 'An error occurred while adding songs to the playlist: ' . $e->getMessage()]);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid data received.']);
         }
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid data received.']);
     }
-}
 }
