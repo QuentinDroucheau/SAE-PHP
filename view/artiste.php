@@ -3,7 +3,7 @@
 <div>
     <section class="infos-artistes">
         <div class="img-artiste">
-            <img src="fixtures/images/220px-DarkChords.jpg" alt="photo de profil">
+            <img src="img/default_profil.webp" alt="photo de profil">
         </div>
         <div class="desc-artiste">
             <h1>
@@ -18,7 +18,6 @@
                 34039 abonnées
             </p>
             <ul class="artiste-genre">
-                
 
                 <?php
                 $uniqueGenres = [];
@@ -70,20 +69,21 @@
                     Dernières sorties
                 </h2>
                 <div class="album">
-                    <?php
+                <?php
                     $albumCpt = 0;
                     foreach ($albums as $album) {
                         if ($albumCpt < 2) {
-                            $album->render();
+                            echo "<img src='" . $album->getImage() . "' alt='cover de l'album >";
+                            echo "<p>" . $album->getTitre() . "</p>";
+                            echo "<span>" . $album->getAnneeAlbum()->format('Y-m-d') . "</span>";
+                
+                            $albumCpt++;
                         } else {
                             break;
                         }
                     }
                     
                     ?>
-
-                    <!-- rajouter le css/html de l'album -->
-
                 </div>
             </div>
 
@@ -126,8 +126,25 @@
 
         <section id="artistesimilaire-section" class="section-mouvante">
             <h2>
-                artiste similaire
+                Artistes avec le même genre de musiques :
             </h2>
+            <div class="artistes-similaires">
+                <?php
+                foreach ($artisteSimilaires as $artisteData) {
+                    $artisteNom = $artisteData["nomA"];
+                    $artisteId = $artisteData["idA"];
+
+                    echo "<div class='artiste-similaire'>";
+                    echo "<a href='/artiste?id=" . $artisteId . "'>";
+                    echo "<button>";
+                    echo "<img src='img/default_profil.webp' alt='photo de profil'>";
+                    echo "<p>" . $artisteNom . "</p>";
+                    echo "</button>";
+                    echo "</a>";
+                    echo "</div>";
+                }
+                ?>
+            </div>
         </section>
 
         <section id="playlist-section" class="section-mouvante">

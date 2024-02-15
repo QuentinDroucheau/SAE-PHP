@@ -80,4 +80,23 @@ class ArtisteDB{
         $result = $stmt->fetch();
         return $result[0];
     }
+
+    public static function getArtisteAlbum($idAlbum) {
+        $db = Database::getInstance();
+        $stmt = $db->prepare('SELECT artiste.nomA FROM album JOIN artiste ON album.idA = artiste.idA WHERE album.idAlbum = :idAlbum');
+        $stmt->bindParam(':idAlbum', $idAlbum);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return isset($result['nomA']) ? $result['nomA'] : null;
+    }
+    
+    public static function getIdArtisteByNom($nom){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('SELECT idA FROM artiste WHERE nomA = :nomA');
+        $stmt->bindParam(':nomA', $nom);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return isset($result['idA']) ? $result['idA'] : null;
+    }
+    
 }

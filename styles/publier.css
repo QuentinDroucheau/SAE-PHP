@@ -87,7 +87,7 @@
 }
 
 /* Styles pour les titres h1 */
-#publier-titre {
+#publier-titre, #archives-titre {
     margin: 3rem 0 2rem 5rem;
     font-size: 3rem;
     font-weight: 900;

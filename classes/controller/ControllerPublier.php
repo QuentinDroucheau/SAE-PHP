@@ -21,6 +21,7 @@ class ControllerPublier extends Controller
         $base->setContent("publier");
         $base->addParam("artistes", $artistes);
         $base->addParam("genres", $genres);
+        $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
         $base->render();
 
     }

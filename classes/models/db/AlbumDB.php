@@ -128,7 +128,6 @@ class AlbumDB {
         return $albums;
     }
 
-
     public static function getIdAlbum() {
         $db = Database::getInstance();
         $stmt = $db->query('SELECT MAX(idAlbum) FROM album');
@@ -142,6 +141,18 @@ class AlbumDB {
         $stmt->bindParam(':idAlbum', $idAlbum);
         $stmt->execute();
         return $stmt->fetch();
+    }
+
+    public static function getAlbums() {
+        $db = Database::getInstance();
+        $stmt = $db->query('SELECT * FROM album');
+        $albums = [];
+        while ($row = $stmt->fetch()) {
+            $descriptionA = $row["descriptionA"] ?? '';
+            $album = new Album($row["idAlbum"], $row["titreAlbum"], $row["idA"], $row["imgAlbum"], $row["anneeAlbum"], $descriptionA);
+            $albums[] = $album;
+        }
+        return $albums;
     }
 
 

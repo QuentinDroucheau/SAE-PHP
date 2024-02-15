@@ -11,7 +11,6 @@ use utils\Utils;
 
 class Album extends CollectionMusicale {
 
-
     public function __construct(
         int $id,
         string $titre,
