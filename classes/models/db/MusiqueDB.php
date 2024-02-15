@@ -14,7 +14,7 @@ class MusiqueDB{
         $musiques = [];
         $result = $db->query("SELECT * FROM musique");
         foreach($result as $r){
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
@@ -27,7 +27,7 @@ class MusiqueDB{
         $result = $db->query("SELECT * FROM musique WHERE idM = $id");
         $r = $result->fetch();
         if($r){
-            return new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+            return new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($id));
         }
         return null;
     }
@@ -52,7 +52,7 @@ class MusiqueDB{
         $musiques = [];
         $result = $db->query("SELECT * FROM musique WHERE idAlbum = $id");
         foreach($result as $r){
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
@@ -65,7 +65,8 @@ class MusiqueDB{
         $musiques = [];
         $result = $db->query("SELECT * FROM musique NATURAL JOIN album NATURAL JOIN artiste WHERE idA = $id");
         foreach($result as $r){
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"]);
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], 
+                self::getNbEcoute($r["idM"]));
         }
         return $musiques;
     }
@@ -96,6 +97,17 @@ class MusiqueDB{
     public static function getNbMusiquesAlbum(int $idAlbum): int{
         $db = Database::getInstance();
         $result = $db->query("SELECT COUNT(*) FROM musique WHERE idAlbum = $idAlbum");
+        $r = $result->fetch();
+        return $r[0];
+    }
+
+    /**
+     * @param int $idM id de la musique
+     * @return int nombre d'écoute
+     */
+    public static function getNbEcoute(int $idM): int{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT count(*) FROM ecouter WHERE idM = $idM");
         $r = $result->fetch();
         return $r[0];
     }

@@ -7,7 +7,8 @@ class Musique{
     public function __construct(
         private int $id, 
         private string $nom,
-        private string $lien
+        private string $lien,
+        private int $ecoute
     ){}
 
     public function getId(){
@@ -20,5 +21,9 @@ class Musique{
 
     public function getLien(){
         return $this->lien;
+    }
+
+    public function getEcoute(){
+        return $this->ecoute;
     }
 }

@@ -23,6 +23,7 @@ $routes = [
     new Route("/publierPlaylist", "POST", ControllerPubliePlaylist::class, "publierPlaylist", []),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
+    new Route("/album", "POST", ControllerAlbum::class),
 ];
 
 

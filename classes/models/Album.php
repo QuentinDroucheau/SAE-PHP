@@ -9,16 +9,25 @@ use models\db\MusiqueDB;
 
 class Album extends CollectionMusicale {
 
+    private float $note;
+    private int $ecoute;
+    private Artiste $auteur;
 
     public function __construct(
         int $id,
         string $titre,
-        int $idArtiste,
+        Artiste $auteur,
         ?string $image,
         string $datePublication,
-        string $descriptionA = ''
+        float $note,
+        int $ecoute,
+        string $descriptionA = '',
+        array $musiques = []
     ) {
-        parent::__construct($id, $titre, $idArtiste, $image, $datePublication, $descriptionA);
+        parent::__construct($id, $titre, $image, $datePublication, $descriptionA, $musiques);
+        $this->note = $note;
+        $this->ecoute = $ecoute;
+        $this->auteur = $auteur;
     }
 
     public function getAnneeAlbum(): \DateTime {
@@ -29,13 +38,25 @@ class Album extends CollectionMusicale {
         return MusiqueDB::getMusiquesAlbum($this->id);
     }
 
+    public function getNote(): float {
+        return $this->note;
+    }
+
+    public function getEcoute(): int{
+        return $this->ecoute;
+    }
+
+    public function getAuteur(): Artiste {
+        return $this->auteur;
+    }
+
     public function render(): string{
         $composant = new Composant("album");
         $composant->addParam("id", $this->getId());
         $composant->addParam("titre", $this->getTitre());
         $composant->addParam("image", $this->getImage());
         $composant->addParam("anneeAlbum", $this->getAnneeAlbum()->format("d/m/Y"));
-        $composant->addParam("auteurNom", ArtisteDB::getArtiste($this->getAuteurId())->getNom());
+        $composant->addParam("auteurNom", $this->getAuteur()->getNom());
         $composant->addParam("nbMusiques", MusiqueDB::getNbMusiquesAlbum($this->getId()));
         return $composant->get();
     }
