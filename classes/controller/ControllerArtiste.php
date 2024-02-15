@@ -38,14 +38,18 @@ class ControllerArtiste extends Controller{
                 }, $genres);
 
                 $artistName = ArtisteDB::getArtisteAlbum($album->getId());
+                $artistId = ArtisteDB::getIdArtisteByNom($artistName);
 
-                if (!in_array($artistName, $artisteSimilaires, true)) {
+                if ($artistId != $idArtiste && !in_array(['nomA' => $artistName, 'idA' => $artistId], $artisteSimilaires, true)) {
                     $albumGenres = array_map(function ($genre) {
                         return $genre->getNom();
                     }, $genresMusiques);
 
                     if (array_intersect($albumGenres, $genreNames)) {
-                        $artisteSimilaires[] = $artistName;
+                        $artisteSimilaires[] = [
+                            'nomA' => $artistName, 
+                            'idA' => $artistId
+                        ];
                     }
                 }
 

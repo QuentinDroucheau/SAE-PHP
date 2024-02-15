@@ -3,7 +3,7 @@
 <div>
     <section class="infos-artistes">
         <div class="img-artiste">
-            <img src="fixtures/images/220px-DarkChords.jpg" alt="photo de profil">
+            <img src="img/default_profil.webp" alt="photo de profil">
         </div>
         <div class="desc-artiste">
             <h1>
@@ -18,7 +18,6 @@
                 34039 abonnées
             </p>
             <ul class="artiste-genre">
-                
 
                 <?php
                 $uniqueGenres = [];
@@ -125,13 +124,19 @@
             <h2>
                 Artistes avec le même genre de musiques :
             </h2>
-            <div class="artistes-similaires">
+            <div class="artistes-similaires"><u></u>
                 <?php
                 foreach ($artisteSimilaires as $artisteData) {
                     $artisteNom = $artisteData["nomA"];
+                    $artisteId = $artisteData["idA"];
+                    
                     echo "<div class='artiste-similaire'>";
+                    echo "<a href='/artiste?id=" . $artisteId . "'>";
+                    echo "<button>";
                     echo "<img src='img/default_profil.webp' alt='photo de profil'>";
                     echo "<p>" . $artisteNom . "</p>";
+                    echo "</button>";
+                    echo "</a>";
                     echo "</div>";
                 }
                 ?>
