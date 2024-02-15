@@ -39,5 +39,5 @@ class Utils{
         if(!self::isConnected())
             throw new \Exception("Utilisateur non connecté");
         return self::getConnexion()->getId();
-    }
+    }   
 }

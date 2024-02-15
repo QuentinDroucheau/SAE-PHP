@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS noter (
   idAlbum INTEGER NOT NULL,
   note FLOAT,
   critique TEXT,
+  date INT,
   PRIMARY KEY (idU, idAlbum),
   FOREIGN KEY (idAlbum) REFERENCES album (idAlbum),
   FOREIGN KEY (idU) REFERENCES utilisateur (idU)

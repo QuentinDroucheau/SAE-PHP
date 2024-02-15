@@ -16,10 +16,11 @@ class NoteDB{
         $notes = [];
         foreach($result as $r){
             $notes[] = new Note(
-                UtilisateurDB::getUtilisateurById($r['idUtilisateur']),
+                UtilisateurDB::getUtilisateurById($r['idU']),
                 AlbumDB::getAlbum($r['idAlbum']),
                 $r['note'],
-                $r['critique']
+                $r['critique'],
+                $r['date']
             );
         }
         return $notes;
@@ -33,6 +34,28 @@ class NoteDB{
      */
     public static function addCritique(int $idAlbum, int $idUtilisateur, int $note, string $critique): void{
         $db = Database::getInstance();
-        $db->query("INSERT INTO noter (idUtilisateur, idAlbum, note, critique) VALUES ($idUtilisateur, $idAlbum, $note, '$critique')");
+
+        $stmt = $db->prepare("INSERT INTO noter(idU, idAlbum, note, critique, date) VALUES (:idU, :idAlbum, :note, :critique, :date)");
+        $stmt->bindParam(":idU", $idUtilisateur);
+        $stmt->bindParam(":idAlbum", $idAlbum);
+        $stmt->bindParam(":note", $note);
+        $stmt->bindParam(":critique", $critique);
+        $date = time();
+        $stmt->bindParam(":date", $date);
+        $stmt->execute();
+    }
+
+    /**
+     * @param int $idAlbum id de l'album
+     * @param int $idUtilisateur id de l'utilisateur
+     * @return bool
+     */
+    public static function hasCritique(int $idAlbum, int $idUtilisateur): bool{
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM noter WHERE idU = :idU AND idAlbum = :idAlbum");
+        $stmt->bindParam(":idU", $idUtilisateur);
+        $stmt->bindParam(":idAlbum", $idAlbum);
+        $stmt->execute();
+        return $stmt->fetch() !== false;
     }
 }

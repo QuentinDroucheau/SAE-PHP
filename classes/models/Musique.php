@@ -20,7 +20,7 @@ class Musique{
     }
 
     public function getLien(){
-        return $this->lien;
+        return ($this->lien ? "fixtures/images/" . $this->lien : "../../img/default_album.png");
     }
 
     public function getEcoute(){

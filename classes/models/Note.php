@@ -14,7 +14,8 @@ class Note{
         private Utilisateur $utilisateur,
         private Album $album,
         private int $note,
-        private string $critique
+        private string $critique,
+        private int $date
     )
     {}
 
@@ -44,5 +45,12 @@ class Note{
      */
     public function getCritique(): string{
         return $this->critique;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDate(): int{
+        return $this->date;
     }
 }

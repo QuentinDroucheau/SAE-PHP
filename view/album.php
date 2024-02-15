@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="styles/album.css">
 <div class="header-album">
     <div class="img-album">
-        <img src="img/album.jpeg" alt="">
+        <img src=<?= $album->getImage() ?> alt="">
         <p class="note"><?= $note ?>/10</p>
     </div>
     <div class="info">
@@ -17,7 +17,11 @@
         <div class="buttons">
             <div class="button-play"></div>
             <div class="button-add"></div>
-            <a class="button-critique" onclick="openFormCritique(10919);">Laisser une critique</a>
+            <?php 
+                if($critique){
+                    echo '<a class="button-critique" onclick="openFormCritique(10919);">Laisser une critique</a>';
+                }
+            ?>
         </div>
     </div>
     <ul class="navbar-album">
@@ -43,7 +47,7 @@
 
                     <td class="musique-title">
                         <div class="left">
-                            <img src="img/default_album.png" alt="" style="height: 70px; width:70px;">
+                            <img src=<?= $musique->getLien() ?> alt="" style="height: 70px; width:70px;">
                         </div>
                         <div class="right">
                             <p class="title"><?= $musique->getNom() ?></p>
@@ -78,8 +82,8 @@
                             <img src="img/default_album.png" alt="">
                         </div>
                         <div class="right">
-                            <p class="title"><?= $note->getUtilisateur()->getNom() ?></p>
-                            <p>il y a 3 jours</p>
+                            <p class="title"><?= $note->getUtilisateur()->getPseudoU() ?></p>
+                            <p>Il y a <?= time() - $note->getDate()?> s</p>
                         </div>
                     </td>
                     <td>

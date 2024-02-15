@@ -24,6 +24,11 @@ class ControllerAlbum extends Controller{
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
         $base->addParam("musiques", AlbumDB::getMusiques($albumId));
         $base->addParam("notes", NoteDB::getNotes($albumId));
+        $critique = false;
+        if((!is_null(Utils::getConnexion())) and !(NoteDB::hasCritique($albumId, Utils::getConnexion()->getId()))){
+            $critique = true;
+        }
+        $base->addParam("critique", $critique);
         $base->render();
     }
 
