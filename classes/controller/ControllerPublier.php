@@ -40,14 +40,24 @@ class ControllerPublier extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Récupérer l'utilisateur connecté
-            // $artiste = Utils::getConnexion();
+            $utilisateur = Utils::getConnexion();
+            $nomUtilisateur = $utilisateur->getPseudoU();
+
+            $allNomArtiste = ArtisteDB::getAllNomArtiste();
+
+            // Vérifier si l'artiste === nom utilisateur, sinon ajouter l'artiste
+            if (!in_array($nomUtilisateur, $allNomArtiste)) {
+                $artisteDB = new ArtisteDB();
+                $artisteDB->insererArtiste($nomUtilisateur, 'img/default_profil.webp');
+            }
+            $idA = ArtisteDB::getIdArtiste($nomUtilisateur);
 
             // Récupérer l'id de l'artiste (à ajuster selon votre logique)
-            $idA = 444;
+            // $idA = 444;
 
             // Insertion de l'album
             $titreAlbum = $_POST['titre'];
-            $dateAlbum = date('Y-m-d');
+            $dateAlbum = date('d/m/Y');
             $descriptionA = $_POST['description'];
 
             if (isset($_FILES['image'])) {

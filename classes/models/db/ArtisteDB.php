@@ -98,5 +98,24 @@ class ArtisteDB{
         $result = $stmt->fetch();
         return isset($result['idA']) ? $result['idA'] : null;
     }
+
+    public static function getAllNomArtiste(){
+        $db = Database::getInstance();
+        $stmt = $db->query('SELECT nomA FROM artiste');
+        $result = $stmt->fetchAll();
+        $allNomArtiste = [];
+        foreach($result as $r){
+            $allNomArtiste[] = $r['nomA'];
+        }
+        return $allNomArtiste;
+    }
+
+    public static function insererArtiste($nom, $image){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('INSERT INTO artiste(nomA, imgArtiste) VALUES (:nom, :image)');
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':image', $image);
+        $stmt->execute();
+    }
     
 }
