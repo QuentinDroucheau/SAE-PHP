@@ -203,4 +203,11 @@ class AlbumDB {
         $r = $result->fetch();
         return $r[0];
     }
+
+    public static function supprimerAlbum(int $idAlbum){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('DELETE FROM album WHERE idAlbum = :idAlbum');
+        $stmt->bindParam(':idAlbum', $idAlbum);
+        $stmt->execute();
+    }
 }

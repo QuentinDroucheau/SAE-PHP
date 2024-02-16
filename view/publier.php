@@ -100,8 +100,21 @@
             </form>
     </section>
     <section id="archives-section" class="section-mouvante">
-        <h2>
-            ARCHIVES
-        </h2>
+        <h2>Vos albums publiés :</h2>
+        <ul>
+            <?php foreach($albums as $album): ?>
+                <li>
+                    <form class="archives-form" action='/publier' method='post'>
+                        <img src="<?= $album->getImage() ?>" alt="cover de l'album">
+                        <p><?= $album->getTitre() ?></p>
+                        <span><?= $album->getAnneeAlbum()->format('d/m/Y') ?></span>
+                        <input type='hidden' name='action' value='supprimerAlbum'>
+                        <input type='hidden' name='idAlbum' value="<?= $album->getId() ?>">
+                        <button type='submit'>Supprimer l'album</button>
+                    </form>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
     </section>
 </div>

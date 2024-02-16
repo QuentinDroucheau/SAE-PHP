@@ -173,4 +173,11 @@ class MusiqueDB
         $r = $result->fetch();
         return $r[0];
     }
+
+    public static function supprimerAllMusiqueAlbum(int $idAlbum){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM musique WHERE idAlbum = :idAlbum");
+        $stmt->bindParam(":idAlbum", $idAlbum);
+        $stmt->execute();
+    }
 }
