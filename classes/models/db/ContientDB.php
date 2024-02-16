@@ -15,4 +15,11 @@ class ContientDB {
         return $db->lastInsertId();
     }
 
+    public function supprimerRelation($idM) {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM contient WHERE idM = :idM");
+        $stmt->bindParam(":idM", $idM);
+        $stmt->execute();
+    }
+
 }
