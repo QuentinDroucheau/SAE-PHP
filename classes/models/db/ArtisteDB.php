@@ -117,5 +117,12 @@ class ArtisteDB{
         $stmt->bindParam(':image', $image);
         $stmt->execute();
     }
+
+    public static function supprimerArtiste($id){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('DELETE FROM artiste WHERE idA = :id');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
     
 }

@@ -180,4 +180,20 @@ class MusiqueDB
         $stmt->bindParam(":idAlbum", $idAlbum);
         $stmt->execute();
     }
+
+    public static function supprimerMusique(int $idM){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM musique WHERE idM = :idM");
+        $stmt->bindParam(":idM", $idM);
+        $stmt->execute();
+    }
+
+    // get l'artiste d'une musique
+    public static function getArtisteMusique(int $idM): string
+    {
+        $db = Database::getInstance();
+        $result = $db->query("SELECT nomA FROM artiste NATURAL JOIN album NATURAL JOIN musique WHERE idM = $idM");
+        $r = $result->fetch();
+        return $r["nomA"];
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace models;
 
+use models\db\MusiqueDB;
+
 class Musique{
 
     public function __construct(
@@ -33,5 +35,11 @@ class Musique{
             "nom" => $this->getNom(),
             "lien" => $this->getLien(),
         ];
+    }
+
+    public function getArtisteMusique(int $id)
+    {
+        // Utilisez la méthode appropriée de MusiqueDB pour obtenir les musiques de l'artiste
+        return MusiqueDB::getArtisteMusique($id);
     }
 }

@@ -1,6 +1,6 @@
 /* Styles pour la section mouvante */
 .section-mouvante {
-    padding: 5rem 2rem;
+    padding: 2rem;
 }
 
 .section-mouvante table {
@@ -9,7 +9,6 @@
 
 }
 
-/* Styles pour la adminigation des artistes */
 .admin-artiste {
     margin-left: 3rem;
 }
@@ -17,6 +16,7 @@
 .admin-artiste a.active {
     border-bottom: 3px solid var(--couleur1);
 }
+
 
 .admin-artiste a {
     text-decoration: none;
@@ -87,4 +87,22 @@ h1 {
     height: auto;
     object-fit: cover;
     border-radius: 50%;
+}
+
+button {
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex-grow: 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+button:hover {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
 }
