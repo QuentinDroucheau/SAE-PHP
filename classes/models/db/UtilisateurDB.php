@@ -51,4 +51,15 @@ class UtilisateurDB{
         $stmt->execute();
         return self::getUtilisateurById($utilisateur->getId());
     }
+
+    public static function getUtilisateurs() {
+        $db = Database::getInstance();
+        $stmt = $db->query('SELECT * FROM utilisateur');
+        $utilisateurs = [];
+        while ($row = $stmt->fetch()) {
+            $utilisateur = new Utilisateur($row["idU"], $row["pseudoU"], $row["mdpU"], $row["roleU"]);
+            $utilisateurs[] = $utilisateur;
+        }
+        return $utilisateurs;
+    }
 }
