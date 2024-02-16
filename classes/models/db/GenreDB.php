@@ -76,5 +76,12 @@ class GenreDB {
         $result = $stmt->fetch();
         return new Genre($result["idG"], $result["nomG"]);
     }
+
+    public static function supprimerGenre($idG){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM genre WHERE idG = :idG");
+        $stmt->bindParam(":idG", $idG);
+        $stmt->execute();
+    }
     
 }

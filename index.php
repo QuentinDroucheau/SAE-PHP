@@ -32,7 +32,8 @@ $routes = [
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
     new Route("/album", "POST", ControllerAlbum::class),
-    new Route("/administrateur", "GET", ControllerAdmin::class, "view", [], [])
+    new Route("/administrateur", "GET", ControllerAdmin::class, "view", [], []),
+    new Route("/administrateur", "POST", ControllerAdmin::class, "supprimer", [], [])
 ];
 
 

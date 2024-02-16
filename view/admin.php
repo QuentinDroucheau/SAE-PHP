@@ -25,6 +25,7 @@
             </tr>
             <?php
             foreach($albums as $album) {
+                echo "<form class='albums-form' action='/administrateur' method='post'>";
                 echo "<tr>";
                 echo "<td>";
                 echo $album->getTitre();
@@ -38,10 +39,15 @@
                 echo "<td>";
                 echo "<img src=" . $album->getImage() . " alt='image album'>";
                 echo "</td>";
-                // echo "<td>";
-                // echo "<a href='/admin?action=supprimerAlbum&idAlbum=" . $album->getIdAlbum() . "'>Supprimer</a>";
-                // echo "</td>";
+                echo "<td>";
+                // echo "<a href='/admin?action=supprimer&idAlbum=" . $album->getId() . "'>Supprimer</a>";
+                echo "<input type='hidden' name='action' value='supprimer'>";
+                echo "<input type='hidden' name='id' value=" . $album->getId() .">";
+                echo "<input type='hidden' name='type' value='album'>";
+                echo "<button type='submit'>Supprimer l'album</button>";
+                echo "</td>";
                 echo "</tr>";
+                echo "</form>";
             }
             ?>
         </table>

@@ -62,4 +62,11 @@ class UtilisateurDB{
         }
         return $utilisateurs;
     }
+
+    public static function supprimerUtilisateur($id){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM utilisateur WHERE idU = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+    }
 }

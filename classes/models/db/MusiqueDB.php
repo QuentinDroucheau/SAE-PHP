@@ -180,4 +180,11 @@ class MusiqueDB
         $stmt->bindParam(":idAlbum", $idAlbum);
         $stmt->execute();
     }
+
+    public static function supprimerMusique(int $idM){
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM musique WHERE idM = :idM");
+        $stmt->bindParam(":idM", $idM);
+        $stmt->execute();
+    }
 }
