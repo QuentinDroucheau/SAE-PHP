@@ -52,8 +52,28 @@ class ControllerAdmin extends Controller{
         }
         else if($type == "musique"){
             MusiqueDB::supprimerMusique($id);
+
         }
         else if($type == "artiste"){
+            // Récupérer tous les albums associés à l'artiste
+            $albums = AlbumDB::getAlbumsArtiste($id);
+    
+            // Supprimer chaque album et les musiques associées
+            foreach ($albums as $album) {
+                $albumId = $album->getId();
+    
+                // Supprimer les musiques de l'album
+                $musiques = MusiqueDB::getMusiquesAlbum($albumId);
+                foreach ($musiques as $musique) {
+                    ContientDB::supprimerRelation($musique->getId());
+                }
+                MusiqueDB::supprimerAllMusiqueAlbum($albumId);
+    
+                // Supprimer l'album
+                AlbumDB::supprimerAlbum($albumId);
+            }
+    
+            // Supprimer l'artiste
             ArtisteDB::supprimerArtiste($id);
         }
         else if($type == "genre"){

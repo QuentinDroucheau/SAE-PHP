@@ -3,7 +3,7 @@ function updateActiveLink(sectionId) {
     document.querySelectorAll('.admin-artiste a').forEach(function (link) {
         link.classList.remove('active');
     });
-    document.querySelector('.admin-artiste a[href="#"][onclick="showSection(\'' + sectionId + '\'); showTitre(\'' + sectionId + '\'); return false;"]').classList.add('active');
+    document.querySelector('.admin-artiste a[href="#"][onclick="showSection(\'' + sectionId + '\'); return false;"]').classList.add('active');
 }
 
 // Fonction pour afficher une section spécifique
