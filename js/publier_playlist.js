@@ -29,7 +29,7 @@ $('.form-publie-playlist').on('submit', function(e) {
                                 '<div class="title">' +
                                   '<p>' + response.titre + '</p>' +
                                   '<div class="title-info">' +
-                                    '<img class="icon" src="img/horloge.jpg" alt="">' +
+                                    '<img class="icon" src="img/horloge.svg" alt="">' +
                                     '<p>' + response.nbMusiques + ' Titre(s)</p>' +
                                   '</div>' +
                                 '</div>' +

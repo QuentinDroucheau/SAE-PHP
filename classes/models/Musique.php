@@ -22,7 +22,11 @@ class Musique{
     }
 
     public function getLien(){
-        return ($this->lien ? "fixtures/images/" . $this->lien : "../../img/default_album.png");
+        $lien = "fixtures/images/" . $this->lien;
+        if(file_exists($lien)){
+            return $lien;
+        }
+        return "../../img/default_album.png";
     }
 
     public function getEcoute(){

@@ -28,9 +28,13 @@ class CollectionMusicale {
       return $this->titre;
   }
 
-  public function getImage(): string {
-      return ($this->image ? "fixtures/images/" . $this->image : "../../img/default_album.png");
+  public function getImage(): string{
+    $lien = $this->image ? "fixtures/images/" . $this->image : "../../img/default_album.png";
+    if(file_exists($lien)){
+        return $lien;
     }
+    return "../../img/default_album.png";
+  }
 
   public function getDatePublication(): string {
       return $this->datePublication;

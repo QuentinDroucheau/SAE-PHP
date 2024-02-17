@@ -9,6 +9,7 @@ use controller\ControllerPublier;
 use controller\ControllerPubliePlaylist;
 use controller\ControllerCategory;
 use controller\ControllerAdmin;
+use controller\ControllerPlaylist;
 use models\Musique;
 use route\Route;
 
@@ -33,7 +34,8 @@ $routes = [
     new Route("/login", "GET", ControllerLogin::class),
     new Route("/album", "POST", ControllerAlbum::class),
     new Route("/administrateur", "GET", ControllerAdmin::class, "view", [], []),
-    new Route("/administrateur", "POST", ControllerAdmin::class, "supprimer", [], [])
+    new Route("/administrateur", "POST", ControllerAdmin::class, "supprimer", [], []),
+    new Route("/playlist/musique", "POST", ControllerPlaylist::class, null, [], ["musique", "playlist"]),
 ];
 
 

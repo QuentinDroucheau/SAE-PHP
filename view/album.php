@@ -36,7 +36,7 @@
                 <th></th>
                 <th>TITRES</th>
                 <th>ECOUTES</th>
-                <th><img class="icon" src="img/horloge.jpg" alt=""></th>
+                <th><img class="icon-horloge" src="img/horloge.svg" alt=""></th>
                 <th></th>
             </tr>
         </thead>
@@ -57,7 +57,7 @@
                     <td>-:-</td>
                     <td>
                         <a>
-                            <img class="plus-buttonn" src="img/plus.png" alt="" onclick="openAddPlaylist();">
+                            <img class="add-playlist" src="img/plus.png" alt="" onclick="openAddPlaylist(<?= $musique->getId() ?>);">
                         </a>
                     </td>
                 </tr>
@@ -100,14 +100,64 @@
     </table>
 </div>
 <div class="container-add-playlist">
-
+    <header>
+        <div class="close" onclick="closeAddPlaylist();">
+            <img src="img/close.svg" alt="">
+        </div>
+        <div class="title">
+            <p>Ajouter à une playlist</p>
+        </div>
+    </header>
+    <div class="content">
+        <select id="add-musique-playlist">
+            <?php foreach ($playlists as $playlist) : ?>
+                <option value="<?= $playlist->getId() ?>"><?= $playlist->getTitre() ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <footer>
+        <div class="add-playlist">
+            <a onclick="addMusiqueInPlaylist();">AJOUTER</a>
+        </div>
+    </footer>
 </div>
 
 <script>
 
-    function openAddPlaylist(){
+    let musique = null;
+
+    function addMusiqueInPlaylist(){
+        let select = document.querySelector("#add-musique-playlist");
+        let id = select.options[select.selectedIndex].value;
+        $.ajax({
+            url: "/playlist/musique",
+            type: "POST",
+            async: false,
+            data: {
+                "id": id,
+                "musique": musique,
+                "playlist": id,
+                action: "ajaxAddMusiqueInPlaylist",
+            },
+            success: function (reponse) {
+                let obj = JSON.parse(reponse);
+                if(obj.success == true){
+                    window.location.reload();
+                    alert("Vous avez bien ajoutée la musique à la playlist");
+                }
+            },
+        });
+    }
+
+    function closeAddPlaylist(){
+        div = document.querySelector(".container-add-playlist");
+        div.style.display = "none";
+    }
+
+    function openAddPlaylist(idMusique){
         div = document.querySelector(".container-add-playlist");
         div.style.display = "flex";
+        musique = idMusique;
     }
 
     function openMusique() {

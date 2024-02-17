@@ -30,14 +30,15 @@ class ControllerAlbum extends Controller{
         if((!is_null(Utils::getConnexion())) and !(NoteDB::hasCritique($albumId, Utils::getConnexion()->getId()))){
             $critique = true;
         }
-        try {
-            $userId = Utils::getIdUtilisateurConnecte();
-            $lesPlaylists = PlaylistDB::getPlaylists($userId);
-        } catch (\Exception $e) {
-            $lesPlaylists = null;
-        }
-        $base->addParam("playlists", $lesPlaylists);
+
         $base->addParam("critique", $critique);
+
+        if(!is_null(Utils::getConnexion())){
+            $base->addParam("playlists", PlaylistDB::getPlaylists(Utils::getConnexion()->getId()));
+        }else{
+            $base->addParam("playlists", []);
+        }
+
         $base->render();
     }
 

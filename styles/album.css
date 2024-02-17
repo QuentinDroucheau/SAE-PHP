@@ -31,6 +31,11 @@
     display: flex;
 }
 
+.icon-horloge{
+    height: 15px;
+    width: 15px;
+}
+
 .critique-auditeur .left img{
     border-radius: 50%;
     margin-right: 20px;
@@ -38,6 +43,8 @@
 
 .musique-title .right{
     margin-left: 20px;
+    align-items: center;
+    display: flex;
 }
 
 .container-critique .critique{
@@ -120,14 +127,76 @@ tr{
     margin-top: 20px;
 }
 
+.container-musique .add-playlist{
+    height: 40px;
+    width: 40px;
+}
+
 .container-add-playlist{
-    height: "200px";
-    width:"400px";
-    background-color: "var(--couleur1)";
-    position: "fixed";
-    left: "50%";
-    top: "50%";
-    transform: "translate(-50%, -50%)";
-    border-radius: "7px";
+    height: 200px;
+    width: 400px;
+    background-color: var(--couleur1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 7px;
     display: none;
+    flex-direction: column;
+}
+
+.container-add-playlist header .title p{
+    color: white;
+    font-family: 'Nunito';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.container-add-playlist header{
+    display: flex;
+    align-items: center;
+    height: 20%;
+}
+
+.container-add-playlist .title{
+    margin-left: 20px;
+}
+
+.container-add-playlist .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+.container-add-playlist .add-playlist a{
+    font-family: 'Nunito';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--couleur4);
+    font-size: 15px;
+}
+
+.container-add-playlist .add-playlist{
+    background-color: var(--couleur3);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.container-add-playlist footer{
+    display: flex;
+    justify-content: center;
+}
+
+.container-add-playlist footer{
+    height: 20%;
+    margin-bottom: 10px;
 }

@@ -33,6 +33,16 @@ class PlaylistDB
         ]);
     }
 
+    public static function addMusiqueInPlaylist(int $idMusique, int $idPlaylist): bool{
+        $db = Database::getInstance();
+        $stmt = $db->prepare("INSERT INTO composer(idM, idP, dateAjout) VALUES (:idM, :idP, :dateAjout)");
+        $stmt->bindParam(":idM", $idMusique);
+        $stmt->bindParam(":idP", $idPlaylist);
+        $time = time();
+        $stmt->bindParam(":dateAjout", $time);
+        return $stmt->execute();
+    }
+
 
     public static function getPlaylists(int $userId): array
     {
