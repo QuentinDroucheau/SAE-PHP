@@ -69,7 +69,7 @@ class AlbumDB
                     $s["imgAlbum"],
                     $s["anneeAlbum"],
                     self::getNoteAlbum($s["idAlbum"]),
-                    self::getNoteAlbum($s["idAlbum"]),
+                    self::getNbEcouteAlbum($s["idAlbum"]),
                     $descriptionA,
                     self::getMusiques($s["idAlbum"])
                 );
@@ -79,7 +79,7 @@ class AlbumDB
         return array_values($albums);
     }
 
-    public static function getAllAlbumsByCategory($category, $year = null)
+    public static function getAllAlbumsByCategory($category, $year = null, $genre = null, $artistId = null)
     {
         $db = Database::getInstance();
         $conditions = '';
@@ -97,11 +97,25 @@ class AlbumDB
         $yearCondition = '';
         if ($year) {
             $year = "%$year%";
-            $yearCondition = "WHERE anneeAlbum LIKE :year";
+            $yearCondition = "AND anneeAlbum LIKE :year";
         }
-        $stmt = $db->prepare("SELECT * FROM ALBUM $yearCondition $conditions");
+        $genreCondition = '';
+        if ($genre) {
+            $genreCondition = "AND idAlbum IN (SELECT idAlbum FROM musique NATURAL JOIN contient WHERE idG = :genre)";
+        }
+        $artistCondition = '';
+        if ($artistId) {
+            $artistCondition = "AND idA = :artistId";
+        }
+        $stmt = $db->prepare("SELECT * FROM ALBUM WHERE 1=1 $yearCondition $genreCondition $artistCondition $conditions");
         if ($year) {
             $stmt->bindParam(":year", $year);
+        }
+        if ($genre) {
+            $stmt->bindParam(":genre", $genre);
+        }
+        if ($artistId) {
+            $stmt->bindParam(":artistId", $artistId);
         }
         $stmt->execute();
         $albums = [];
@@ -126,6 +140,7 @@ class AlbumDB
         }
         return array_values($albums);
     }
+
 
     // Insertion d'un album
     public static function insererAlbum($titreAlbum, $anneeAlbum, $imgAlbum, $descriptionA, $idA)

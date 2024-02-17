@@ -15,7 +15,7 @@
     <select name="year">
       <option value="">Tout</option>
       <?php
-      $yearStart = 2000;
+      $yearStart = 1970;
       $yearEnd = date("Y");
 
       for ($year = $yearStart; $year <= $yearEnd; $year++) {
@@ -28,11 +28,17 @@
       <?php
       foreach ($genres as $genre) {
         echo "<option value='{$genre->getId()}'>{$genre->getNom()}</option>";
-        echo "<!-- Debug: Genre nom: {$genre->getNom()} -->";
       }
       ?>
     </select>
-
+    <select name="artistId">
+      <option value="">Tout</option>
+      <?php
+      foreach ($artistes as $artiste) {
+        echo "<option value='{$artiste->getId()}'>{$artiste->getNom()}</option>";
+      }
+      ?>
+    </select>
     <input type="submit" value="Filtrer">
   </form>
 

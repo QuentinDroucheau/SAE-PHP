@@ -41,21 +41,25 @@ public function filtreView(){
     $lesPlaylists = Utils::getPlaylistsMenu();
     $base = new BaseTemplate();
     $base->setContent("category");
+    $artistes = ArtisteDB::getArtistes(); 
     $category = $this->params["category"];
+    $artisteId = $this->params["artistId"];
+    $genreSelec = intval($this->params["genre"]);
+    $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
     $year = $this->params["year"];
-    if (isset($year) && !empty($year)) {
-        $albums = AlbumDB::getAllAlbumsByCategory($category, $year);
+    if (isset($year) || isset($genre) || isset($artistId)) {
+        $albums = AlbumDB::getAllAlbumsByCategory($category, $year, $genreSelec, $artisteId);
     } else {
         if($category == "artistes"){
-            $artistes = ArtisteDB::getArtistes(); 
             $base->addParam("items", $artistes);
         } else {
-            $albums = AlbumDB::getAllAlbumsByCategory($year);
+            $albums = AlbumDB::getAllAlbumsByCategory($category);
         }
     }
     $base->addParam("genres", $genres); 
     $base->addParam("items", $albums);
     $base->addParam("category", $category);
+    $base->addParam("artistes", $artistes);
     $base->addParam("playlists", $lesPlaylists);
     $base->render();
 }

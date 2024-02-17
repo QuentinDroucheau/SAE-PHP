@@ -28,7 +28,7 @@ $routes = [
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),
     new Route("/publierPlaylist", "POST", ControllerPubliePlaylist::class, "publierPlaylist", []),
     new Route("/categorie", "GET", ControllerCategory::class, "view", [], ["category"]),
-    new Route("/filtreView", "GET", ControllerCategory::class, "filtreView", [], ["year"]),
+    new Route("/filtreView", "GET", ControllerCategory::class, "filtreView", [], ["year", "category", "genre", "artistId"]),
     // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
