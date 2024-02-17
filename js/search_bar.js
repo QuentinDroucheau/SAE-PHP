@@ -32,6 +32,8 @@ $(document).ready(function () {
                 "<li><a href='/album?id=" +
                 album.idAlbum +
                 "'>" +
+                album.anneeAlbum +
+                " - " +
                 album.titreAlbum +
                 "</a></li>";
             });
@@ -46,12 +48,12 @@ $(document).ready(function () {
             html += "</ul>";
           }
           $("#search-results").html(html);
-          $("#search-results").show(); // Show the submenu
+          $("#search-results").show();
         },
       });
     } else {
       $("#search-results").html("");
-      $("#search-results").hide(); // Hide the submenu
+      $("#search-results").hide();
     }
   });
 });

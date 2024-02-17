@@ -19,7 +19,6 @@ class ControllerHome extends Controller
         $test = AlbumDB::searchAlbums("We");
         $artistes = ArtisteDB::getArtistesLimit();
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
-        $playlistDB = new PlaylistDB();
         $albumsByCategory = [];
         foreach ($categories as $category) {
             $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
