@@ -16,7 +16,6 @@ class ControllerHome extends Controller
 
     public function view(): void
     {
-        $test = AlbumDB::searchAlbums("We");
         $artistes = ArtisteDB::getArtistesLimit();
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
         $albumsByCategory = [];
@@ -64,7 +63,6 @@ class ControllerHome extends Controller
         $base->addParam("lesPlaylists", $lesPlaylists);
         $base->addParam("artistes", $artistes);
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
-        $base->addParam("test", $test); // test
         $base->render();
     }
 
