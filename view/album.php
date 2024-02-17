@@ -19,11 +19,7 @@
             <div class="button-add"></div>
             <?php 
                 if($critique){
-<<<<<<< HEAD
                     echo '<a class="button-critique" onclick="openFormCritique('.$album->getId().');">Laisser une critique</a>';
-=======
-                    echo '<a class="button-critique" onclick="openFormCritique(10919);">Laisser une critique</a>';
->>>>>>> origin/ajax-page-accueil
                 }
             ?>
         </div>
@@ -40,11 +36,7 @@
                 <th></th>
                 <th>TITRES</th>
                 <th>ECOUTES</th>
-<<<<<<< HEAD
                 <th><img class="icon-horloge" src="img/horloge.svg" alt=""></th>
-=======
-                <th><img class="icon" src="img/horloge.jpg" alt=""></th>
->>>>>>> origin/ajax-page-accueil
                 <th></th>
             </tr>
         </thead>
@@ -64,13 +56,8 @@
                     <td><?= $musique->getEcoute() ?></td>
                     <td>-:-</td>
                     <td>
-<<<<<<< HEAD
                         <a>
                             <img class="add-playlist" src="img/plus.png" alt="" onclick="openAddPlaylist(<?= $musique->getId() ?>);">
-=======
-                        <a href="">
-                            <img class="plus-button" src="img/plus.png" alt="">
->>>>>>> origin/ajax-page-accueil
                         </a>
                     </td>
                 </tr>
@@ -112,7 +99,6 @@
         </tbody>
     </table>
 </div>
-<<<<<<< HEAD
 <div class="container-add-playlist">
     <header>
         <div class="close" onclick="closeAddPlaylist();">
@@ -174,9 +160,6 @@
         musique = idMusique;
     }
 
-=======
-<script>
->>>>>>> origin/ajax-page-accueil
     function openMusique() {
         document.querySelector('.container-musique').style.display = 'block';
         document.querySelector('.container-critique').style.display = 'none';
