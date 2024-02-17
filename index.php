@@ -8,6 +8,7 @@ use controller\ControllerArtiste;
 use controller\ControllerPublier;
 use controller\ControllerPubliePlaylist;
 use controller\ControllerCategory;
+use controller\ControllerAdmin;
 use models\Musique;
 use route\Route;
 
@@ -31,6 +32,8 @@ $routes = [
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
     new Route("/album", "POST", ControllerAlbum::class),
+    new Route("/administrateur", "GET", ControllerAdmin::class, "view", [], []),
+    new Route("/administrateur", "POST", ControllerAdmin::class, "supprimer", [], [])
 ];
 
 
