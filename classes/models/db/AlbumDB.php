@@ -29,6 +29,18 @@ class AlbumDB {
         return $album;
     }
 
+    public static function getAlbumName(string $id): ?string{
+        $db = Database::getInstance();
+        $stmt = $db->prepare('SELECT titreAlbum FROM album WHERE idAlbum = :idAlbum');
+        $stmt->bindParam(':idAlbum', $id);
+        $stmt->execute();
+        $r = $stmt->fetch();
+        if($r){
+            return $r["titreAlbum"];
+        }
+        return null;
+    }
+
     public static function getInfosCardsAlbum(string $category): array {
         $db = Database::getInstance();
         $conditions = '';
@@ -178,7 +190,7 @@ class AlbumDB {
         $musiques = [];
         foreach($result as $r){
             $musique = new Musique($r["idM"], $r["nomM"], $r["lienM"], 
-                MusiqueDB::getNbEcoute($r["idM"]));
+                MusiqueDB::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($idAlbum));
             $musiques[] = $musique;
         }
         return $musiques;

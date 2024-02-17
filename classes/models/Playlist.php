@@ -32,6 +32,12 @@ class Playlist extends CollectionMusicale
         return \DateTime::createFromFormat('d/m/Y', $this->dateMAJ);
     }
 
+    public function getDateAjoutMusique(int $id): string{
+        $time = MusiqueDB::getDateAjoutMusique($id, $this->getId());
+        $date = date("d/m/Y", $time);
+        return $date;
+    }
+
     public function render(): string
     {
         $composant = new Composant("playlist");

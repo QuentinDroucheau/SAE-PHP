@@ -2,8 +2,11 @@
 
 namespace models\db;
 
+use models\Album;
 use models\Playlist;
 use models\db\MusiqueDB;
+use models\Musique;
+use models\Note;
 use models\Utilisateur;
 
 class PlaylistDB
@@ -43,6 +46,13 @@ class PlaylistDB
         return $stmt->execute();
     }
 
+    public static function removeMusiqueInPlaylist(int $idMusique, int $idPlaylist): bool{
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM composer WHERE idM = :idM AND idP = :idP");
+        $stmt->bindParam(":idM", $idMusique);
+        $stmt->bindParam(":idP", $idPlaylist);
+        return $stmt->execute();
+    }
 
     public static function getPlaylists(int $userId): array
     {
@@ -63,19 +73,32 @@ class PlaylistDB
         return $playlists;
     }
 
-    public static function getPlaylist(int $playlistId): Playlist
+    public static function getPlaylist(int $playlistId): ?Playlist
     {
         $db = Database::getInstance();
         $result = $db->query("SELECT * FROM playlist WHERE idP = $playlistId");
         $r = $result->fetch();
-        return new Playlist(
-            $r["idP"],
-            $r["nomP"],
-            UtilisateurDB::getUtilisateurById($r["idU"]),
-            $r["imgPlaylist"],
-            $r["anneeP"],
-            $r["descriptionP"],
-            $r["dateMajP"]
-        );
+        if($r){
+            return new Playlist(
+                $r["idP"],
+                $r["nomP"],
+                UtilisateurDB::getUtilisateurById($r["idU"]),
+                $r["imgPlaylist"],
+                $r["anneeP"],
+                $r["descriptionP"],
+                $r["dateMajP"]
+            );
+        }
+        return null;
+    }
+
+    public static function getMusiques(int $playlistId): array{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT * FROM composer NATURAL JOIN musique WHERE idP = $playlistId");
+        $musiques = [];
+        foreach ($result as $r) {
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], MusiqueDB::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($r["idAlbum"]));
+        }
+        return $musiques;
     }
 }

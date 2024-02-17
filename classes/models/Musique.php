@@ -10,7 +10,8 @@ class Musique{
         private int $id, 
         private string $nom,
         private string $lien,
-        private int $ecoute
+        private int $ecoute, 
+        private string $albumName
     ){}
 
     public function getId(){
@@ -19,6 +20,10 @@ class Musique{
 
     public function getNom(){
         return $this->nom;
+    }
+
+    public function getAlbumName(): string {
+        return $this->albumName;
     }
 
     public function getLien(){

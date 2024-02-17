@@ -19,7 +19,7 @@
             <div class="button-add"></div>
             <?php 
                 if($critique){
-                    echo '<a class="button-critique" onclick="openFormCritique(10919);">Laisser une critique</a>';
+                    echo '<a class="button-critique" onclick="openFormCritique('.$album->getId().');">Laisser une critique</a>';
                 }
             ?>
         </div>

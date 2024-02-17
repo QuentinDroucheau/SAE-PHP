@@ -7,13 +7,17 @@ use PDOStatement;
 
 class Database{
 
-    private PDO $db;
+    private ?PDO $db;
 
     private static $instance = null;
 
     private function __construct(){
         $this->db = new PDO('sqlite:db/database.sqlite3');
         $this->db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+    }
+
+    public function __destruct(){
+        $this->db = null;
     }
 
     /**
@@ -30,13 +34,6 @@ class Database{
      */ 
     public function prepare(string $query): ?PDOStatement{
         return $this->db->prepare($query);
-    }
-
-    /**
-     * @return void
-     */
-    public function close(): void{
-        $this->db = null;
     }
 
     /**

@@ -1,0 +1,87 @@
+.header-playlist{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.img-playlist{
+    height: 200px;
+    width: 200px;
+    display: flex;
+}
+
+.musique-title{
+    display: flex;
+    justify-content: center;
+}
+
+.icon-horloge{
+    height: 15px;
+    width: 15px;
+}
+
+.musique-title .right{
+    margin-left: 20px;
+    align-items: center;
+    display: flex;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr{
+    text-align: center;
+}
+
+.img-album img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.info{
+    flex-basis: 60%;
+    margin: 20px;
+}
+
+.navbar-playlist{
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.navbar-playlist li{
+    margin-right: 20px;
+}
+
+.navbar-playlist{
+    flex-basis: 100%;
+}
+
+.container-musique{
+    flex-basis: 100%;
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.remove{
+    height: 35px;
+    width: 35px;
+    border-radius: 7px;
+    border: 2px solid var(--couleur4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.remove div{
+    height: 4px;
+    width: 20px;
+    background-color: var(--couleur4);
+    border-radius: 7px;
+}
