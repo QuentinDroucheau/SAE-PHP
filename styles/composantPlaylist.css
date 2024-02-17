@@ -1,0 +1,54 @@
+#image-container-playlist {
+  position: relative;
+}
+
+.options-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 3;
+  padding: 10px;
+}
+
+
+.pochette{
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+.title{
+    color: #323232;
+}
+
+.title ~ p{
+    color: #7E7E7E;
+    font-weight: 300;
+}
+
+
+.dropdown-content {
+  display: none;
+  z-index: 4;
+  top: 1.5rem;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 90%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content a {
+  color: #323232;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  color: white;
+  border-radius: 8px;
+  background-color: var(--couleur1);
+}
+

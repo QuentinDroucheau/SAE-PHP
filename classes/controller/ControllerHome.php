@@ -16,20 +16,14 @@ class ControllerHome extends Controller
 
     public function view(): void
     {
+        $test = AlbumDB::searchAlbums("We");
         $artistes = ArtisteDB::getArtistesLimit();
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
-        $playlistDB = new PlaylistDB();
         $albumsByCategory = [];
         foreach ($categories as $category) {
             $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
         }
-
-        try {
-            $userId = Utils::getIdUtilisateurConnecte();
-            $lesPlaylists = $playlistDB->getPlaylists($userId);
-        } catch (\Exception $e) {
-            $lesPlaylists = null;
-        }
+        $lesPlaylists = Utils::getPlaylistsMenu();
         $params = ['playlists' => $lesPlaylists];
         $base = new BaseTemplate($params);
         $base->setContent("accueil");
@@ -70,6 +64,7 @@ class ControllerHome extends Controller
         $base->addParam("lesPlaylists", $lesPlaylists);
         $base->addParam("artistes", $artistes);
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+        $base->addParam("test", $test); // test
         $base->render();
     }
 
@@ -87,12 +82,9 @@ class ControllerHome extends Controller
                 return;
             }
             try {
+                $songIds = json_decode($songIds, true);
                 $result = MusiqueDB::insererSonsPlaylists($songIds, $playlistId);
-                if ($result === "Les chansons ont été insérées avec succès dans la playlist.") {
-                    echo json_encode(['status' => 'success', 'message' => $result]);
-                } else {
-                    echo json_encode(['status' => 'error', 'message' => $result]);
-                }
+                echo json_encode($result);
             } catch (\Exception $e) {
                 echo json_encode(['status' => 'error', 'message' => 'An error occurred while adding songs to the playlist: ' . $e->getMessage()]);
             }

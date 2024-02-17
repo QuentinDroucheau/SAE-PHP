@@ -3,6 +3,7 @@
 namespace utils;
 
 use models\Utilisateur;
+use models\db\PlaylistDB;
 
 class Utils{
 
@@ -62,5 +63,15 @@ class Utils{
     public static function convertirDateFormat($date, $format = 'd/m/Y') {
         $dateObj = new \DateTime($date);
         return $dateObj->format($format);
+    }
+
+    public static function getPlaylistsMenu(){
+        try{
+            $userId = self::getIdUtilisateurConnecte();
+            $lesPlaylists = PlaylistDB::getPlaylists($userId);
+        }catch(\Exception $e){
+            $lesPlaylists = [];
+        }
+        return $lesPlaylists;
     }
 }

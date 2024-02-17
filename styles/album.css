@@ -31,11 +31,14 @@
     display: flex;
 }
 
+<<<<<<< HEAD
 .icon-horloge{
     height: 15px;
     width: 15px;
 }
 
+=======
+>>>>>>> origin/ajax-page-accueil
 .critique-auditeur .left img{
     border-radius: 50%;
     margin-right: 20px;
@@ -43,8 +46,11 @@
 
 .musique-title .right{
     margin-left: 20px;
+<<<<<<< HEAD
     align-items: center;
     display: flex;
+=======
+>>>>>>> origin/ajax-page-accueil
 }
 
 .container-critique .critique{
@@ -125,6 +131,7 @@ tr{
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 20px;
+<<<<<<< HEAD
 }
 
 .container-musique .add-playlist{
@@ -199,4 +206,6 @@ tr{
 .container-add-playlist footer{
     height: 20%;
     margin-bottom: 10px;
+=======
+>>>>>>> origin/ajax-page-accueil
 }

@@ -124,5 +124,14 @@ class ArtisteDB{
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
+    public static function searchArtistes($search){
+        $db = Database::getInstance();
+        $search = '%' . $search . '%';
+        $stmt = $db->prepare('SELECT * FROM artiste WHERE nomA LIKE :search');
+        $stmt->bindParam(':search', $search);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
     
 }

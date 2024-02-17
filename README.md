@@ -1,5 +1,10 @@
 # SAE-PHP
 
+### Configuration php.ini
+Assurez de décommentez les lignes suivantes : 
+extension=mbstring
+extension=pdo_sqlite
+
 ### Mise en place de la base de donnée 
 
 Créer la base de donnée :

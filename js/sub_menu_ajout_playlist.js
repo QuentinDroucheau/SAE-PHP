@@ -1,153 +1,119 @@
-// ERREUR BUG PARSE JSON
+function redirectAlbum(id) {
+  window.location.href = "/album?id=" + id;
+}
 
-// $('.add-to-playlist-button').each(function() {
-//   let $button = $(this);
-//   $button.click(function() {
-//     console.log('click');
-//     $.ajax({
-//       url: '/getPlaylistSub',
-//       type: 'GET',
-//       dataType: 'json',
-//       success: function(data) {
-//         try {
-//           console.log(data);
-//           let $submenu = $button.next('.submenu');
-//           $submenu.empty();
-//           $.each(data, function(i, playlist) {
-//             let $playlistItem = $('<div>').addClass('playlist-item');
-//             $playlistItem.html('<img src="fixtures/images/' + playlist.image + '" alt="">' +
-//                                '<p>' + playlist.titre + '</p>');
-//             $submenu.append($playlistItem);
-//           });
-//           $submenu.show();
-//         } catch (error) {
-//           console.error('Error processing data: ', error);
-//         }
-//       },
-//       error: function(jqXHR, textStatus, errorThrown) {
-//         console.error('Error: ' + textStatus + ', ' + errorThrown);
-//         console.log('Response text: ' + jqXHR.responseText);
-//       }
-//     });
-//   });
-// });
+
 let buttons = document.querySelectorAll(".add-to-playlist-button");
 
 buttons.forEach(function (button) {
-  button.addEventListener("click", function () {
+  button.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
     console.log("click");
     let submenu = button.nextElementSibling;
     submenu.style.display = submenu.style.display === "none" ? "block" : "none";
   });
 });
 
-let playlistItems = document.querySelectorAll(".playlist-item");
+$(".img-album-container").on("click", function (event) {
+  let id = $(this).data("albumId");
+  redirectAlbum(id);
+});
 
-playlistItems.forEach(function (playlistItem) {
-  playlistItem.addEventListener("click", function () {
-    let idPlaylist = playlistItem.dataset.id;
-    let albumId = playlistItem.closest(".img-album-container").dataset.albumId;
-    let album;
-
-    for (let category in albums) {
-      for (let i = 0; i < albums[category].length; i++) {
-        if (albums[category][i].album.id === parseInt(albumId)) {
-          album = albums[category][i];
-          break;
-        }
-      }
-      if (album) {
-        break;
-      }
-    }
-
-    let songs = album ? album.musiques : [];
-    let submenu = playlistItem.closest(".submenu");
-    submenu.innerHTML = "";
-
-    songs.forEach(function (song) {
-      let songElement = document.createElement("div");
-      songElement.classList.add("song-item");
-
-      let checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.name = "song";
-      checkbox.value = JSON.stringify(song);
-
-      let label = document.createElement("label");
-      label.appendChild(document.createTextNode(song.nom));
-
-      songElement.appendChild(checkbox);
-      songElement.appendChild(label);
-
-      submenu.appendChild(songElement);
-    });
-
-    let submitButton = document.createElement("button");
-    submitButton.textContent = "Valider";
-    submitButton.addEventListener("click", function () {
-      let songItems = submenu.querySelectorAll(".song-item");
-      let songIds = [];
-      songItems.forEach(function (songItem) {
-        let checkbox = songItem.querySelector("input[type='checkbox']");
-        if (checkbox.checked) {
-          let song = JSON.parse(checkbox.value);
-          songIds.push(song.id);
-        }
-      });
-
-      let formData = new FormData();
-      formData.append('songIds', JSON.stringify(songIds));
-      formData.append('playlistId', idPlaylist);
-      console.log('formData:', formData);
-
-      $.ajax({
-        type: 'POST',
-        url: "/publiersSonsPlaylist",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          if (response.success) {
-            alert('Songs successfully added to the playlist');
-          } else {
-            alert('Error adding songs to the playlist: ' + response.message);
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error(error);
-        }
-      });
-    });
-    submenu.appendChild(submitButton);
+let infoCards = document.querySelectorAll(".infos-card");
+infoCards.forEach(function (card) {
+  card.addEventListener("click", function (event) {
+    let id = card.dataset.albumId;
+    redirect(id);
   });
 });
 
-// $(document).on('click', '.playlist-item', function() {
-//   let idPlaylist = $(this).data('id');
-//   let albumId = $(this).closest('.img-album-container').data('album-id');
-//   console.log('idPlaylist:', idPlaylist);
-//   console.log('idAlbum:', albumId);
-//   $.ajax({
-//       url: '/getMusiquesAlbumSelec',
-//       type: 'GET',
-//       data: { albumId: albumId },
-//       success: function(response) {
-//         console.log('Response:', response);
-//         try {
-//           let musiques = JSON.parse(response);
-//           console.log('Parsed musiques:', musiques);
-//           let sousMenu = $('.submenu');
-//           sousMenu.empty();
-//           musiques.forEach(function(musique) {
-//               sousMenu.append('<div class="musique"><input type="checkbox">' + musique.nomM + '</div>');
-//           });
-//         } catch (error) {
-//           console.error('Error parsing JSON:', error);
-//         }
-//       },
-//       error: function(jqXHR, textStatus, errorThrown) {
-//         console.error('AJAX error:', textStatus, errorThrown);
-//       }
-//   });
-// });
+let playlistItems = document.querySelectorAll(".playlist-item");
+$(".submenu").on("click", ".playlist-item", function (event) {
+  event.preventDefault(); 
+  event.stopPropagation();
+  let idPlaylist = $(this).data("id");
+  let albumId = $(this).closest(".img-album-container").data("albumId");
+  let album;
+
+  for (let category in albums) {
+    for (let i = 0; i < albums[category].length; i++) {
+      if (albums[category][i].album.id === parseInt(albumId)) {
+        album = albums[category][i];
+        break;
+      }
+    }
+    if (album) {
+      break;
+    }
+  }
+
+  let songs = album ? album.musiques : [];
+  let submenu = $(this).closest(".submenu")[0];
+  console.log("submenu:", submenu);
+  submenu.innerHTML = "";
+
+  songs.forEach(function (song) {
+    let songElement = document.createElement("div");
+    songElement.classList.add("song-item");
+  
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = "song";
+    checkbox.value = JSON.stringify(song);
+    checkbox.addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+    let label = document.createElement("label");
+    label.appendChild(document.createTextNode(song.nom));
+  
+    songElement.appendChild(checkbox);
+    songElement.appendChild(label);
+  
+    submenu.appendChild(songElement);
+  });
+  let submitButton = document.createElement("button");
+  submitButton.textContent = "Valider";
+  submitButton.addEventListener("click", function (event) {
+    event.stopPropagation();
+    let songItems = submenu.querySelectorAll(".song-item");
+    let songIds = [];
+    songItems.forEach(function (songItem) {
+      let checkbox = songItem.querySelector("input[type='checkbox']");
+      if (checkbox.checked) {
+        let song = JSON.parse(checkbox.value);
+        songIds.push(song.id);
+      }
+    });
+
+    let formData = new FormData();
+    formData.append("songIds", JSON.stringify(songIds));
+    formData.append("playlistId", idPlaylist);
+    console.log("formData:", formData);
+
+    $.ajax({
+      type: "POST",
+      url: "/publiersSonsPlaylist",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        var jsonResponse = JSON.parse(response);
+        var playlistId = jsonResponse.id;
+        var element = $(".element[data-id='" + playlistId + "']");
+        var nbMusiquesElement = element.find(".title .nbMusiques");
+        var oldNbMusiques = parseInt(nbMusiquesElement.text().split(" ")[0]);
+        var newNbMusiques = oldNbMusiques + jsonResponse.nbMusiques;
+        nbMusiquesElement.text(newNbMusiques + " Titre(s)");
+        submenu.style.display = "none";
+      },
+    });
+  });
+  
+  submenu.appendChild(submitButton); 
+  if (songs.length === 1) {
+  let checkbox = submenu.querySelector(".song-item input[type='checkbox']");
+  checkbox.checked = true;
+  submitButton.click();
+}
+  });

@@ -78,27 +78,52 @@ class PlaylistDB
         $db = Database::getInstance();
         $result = $db->query("SELECT * FROM playlist WHERE idP = $playlistId");
         $r = $result->fetch();
-        if($r){
-            return new Playlist(
-                $r["idP"],
-                $r["nomP"],
-                UtilisateurDB::getUtilisateurById($r["idU"]),
-                $r["imgPlaylist"],
-                $r["anneeP"],
-                $r["descriptionP"],
-                $r["dateMajP"]
-            );
-        }
-        return null;
+        return new Playlist(
+            $r["idP"],
+            $r["nomP"],
+            UtilisateurDB::getUtilisateurById($r["idU"]),
+            $r["imgPlaylist"],
+            $r["anneeP"],
+            $r["descriptionP"],
+            $r["dateMajP"]
+        );
     }
 
-    public static function getMusiques(int $playlistId): array{
+    public static function searchPlaylists($search){
         $db = Database::getInstance();
-        $result = $db->query("SELECT * FROM composer NATURAL JOIN musique WHERE idP = $playlistId");
-        $musiques = [];
-        foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], MusiqueDB::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($r["idAlbum"]));
+        $search = '%' . $search . '%';
+        $stmt = $db->prepare("SELECT * FROM playlist WHERE nomP LIKE :search");
+        $stmt->bindParam(":search", $search);
+        $stmt->execute();
+        $playlists = [];
+        while ($row = $stmt->fetch()) {
+            $playlist = new Playlist(
+                $row["idP"],
+                $row["nomP"],
+                UtilisateurDB::getUtilisateurById($row["idU"]),
+                $row["imgPlaylist"],
+                $row["anneeP"],
+                $row["descriptionP"],
+                $row["dateMajP"]
+            );
+            $playlists[] = $playlist;
         }
-        return $musiques;
+        return $playlists;
     }
+
+    public static function effacerPlaylist(int $playlistId): ?string
+{
+    $db = Database::getInstance();
+
+    $stmt = $db->prepare("DELETE FROM composer WHERE idP = :idP");
+    $stmt->bindParam(":idP", $playlistId);
+    $stmt->execute();
+    $stmt = $db->prepare("DELETE FROM playlist WHERE idP = :idP");
+    $stmt->bindParam(":idP", $playlistId);
+    $stmt->execute();
+    return json_encode([
+        'success' => true,
+        'message' => 'Playlist et les sons associés ont été effacés avec succès',
+    ]);
+}
 }

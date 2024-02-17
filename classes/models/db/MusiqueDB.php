@@ -203,4 +203,14 @@ class MusiqueDB
         $r = $result->fetch();
         return $r["dateAjout"];
     }
+
+    public static function searchMusiques($search): array{
+        $db = Database::getInstance();
+        $search = '%' . $search . '%';
+        $stmt = $db->prepare("SELECT * FROM musique WHERE nomM LIKE :search");
+        $stmt->bindParam(":search", $search);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 }

@@ -36,12 +36,7 @@ class ControllerPublier extends Controller
         $base->addParam("genres", $genres);
         $base->addParam("albums", $albums);
         $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
-        try {
-            $userId = Utils::getIdUtilisateurConnecte();
-            $lesPlaylists = PlaylistDB::getPlaylists($userId);
-        } catch (\Exception $e) {
-            $lesPlaylists = null;
-        }
+        $lesPlaylists = Utils::getPlaylistsMenu();
         $base->addParam("playlists", $lesPlaylists);
         $base->render();
 

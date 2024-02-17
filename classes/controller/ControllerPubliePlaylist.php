@@ -16,7 +16,6 @@ class ControllerPubliePlaylist extends Controller
 
   public function publierPlaylist(): void
   {
-    $playlistDB = new PlaylistDB();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $titre = $_POST['titre'];
       $description = $_POST['description'];
@@ -29,7 +28,19 @@ class ControllerPubliePlaylist extends Controller
       } else {
         $imagePath = 'default.jpg';
       }
-      $response = $playlistDB->insererPlaylist($titre, $description, $auteur, $dateMaj, $imagePath, $anneeP);
+      $response = PlaylistDB::insererPlaylist($titre, $description, $auteur, $dateMaj, $imagePath, $anneeP);
+      header('Content-Type: application/json');
+      echo $response;
+      exit;
+    }
+  }
+
+  public function effacerPlaylist(): void
+  {
+    $playlistDB = new PlaylistDB();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $playlistId = $_POST['playlistId'];
+      $response = $playlistDB->effacerPlaylist($playlistId);
       header('Content-Type: application/json');
       echo $response;
       exit;

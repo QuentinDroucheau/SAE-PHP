@@ -12,7 +12,7 @@
     </div>
     <section class="infos-card" onclick="redirect(<?php echo $id; ?>);">
         <div class="top-infos-card">
-            <h3><?php echo $titre; ?></h3>
+        <h3 title="<?php echo $titre; ?>"><?php echo mb_strimwidth($titre, 0, 25, "..."); ?></h3>
             <p>
                 <?php echo $nbMusiques == 1 ? 'Single' : $nbMusiques . " Titres"; ?>
             </p>
