@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="styles/menu.css">
+<link rel="stylesheet" href="styles/composantPlaylist.css">
 <script src="js/sidebar.js" defer></script>
 <div class="menu-close">
     <a class="button-open">Ouvrir</a>

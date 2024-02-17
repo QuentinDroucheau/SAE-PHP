@@ -16,7 +16,7 @@ $(document).ready(function () {
             data.artistes.forEach(function (artist) {
               console.log(artist);
               html +=
-                "<li><a href='/artist?id=" +
+                "<li><a href='/artistes?id=" +
                 artist.idA +
                 "'>" +
                 artist.nomA +

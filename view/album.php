@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="styles/album.css">
-<div class="header-album">
+<div class="header-album" onclick="">
     <div class="img-album">
         <img src=<?= $album->getImage() ?> alt="">
         <p class="note"><?= $note ?>/10</p>

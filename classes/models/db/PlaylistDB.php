@@ -90,4 +90,20 @@ class PlaylistDB
         }
         return $playlists;
     }
+
+    public static function effacerPlaylist(int $playlistId): ?string
+{
+    $db = Database::getInstance();
+
+    $stmt = $db->prepare("DELETE FROM composer WHERE idP = :idP");
+    $stmt->bindParam(":idP", $playlistId);
+    $stmt->execute();
+    $stmt = $db->prepare("DELETE FROM playlist WHERE idP = :idP");
+    $stmt->bindParam(":idP", $playlistId);
+    $stmt->execute();
+    return json_encode([
+        'success' => true,
+        'message' => 'Playlist et les sons associés ont été effacés avec succès',
+    ]);
+}
 }

@@ -82,18 +82,14 @@ class ControllerHome extends Controller
                 return;
             }
             try {
+                $songIds = json_decode($songIds, true);
                 $result = MusiqueDB::insererSonsPlaylists($songIds, $playlistId);
-                if ($result === "Les chansons ont été insérées avec succès dans la playlist.") {
-                    echo json_encode(['status' => 'success', 'message' => $result]);
-                } else {
-                    echo json_encode(['status' => 'error', 'message' => $result]);
-                }
+                echo json_encode($result);
             } catch (\Exception $e) {
                 echo json_encode(['status' => 'error', 'message' => 'An error occurred while adding songs to the playlist: ' . $e->getMessage()]);
             }
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid data received.']);
         }
-        
     }
 }

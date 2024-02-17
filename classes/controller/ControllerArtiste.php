@@ -12,6 +12,7 @@ use utils\Utils;
 class ControllerArtiste extends Controller{
 
     public function view(){
+        $lesPlaylists = Utils::getPlaylistsMenu();
         $albums = AlbumDB::getAlbumsArtiste($this->params["id"]);
         $allAlbums = AlbumDB::getAlbums();
         $musiquesArtiste = MusiqueDB::getMusiquesArtiste($this->params["id"]);
@@ -60,6 +61,7 @@ class ControllerArtiste extends Controller{
 
         $base = new BaseTemplate();
         $base->setContent("artiste");
+        $base->addParam("playlists", $lesPlaylists);
         $base->addParam("albums", $albums);
         $base->addParam("musiquesArtiste", $musiquesArtiste);
         $base->addParam("artiste", $artiste);

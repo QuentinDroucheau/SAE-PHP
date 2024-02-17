@@ -147,21 +147,23 @@ class MusiqueDB
         return $musiques;
     }
 
-    public static function insererSonsPlaylists(array $songIds, int $playlistId): string
-    {
-        $db = Database::getInstance();
-        foreach ($songIds as $songId) {
-            try {
-                $stmt = $db->prepare("INSERT INTO composer(idM, idP, dateAjout) VALUES (:songId, :playlistId, '22/03/2023')");
-                $stmt->bindParam(":songId", $songId);
-                $stmt->bindParam(":playlistId", $playlistId);
-                $stmt->execute();
-            } catch (\Exception $e) {
-                return "Erreur lors de l'insertion de la chanson dans la playlist : " . $e->getMessage();
-            }
+    public static function insererSonsPlaylists(array $songIds, int $playlistId): array
+{
+    $db = Database::getInstance();
+    $count = 0;
+    foreach ($songIds as $songId) {
+        try {
+            $stmt = $db->prepare("INSERT INTO composer(idM, idP, dateAjout) VALUES (:songId, :playlistId, '22/03/2023')");
+            $stmt->bindParam(":songId", $songId);
+            $stmt->bindParam(":playlistId", $playlistId);
+            $stmt->execute();
+            $count++;
+        } catch (\Exception $e) {
+            return ["status" => "error", "message" => "Erreur lors de l'insertion de la chanson dans la playlist : " . $e->getMessage()];
         }
-        return "Les chansons ont été insérées avec succès dans la playlist.";
     }
+    return ["status" => "success", "message" => "Succes", "id" => $playlistId, "nbMusiques" => $count];
+}
 
     /**
      * @param int $idM id de la musique

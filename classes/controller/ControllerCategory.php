@@ -57,6 +57,9 @@ public function filtreView(){
         }
     }
     $base->addParam("genres", $genres); 
+    $base->addParam("selectedGenre", $genreSelec);  
+    $base->addParam("selectedYear", $year);
+    $base->addParam("selectedArtist", $artisteId);
     $base->addParam("items", $albums);
     $base->addParam("category", $category);
     $base->addParam("artistes", $artistes);

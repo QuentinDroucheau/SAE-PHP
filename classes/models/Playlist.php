@@ -48,4 +48,8 @@ class Playlist extends CollectionMusicale
         return $this->auteur;
     }
 
+    public function getImage(): string {
+        return ($this->image ? "fixtures/images/" . $this->image : "../../img/default_playlist.png");
+      }
+
 }
