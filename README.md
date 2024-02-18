@@ -8,6 +8,12 @@ SAE WEB PHP dont l'objectif est de réaliser une application web afin de présen
 php > 8.0
 ```
 
+### Technologies / librairies utilisés
+
+- Ajax
+- Swiper (https://swiperjs.com/)
+- Spyc (https://github.com/mustangostang/spyc)
+
 ### Mise en place de la base de donnée
 
 Parse le YML (et créer la base de donnée) : 
