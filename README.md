@@ -50,6 +50,12 @@ php -S localhost:8000
 
 ![image](/diagramme/mcd/MCD.svg)
 
+### Diagramme d'activité :
+
+![image](/diagramme/act/DIAG_ACT_AJOUT_MUSIQUES.svg)
+
+![image](/diagramme/act/DIAG_CREATION_ALBUM.svg)
+
 ### Diagramme des controllers : 
 
 ![image](/diagramme/classes/controller.png)
