@@ -75,7 +75,7 @@ class AlbumDB{
                 break;
         }
 
-        $stmt = $db->query("SELECT * from ALBUM $conditions LIMIT 10");
+        $stmt = $db->query("SELECT * from album $conditions LIMIT 10");
         $albums = [];
 
         foreach ($stmt as $s) {
@@ -133,7 +133,7 @@ class AlbumDB{
         if ($artistId) {
             $artistCondition = "AND idA = :artistId";
         }
-        $stmt = $db->prepare("SELECT * FROM ALBUM WHERE 1=1 $yearCondition $genreCondition $artistCondition $conditions");
+        $stmt = $db->prepare("SELECT * FROM album WHERE 1=1 $yearCondition $genreCondition $artistCondition $conditions");
         if ($year) {
             $stmt->bindParam(":year", $year);
         }
