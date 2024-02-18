@@ -8,7 +8,6 @@ use form\type\Text;
 use models\db\UtilisateurDB;
 use models\Utilisateur;
 use utils\Utils;
-use view\BaseTemplate;
 
 class ControllerLogin extends Controller{
 
@@ -26,6 +25,7 @@ class ControllerLogin extends Controller{
 
     /**
      * retourne le formulaire pour changer le mot de passe
+     * @return Form
      */
     private function getPasswordForm(): Form{
         //              action géré par le javascript
@@ -39,6 +39,7 @@ class ControllerLogin extends Controller{
 
     /**
      * retourne le formulaire d'inscription
+     * @return Form
      */
     private function getInscriptionForm(): Form{
         $form = new Form("javascript:void(0);", Form::POST, "inscription-form");
@@ -50,22 +51,37 @@ class ControllerLogin extends Controller{
         return $form;
     }
 
-    public function ajaxGetInscriptionForm(){
+    /**
+     * methode ajax pour récupérer le formulaire d'inscription
+     * @return void
+     */
+    public function ajaxGetInscriptionForm(): void{
         echo json_encode($this->getInscriptionForm()->render());
         die();
     }
 
-    public function ajaxGetLoginForm(){
+    /**
+     * methode ajax pour récupérer le formulaire de connexion
+     * @return void
+     */
+    public function ajaxGetLoginForm(): void{
         echo json_encode($this->getForm()->render());
         die();
     }
 
-    public function ajaxGetPasswordForm(){
+    /**
+     * methode ajax pour récupérer le formulaire de changement de mot de passe
+     * @return void
+     */
+    public function ajaxGetPasswordForm(): void{
         echo json_encode($this->getPasswordForm()->render());
         die();
     }
 
-    public function ajaxValidePasswordForm(){
+    /**
+     * @return void
+     */
+    public function ajaxValidePasswordForm(): void{
         if(isset($this->params["password-old"]) and
             isset($this->params["password-new"]) and
             isset($this->params["password-confirmation"])
@@ -96,13 +112,17 @@ class ControllerLogin extends Controller{
 
     /**
      * déconnection de l'utilisateur
+     * @return void
      */
-    public function logout(){
+    public function logout(): void{
         Utils::logout();
         $this->redirect("/");
     }
 
-    public function ajaxValideLoginForm(){
+    /**
+     * @return void
+     */
+    public function ajaxValideLoginForm(): void{
         if(isset($this->params["login-pseudo"])
             and isset($this->params["login-password"])
         ){
@@ -128,7 +148,10 @@ class ControllerLogin extends Controller{
         die();
     }
 
-    public function ajaxValideInscriptionForm(){
+    /**
+     * @return void
+     */
+    public function ajaxValideInscriptionForm(): void{
         if(isset($this->params["inscription-pseudo"])
             and isset($this->params["inscription-mail"])
             and isset($this->params["inscription-password"])

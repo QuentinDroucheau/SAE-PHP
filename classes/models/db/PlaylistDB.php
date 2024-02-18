@@ -126,4 +126,24 @@ class PlaylistDB
         'message' => 'Playlist et les sons associés ont été effacés avec succès',
     ]);
 }
+
+    /**
+     * @param int $playlistId
+     * @return Musique[]
+     */
+    public static function getMusiques(int $playlistId): array{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT * FROM composer NATURAL JOIN musique natural join album WHERE idP = $playlistId");
+        $musiques = [];
+        foreach($result as $r){
+            $musiques[] = new Musique(
+                $r["idM"],
+                $r["nomM"],
+                $r["lienM"],
+                MusiqueDB::getNbEcoute($r["idM"]),
+                $r["titreAlbum"]
+            );
+        }
+        return $musiques;
+    }
 }

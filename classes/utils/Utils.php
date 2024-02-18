@@ -36,13 +36,19 @@ class Utils{
         return isset($_SESSION["utilisateur"]);
     }
 
+    /**
+     * @return int id de l'utilisateur connecté
+     */
     public static function getIdUtilisateurConnecte(): int{
         if(!self::isConnected())
             throw new \Exception("Utilisateur non connecté");
         return self::getConnexion()->getId();
     }
 
-    public static function traiterImage(){
+    /**
+     * @return string|bool
+     */
+    public static function traiterImage(): string|bool{
         // Taille maximale autorisée en octets (2 Mo)
         $maxFileSize = 2 * 1024 * 1024;
         $uploadDir = 'fixtures/images/';
@@ -60,11 +66,19 @@ class Utils{
         return false;
     }
 
-    public static function convertirDateFormat($date, $format = 'd/m/Y') {
+    /**
+     * @param string $date
+     * @param string $format
+     * @return string
+     */
+    public static function convertirDateFormat(string $date, string $format = 'd/m/Y'): string{
         $dateObj = new \DateTime($date);
         return $dateObj->format($format);
     }
 
+    /**
+     * @return array
+     */
     public static function getPlaylistsMenu(){
         try{
             $userId = self::getIdUtilisateurConnecte();

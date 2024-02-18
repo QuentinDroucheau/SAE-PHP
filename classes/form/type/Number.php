@@ -6,9 +6,18 @@ class Number extends Input{
 
     protected string $type = "number";
 
+    /** @var int */
     private int $min;
     private int $max;
 
+    /**
+     * @param string $value
+     * @param bool $required
+     * @param string $name
+     * @param string $id
+     * @param int $min
+     * @param int $max
+     */
     public function __construct(
         string $value,
         bool $required,
@@ -22,6 +31,9 @@ class Number extends Input{
         $this->max = $max;
     }
 
+    /**
+     * @return string
+     */
     public function render(): string{
         $required = $this->required ? "required=true" : "";
         $value = $this->value === "" ? "" : "value='".$this->value."'";

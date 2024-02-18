@@ -4,12 +4,11 @@ namespace models;
 
 use models\CollectionMusicale;
 use view\Composant;
-use models\db\ArtisteDB;
 use models\db\MusiqueDB;
 use models\db\PlaylistDB;
 use utils\Utils;
 
-class Album extends CollectionMusicale {
+class Album extends CollectionMusicale{
 
     private float $note;
     private int $ecoute;
@@ -32,27 +31,45 @@ class Album extends CollectionMusicale {
         $this->auteur = $auteur;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getAnneeAlbum(): \DateTime {
         return \DateTime::createFromFormat('d/m/Y', $this->getDatePublication());
     }
 
+    /**
+     * @return Musique[]
+     */
     public function getMusiques(): array {
         return MusiqueDB::getMusiquesAlbum($this->id);
     }
 
+    /**
+     * @return float
+     */
     public function getNote(): float {
         return $this->note;
     }
 
+    /**
+     * @return int
+     */
     public function getEcoute(): int{
         return $this->ecoute;
     }
 
+    /**
+     * @return Artiste
+     */
     public function getAuteur(): Artiste {
         return $this->auteur;
     }
 
-    public function toJsonArray(): array {
+    /**
+     * @return array
+     */
+    public function toJsonArray(): array{
         return [
             "id" => $this->getId(),
             "titre" => $this->getTitre(),
@@ -63,6 +80,9 @@ class Album extends CollectionMusicale {
         ];
     }
 
+    /**
+     * @return string
+     */
     public function render(): string{
         $composant = new Composant("album");
         $composant->addParam("id", $this->getId());

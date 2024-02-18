@@ -8,28 +8,34 @@ use view\BaseTemplate;
 
 class ControllerPlaylist extends Controller{
 
+    /**
+     * affiche la vue d'une playlist
+     * @return void
+     */
     public function view(): void{
         $playlistId = $this->params["id"];
         $p = PlaylistDB::getPlaylist($playlistId);
 
-        $base = new BaseTemplate();
-        $base->setContent("playlist");
-        $base->addParam("idPlaylist", $playlistId);
-        $base->addParam("title", "Playlist");
-        $base->addParam("playlist", $p);
-        $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
-        $base->addParam("musiques", PlaylistDB::getMusiques($playlistId));
+        $this->template->setContent("playlist");
+        $this->template->addParam("idPlaylist", $playlistId);
+        $this->template->addParam("title", "Playlist");
+        $this->template->addParam("playlist", $p);
+        $this->template->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+        $this->template->addParam("musiques", PlaylistDB::getMusiques($playlistId));
 
         if(!is_null(Utils::getConnexion())){
-            $base->addParam("playlists", PlaylistDB::getPlaylists(Utils::getConnexion()->getId()));
+            $this->template->addParam("playlists", PlaylistDB::getPlaylists(Utils::getConnexion()->getId()));
         }else{
-            $base->addParam("playlists", []);
+            $this->template->addParam("playlists", []);
         }
 
-        $base->render();
+        $this->template->render();
     }
 
-    public function ajaxAddMusiqueInPlaylist(){
+    /**
+     * @return void
+     */
+    public function ajaxAddMusiqueInPlaylist(): void{
         $idMusique = $this->params["musique"];
         $idPlaylist = $this->params["playlist"];
 
@@ -39,6 +45,9 @@ class ControllerPlaylist extends Controller{
         die();
     }
 
+    /**
+     * @return void
+     */
     public function ajaxRemoveMusiqueInPlaylist(){
         $idMusique = $this->params["musique"];
         $idPlaylist = $this->params["playlist"];

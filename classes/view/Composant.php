@@ -4,6 +4,9 @@ namespace view;
 
 class Composant extends Element{
 
+    /**
+     * @return string
+     */
     public function get(): string{
         extract($this->params);
         ob_start();

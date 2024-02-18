@@ -2,17 +2,28 @@
 
 namespace models;
 
-class Genre {
-  public function __construct(
-      private int $id,
-      private string $nomG
-  ){}
+class Genre{
 
-  public function getId(): int{
-      return $this->id;
-  }
+    /**
+     * @param int $id
+     * @param string $nomG
+     */
+    public function __construct(
+        private int $id,
+        private string $nomG
+    ){}
+
+    /**
+     * @return int
+     */
+    public function getId(): int{
+        return $this->id;
+    }
   
-  public function getNom(): string {
-    return $this->nomG;
-  }
+    /**
+     * @return string
+     */
+    public function getNom(): string {
+        return $this->nomG;
+    }
 }
