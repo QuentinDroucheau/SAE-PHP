@@ -75,3 +75,7 @@ php -S localhost:8000
 ### Diagramme vues : 
 
 ![image](/diagramme/classes/view.png)
+
+### Diagramme de séquence : 
+
+![image](/diagramme/seq/DIAG_SEQ.svg)
