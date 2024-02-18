@@ -14,10 +14,17 @@
                 </div>
             </div>
         </div>
-        <div class="publier">
-            <img class="icon_publier" src="img/icon_publier.png" alt="">
-            <a href="/publier">PUBLIER</a>
-        </div>
+        <?php 
+            use utils\Utils;
+            if(!is_null(Utils::getConnexion())){
+                echo '
+                    <div class="publier">
+                        <img class="icon_publier" src="img/icon_publier.png" alt="">
+                        <a href="/publier">PUBLIER</a>
+                    </div>
+                ';
+            }
+        ?>
     </div>
     <div class="right">
         <div class="notif">
@@ -28,8 +35,6 @@
         </div>
         <div class="profil-container">
             <?php
-
-            use utils\Utils;
 
             if (is_null(Utils::getConnexion())) {
                 echo '<div class="profil" onclick="openConnexionInscription();">';
