@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="styles/artiste.css">
 <script src="js/artiste.js"></script>
+<script src="js/gestion_abonnement.js" defer></script>
 <div>
     <section class="infos-artistes">
         <div class="img-artiste">
@@ -8,14 +9,14 @@
         <div class="desc-artiste">
             <h1>
                 <?php
-                    echo $artiste->getNom();
+                echo $artiste->getNom();
                 ?>
             </h1>
             <p>
-                10 354 écoute ce mois-ci
+                10 354 écoute ce mois-ci (TO DO)
             </p>
-            <p>
-                34039 abonnées
+            <p id="followers-count">
+                <?php echo $nbFollowers; ?> abonnés
             </p>
             <ul class="artiste-genre">
 
@@ -35,11 +36,11 @@
                     }
                 }
                 ?>
-        
+
             </ul>
             <div>
-                <button>
-                    SUIVRE
+                <button id="follow-button" data-artist-id="<?php echo $artiste->getId(); ?>" class="<?php echo $estFollow ? 'followed' : ''; ?>">
+                    <?php echo $estFollow ? 'SUIVI' : 'SUIVRE'; ?>
                 </button>
             </div>
         </div>
@@ -69,96 +70,93 @@
                     Dernières sorties
                 </h2>
                 <div class="album">
-                <?php
+                    <?php
                     $albumCpt = 0;
                     foreach ($albums as $album) {
                         if ($albumCpt < 2) {
                             echo "<img src='" . $album->getImage() . "' alt='cover de l'album >";
                             echo "<p>" . $album->getTitre() . "</p>";
                             echo "<span>" . $album->getAnneeAlbum()->format('Y-m-d') . "</span>";
-                
+
                             $albumCpt++;
                         } else {
                             break;
                         }
                     }
-                    
+
                     ?>
                 </div>
             </div>
 
             <div class="top-titres">
                 <h2>
-                    Top Titres 
+                    Top Titres
                 </h2>
                 <?php
                 if (count($musiquesArtiste) > 3) {
                     echo "<div class='scroll'>";
-                }
-                else {
+                } else {
                     echo "<div>";
                 }
                 ?>
-                    <ul class="list-titres">
-                        <?php
-                        $i = 0;
-                        foreach ($musiquesArtiste as $musique) {
-                            if ($i < 5) {
-                                $i ++;
-                                echo "<li>";
-                                echo "<div class='musique-titre'>";
-                                echo "<p>". $i . ".  </p>";
-                                echo "<p>" . $musique->getNom() . "</p>";
-                                echo "<p>" . $artiste->getNom() . "</p>";
-                                echo "</div>";
-                                echo "</li>";
-                            }
-                            else {
-                                break;
-                            }
+                <ul class="list-titres">
+                    <?php
+                    $i = 0;
+                    foreach ($musiquesArtiste as $musique) {
+                        if ($i < 5) {
+                            $i++;
+                            echo "<li>";
+                            echo "<div class='musique-titre'>";
+                            echo "<p>" . $i . ".  </p>";
+                            echo "<p>" . $musique->getNom() . "</p>";
+                            echo "<p>" . $artiste->getNom() . "</p>";
+                            echo "</div>";
+                            echo "</li>";
+                        } else {
+                            break;
                         }
-                        ?>
-                    </ul>
-                </div>
+                    }
+                    ?>
+                </ul>
             </div>
-
-        </section>
-
-        <section id="artistesimilaire-section" class="section-mouvante">
-            <h2>
-                Artistes avec le même genre de musiques :
-            </h2>
-            <div class="artistes-similaires">
-                <?php
-                foreach ($artisteSimilaires as $artisteData) {
-                    $artisteNom = $artisteData["nomA"];
-                    $artisteId = $artisteData["idA"];
-
-                    echo "<div class='artiste-similaire'>";
-                    echo "<a href='/artiste?id=" . $artisteId . "'>";
-                    echo "<button>";
-                    echo "<img src='img/default_profil.webp' alt='photo de profil'>";
-                    echo "<p>" . $artisteNom . "</p>";
-                    echo "</button>";
-                    echo "</a>";
-                    echo "</div>";
-                }
-                ?>
-            </div>
-        </section>
-
-        <section id="playlist-section" class="section-mouvante">
-            <h2>
-                playlist
-            </h2>
-        </section>
-
-        <section id="critique-section" class="section-mouvante">
-            <h2>
-                critiques
-            </h2>
-        </section>
-
-    </section>
 </div>
 
+</section>
+
+<section id="artistesimilaire-section" class="section-mouvante">
+    <h2>
+        Artistes avec le même genre de musiques :
+    </h2>
+    <div class="artistes-similaires">
+        <?php
+        foreach ($artisteSimilaires as $artisteData) {
+            $artisteNom = $artisteData["nomA"];
+            $artisteId = $artisteData["idA"];
+
+            echo "<div class='artiste-similaire'>";
+            echo "<a href='/artiste?id=" . $artisteId . "'>";
+            echo "<button>";
+            echo "<img src='img/default_profil.webp' alt='photo de profil'>";
+            echo "<p>" . $artisteNom . "</p>";
+            echo "</button>";
+            echo "</a>";
+            echo "</div>";
+        }
+        ?>
+    </div>
+</section>
+
+<section id="playlist-section" class="section-mouvante">
+    <h2>
+        playlist
+    </h2>
+</section>
+
+<section id="critique-section" class="section-mouvante">
+    <h2>
+        critiques
+    </h2>
+</section>
+
+</section>
+</div>

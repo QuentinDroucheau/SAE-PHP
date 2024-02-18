@@ -19,6 +19,18 @@ class ArtisteDB{
         return $artistes;
     }
 
+    public static function getUserFollowedArtists(int $idU): array {
+        $db = Database::getInstance();
+        $artistes = [];
+        $query = $db->prepare("SELECT artiste.idA, artiste.nomA, artiste.imgArtiste FROM abonnement JOIN artiste ON abonnement.idA = artiste.idA WHERE abonnement.idU = :idU");
+        $query->execute([':idU' => $idU]);
+        $result = $query->fetchAll();
+        foreach($result as $r){
+            $artistes[] = new Artiste($r["idA"], $r["nomA"], $r["imgArtiste"]);
+        }
+        return $artistes;
+    }
+
 
     public static function getArtistesLimit(): array{
         $db = Database::getInstance();

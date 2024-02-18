@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace controller;
 
@@ -8,14 +8,17 @@ use models\db\ArtisteDB;
 use models\db\GenreDB;
 use view\BaseTemplate;
 use utils\Utils;
+use models\db\AbonnementDB;
 
-class ControllerArtiste extends Controller{
+class ControllerArtiste extends Controller
+{
 
     /**
      * affiche la vue d'un artiste
      * @return void
      */
-    public function view(): void{
+    public function view(): void
+    {
         $lesPlaylists = Utils::getPlaylistsMenu();
         $albums = AlbumDB::getAlbumsArtiste($this->params["id"]);
         $allAlbums = AlbumDB::getAlbums();
@@ -28,7 +31,7 @@ class ControllerArtiste extends Controller{
             $currentGenres = GenreDB::getGenresMusique($musiquesArtiste[$i]->getId());
             $genres = array_merge($genres, $currentGenres);
         }
-
+        $nbFollowers = AbonnementDB::getFollowersCount($idArtiste);
         $artisteSimilaires = [];
         foreach ($allAlbums as $album) {
             try {
@@ -37,7 +40,7 @@ class ControllerArtiste extends Controller{
                 foreach ($musiquesAlbum as $musique) {
                     $genresMusiques = array_merge($genresMusiques, GenreDB::getGenresMusique($musique->getId()));
                 }
-                
+
                 $genreNames = array_map(function ($genre) {
                     return $genre->getNom();
                 }, $genres);
@@ -52,18 +55,19 @@ class ControllerArtiste extends Controller{
 
                     if (array_intersect($albumGenres, $genreNames)) {
                         $artisteSimilaires[] = [
-                            'nomA' => $artistName, 
+                            'nomA' => $artistName,
                             'idA' => $artistId
                         ];
                     }
                 }
-
             } catch (\Exception $e) {
                 continue;
             }
         }
-
+        $estFollow = AbonnementDB::isUserFollowing(Utils::getConnexion()?->getId(), $idArtiste);
+        $this->template->addParam("estFollow", $estFollow);
         $this->template->setContent("artiste");
+        $this->template->addParam("nbFollowers", $nbFollowers);
         $this->template->addParam("playlists", $lesPlaylists);
         $this->template->addParam("albums", $albums);
         $this->template->addParam("musiquesArtiste", $musiquesArtiste);
@@ -73,4 +77,26 @@ class ControllerArtiste extends Controller{
         $this->template->addParam("artisteSimilaires", $artisteSimilaires);
         $this->template->render();
     }
+
+
+    public function follow(): void
+    {
+        $idArtiste = $_POST['artistId'] ?? null;
+        $idUser = Utils::getConnexion()?->getId();
+        if (is_null($idUser)) {
+            echo json_encode(["success" => false]);
+            die();
+        } else {
+            if (AbonnementDB::isUserFollowing($idUser, $idArtiste)) {
+                AbonnementDB::unfollowUser($idUser, $idArtiste);
+                echo json_encode(["success" => true, "action" => "unfollowed", "followers" => AbonnementDB::getFollowersCount($idArtiste)]);
+            } else {
+                AbonnementDB::followUser($idUser, $idArtiste);
+                echo json_encode(["success" => true, "action" => "followed", "followers" => AbonnementDB::getFollowersCount($idArtiste)]);
+            }
+            die();
+        }
+        echo json_encode(["success" => true]);
+    }
+
 }

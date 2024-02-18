@@ -53,3 +53,22 @@
         <div class="swiper-button-prev"></div>
     </div>
 </section>
+
+<section class="section-categorie-artiste">
+    <div class="header-section">
+        <h2>Artistes suivis</h2>
+    </div>
+    <div class="container-for-swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <?php foreach ($artistesSuivis as $artiste) : ?>
+                    <div class="swiper-slide">
+                    <?= $artiste->render() ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
