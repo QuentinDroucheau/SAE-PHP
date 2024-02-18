@@ -1,0 +1,75 @@
+.main-album{
+  font-size: 0.9375rem;
+  transition: box-shadow 0.3s ease-in-out;
+  position: relative;
+}
+
+.img-album-container {
+  position: relative;
+  cursor: pointer;
+
+}
+
+.img-album{
+  width: 15.5rem;
+  height: 15.5rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+
+}
+
+.img-album-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15.5rem;
+  height:15.5rem;
+  background: linear-gradient(to bottom, transparent 50%, rgba(47, 47, 47, 0.5));
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.img-album-container:hover::after {
+  opacity: 1;
+}
+
+.top-infos-card, .bottom-infos-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-infos-card-artist {
+  display: flex;
+  width: 100%;
+  gap: 0.8rem;
+}
+
+.add-to-playlist-button {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute; 
+  bottom: 10px;
+  left: 10px;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 40;
+}
+
+.img-album-container {
+  position: relative;
+}
+
+.main-album:hover .add-to-playlist-button {
+  opacity: 1;
+}
+
+.infos-card{
+  width: 90%;
+
+}

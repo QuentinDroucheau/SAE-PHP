@@ -1,0 +1,255 @@
+/* body {
+    overflow: hidden;
+} */
+
+.infos-artistes {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.img-artiste {
+    margin-right: 3rem;
+    margin-left: 2rem;
+    flex-basis: 30%;
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.img-artiste img {
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.infos-artistes h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.infos-artistes p {
+    font-weight: 400;
+}
+
+.infos-artistes button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+
+.infos-artistes button:hover {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+}
+
+.infos-artistes .followed{
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+
+}
+
+.desc-artiste {
+    flex-grow: 1;
+    flex-basis: 60%;
+}
+
+.nav-artiste {
+    margin-left: 3rem;
+}
+
+.nav-artiste a {
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    color: var(--couleur4);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nav-artiste a:hover {
+    color: var(--couleur1);
+}
+
+.nav-artiste li {
+    list-style: none;
+}
+
+.nav-artiste ul {
+    display: flex;
+    align-items: center;
+}
+
+.musiques {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 3rem;
+}
+
+.musiques h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.derniere-sortie {
+    flex-basis: 40%;
+    flex-grow: 0;
+    margin-right: 3rem;
+}
+
+.derniere-sortie h2, .top-titres h2 {
+    margin-bottom: 2rem;
+    font-size: 200%;
+}
+
+.top-titres {
+    flex-basis: 50%;
+    flex-grow: 1;
+}
+
+.list-titres li {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    color: black;
+    display: block;
+    margin: 0.5rem;
+}
+
+.list-titres p {
+    padding: 1rem 1rem;
+    display: inline-block;
+}
+
+.artiste-genre li {
+    list-style: none;
+    margin: 0 1rem 0 0;
+    font-weight: bold;
+    color: var(--couleur4);
+    text-transform: uppercase;
+}
+
+.artiste-genre {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section-mouvante {
+    padding: 2rem  2rem 2rem 5rem;
+    display: flex;
+}
+ 
+.scroll {
+    overflow-y: scroll;
+    height: 12rem;
+    margin-left: 25px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    scrollbar-color: var(--couleur1) var(--couleur3);
+}
+
+.musique-titre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-artiste a.active {
+    border-bottom: 3px solid var(--couleur1);
+}
+
+/* Appliquer un style général à la section artistesimilaire */
+#artistesimilaire-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Style du titre pour artistes-similaires */
+#artistesimilaire-section h2 {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+/* Style du conteneur pour artistes-similaires */
+.artistes-similaires {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin: 1rem 5rem;
+    flex-basis: 100%;
+}
+
+/* Style de chaque artiste-similaire */
+.artiste-similaire {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid var(--couleur3);
+    border-radius: 0.5rem;
+    width: 10rem;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    margin: 0.5rem 2.5rem;
+}
+
+/* Style de l'image dans artiste-similaire */
+.artiste-similaire img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+/* Style du nom dans artiste-similaire */
+.artiste-similaire p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Ajouter un effet de survol à artiste-similaire */
+.artiste-similaire:hover {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+}
+
+/* Style des liens et boutons dans artiste-similaire */
+.artiste-similaire a, .artiste-similaire button {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Style des liens actifs dans artiste-similaire */
+.artiste-similaire a.active {
+    font-weight: bold;
+}
+
+/* Style du bouton dans artiste-similaire */
+.artiste-similaire button {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+/* Style du bouton au survol dans artiste-similaire */
+.artiste-similaire button:hover {
+    text-decoration: underline;
+}
+

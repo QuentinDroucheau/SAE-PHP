@@ -2,3 +2,4 @@
 *.htaccess
 docker-compose.yml
 Dockerfile
+db/database.sqlite3

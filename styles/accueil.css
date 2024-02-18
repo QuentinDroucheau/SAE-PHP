@@ -1,0 +1,138 @@
+
+.page{
+  overflow: hidden;
+  padding: 0 5rem;
+  margin-right: auto;
+}
+
+.img-album{
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.container-for-swiper {
+  position: relative;
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: #E8E8E8;
+  position: absolute;
+  height: 2rem; 
+  width: 2rem; 
+  top: 50%;
+  transform: translateY(-50%); 
+  z-index: 1;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: var(--couleur1); /* couleur violet */
+  color: #000000; 
+}
+
+.swiper-button-next{
+  right: 4rem;
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+
+.swiper-button-next{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='19' viewBox='0 0 13 19' fill='none'%3E%3Cpath d='M2 17L10 9.5L2 2' stroke='%23ffffff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.swiper-button-prev{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='19' viewBox='0 0 13 19' fill='none'%3E%3Cpath d='M11 2L3 9.5L11 17' stroke='%23F8F8F8' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+
+  stroke: var(--color-right-section, #F8F8F8);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-family: 'swiper-icons';
+  font-size: 14px;
+  position: absolute;
+}
+
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 1;
+}
+
+
+.section-categorie-album{
+  padding: 30px 0;
+}
+
+.section-categorie-album h2, .section-categorie-artiste h2 {
+  margin-bottom: 1.25rem;
+  font-size: 2.5rem;
+  color: #323232;
+}
+
+.submenu{
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  top: 0;
+  flex-direction: column; 
+  gap: 1rem;
+  background-color: var(--couleur2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: auto; 
+  height: 100%;
+  width: 110%;
+  border-radius: 8px;
+}
+
+.playlist-item, .song-item {
+  padding: 0.25rem; 
+  cursor: pointer;
+}
+
+.playlist-item:hover, .song-item:hover {
+  background-color: var(--couleur1); 
+  color: #ffffff;
+}
+
+.section-categorie-album, .section-categorie-artiste{
+  overflow: hidden;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-voir-plus{
+  text-decoration: none;
+  color: #7E7E7E;
+  background-color: #E8E8E8;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-voir-plus:hover{
+  background-color: var(--couleur1);
+  color: #ffffff;
+}

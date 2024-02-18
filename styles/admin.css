@@ -1,0 +1,108 @@
+/* Styles pour la section mouvante */
+.section-mouvante {
+    padding: 2rem;
+}
+
+.section-mouvante table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.admin-artiste {
+    margin-left: 3rem;
+}
+
+.admin-artiste a.active {
+    border-bottom: 3px solid var(--couleur1);
+}
+
+
+.admin-artiste a {
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    color: var(--couleur4);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-artiste a:hover {
+    color: var(--couleur1);
+}
+
+.admin-artiste li {
+    list-style: none;
+}
+
+.admin-artiste ul {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles pour les titres h1 */
+h1 {
+    margin: 3rem 0 2rem 5rem;
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+/* Styles pour le tableau */
+.section-mouvante table th,
+.section-mouvante table td {
+    padding: 1rem;
+    border: 1px solid var(--couleur3);
+    text-align: center;
+}
+
+.section-mouvante table th {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+}
+
+.section-mouvante table tr:nth-child(even) {
+    background-color: var(--couleur2);
+}
+
+/* Styles pour le bouton "Supprimer" */
+.section-mouvante table .supprimer-btn {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.section-mouvante table .supprimer-btn:hover {
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+}
+
+/* Styles pour les images */
+.section-mouvante table img {
+    width: 10rem;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+button {
+    background-color: var(--couleur3);
+    color: var(--couleur4);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex-grow: 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+button:hover {
+    background-color: var(--couleur1);
+    color: var(--couleur2);
+}
