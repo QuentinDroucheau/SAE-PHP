@@ -33,7 +33,11 @@ class GenreDB {
         return $genres;
     }
 
-    public function insererGenre($nomGenre) {
+    /**
+     * @return string
+     * @return void
+     */
+    public function insererGenre(string $nomGenre): void{
         $db = Database::getInstance();
         $stmt = $db->prepare("INSERT INTO genre(idG, nomG) VALUES (:idG, :nomGenre)");
         $idG = GenreDB::creerIdGenre();
@@ -42,24 +46,34 @@ class GenreDB {
         $stmt->execute();
     }
 
-    
-    public function genreExiste($nomGenre) {
+    /**
+     * @return string
+     * @return bool
+     */
+    public function genreExiste(string $nomGenre): bool{
         $db = Database::getInstance();
         $stmt = $db->prepare("SELECT * FROM genre WHERE nomG = :nomGenre");
         $stmt->bindParam(":nomGenre", $nomGenre);
         $stmt->execute();
         $result = $stmt->fetch();
-        return $result;
+        return $result ? true : false;
     }
 
-    public static function creerIdGenre(){
+    /**
+     * @return int
+     */
+    public static function creerIdGenre(): int{
         $db = Database::getInstance();
         $stmt = $db->query('SELECT MAX(idG) FROM genre');
         $result = $stmt->fetch();
         return $result[0] + 1;
     }
 
-    public function getGenre($idG){
+    /**
+     * @param int $idG
+     * @return Genre
+     */
+    public function getGenre(int $idG): Genre{
         $db = Database::getInstance();
         $stmt = $db->prepare("SELECT * FROM genre WHERE idG = :idG");
         $stmt->bindParam(":idG", $idG);
@@ -68,7 +82,11 @@ class GenreDB {
         return new Genre($result["idG"], $result["nomG"]);
     }
 
-    public function getGenreByName($nomG){
+    /**
+     * @param string $nomG
+     * @return Genre
+     */
+    public function getGenreByName(string $nomG): Genre{
         $db = Database::getInstance();
         $stmt = $db->prepare("SELECT * FROM genre WHERE nomG = :nomG");
         $stmt->bindParam(":nomG", $nomG);
@@ -77,11 +95,14 @@ class GenreDB {
         return new Genre($result["idG"], $result["nomG"]);
     }
 
-    public static function supprimerGenre($idG){
+    /**
+     * @param int $idG
+     * @return void
+     */
+    public static function supprimerGenre($idG): void{
         $db = Database::getInstance();
         $stmt = $db->prepare("DELETE FROM genre WHERE idG = :idG");
         $stmt->bindParam(":idG", $idG);
         $stmt->execute();
     }
-    
 }

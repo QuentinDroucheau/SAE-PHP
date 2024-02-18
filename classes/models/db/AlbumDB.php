@@ -256,7 +256,7 @@ class AlbumDB{
     /**
      * @return Album[]
      */
-    public static function getAlbums(){
+    public static function getAlbums(): array{
         $db = Database::getInstance();
         $stmt = $db->query('SELECT * FROM album');
         $albums = [];

@@ -2,11 +2,13 @@
 
 namespace models\db;
 
-use models\Contient;
+class ContientDB{
 
-class ContientDB {
-
-    public static function insererContient($idM, $idG) {
+    /**
+     * @param int $idM
+     * @param int $idG
+     */
+    public static function insererContient(int $idM, int $idG){
         $db = Database::getInstance();
         $stmt = $db->prepare("INSERT INTO contient(idM, idG) VALUES (:idM, :idG)");
         $stmt->bindParam(":idM", $idM);
@@ -15,11 +17,14 @@ class ContientDB {
         return $db->lastInsertId();
     }
 
-    public static function supprimerRelation($idM) {
+    /**
+     * @param int $idM
+     * @return void
+     */
+    public static function supprimerRelation(int $idM): void{
         $db = Database::getInstance();
         $stmt = $db->prepare("DELETE FROM contient WHERE idM = :idM");
         $stmt->bindParam(":idM", $idM);
         $stmt->execute();
     }
-
 }
