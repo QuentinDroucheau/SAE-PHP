@@ -53,7 +53,7 @@ class ControllerCategory extends Controller{
         $this->template->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
         $year = $this->params["year"];
         if (isset($year) || isset($genre) || isset($artistId)) {
-            $albums = AlbumDB::getAllAlbumsByCategory($category, $year, $genreSelec, $artisteId);
+            $albums = AlbumDB::getAllAlbumsByCategory($category, $year, $genreSelec, (int) $artisteId);
         } else {
             if($category == "artistes"){
                 $this->template->addParam("items", $artistes);

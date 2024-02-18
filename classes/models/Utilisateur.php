@@ -4,9 +4,9 @@ namespace models;
 
 class Utilisateur {
 
-    public const ROLE_ADMIN = "ADMIN";
-    public const ROLE_USER = "USER";
-    public const ROLE_ARTISTE = "ARTISTE";
+    public const ROLE_ADMIN = "admin";
+    public const ROLE_USER = "user";
+    public const ROLE_ARTISTE = "artiste";
     
     /**
      * @param int $id
