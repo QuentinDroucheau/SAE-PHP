@@ -8,19 +8,31 @@ use models\db\MusiqueDB;
 use utils\Utils;
 use view\BaseTemplate;
 
-class ControllerHome extends Controller{
+class ControllerHome extends Controller
+{
 
     /**
      * affiche la page d'accueil
      * @return void
      */
-    public function view(): void{
+    public function view(): void
+    {
         $artistes = ArtisteDB::getArtistesLimit();
-        $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
-        $albumsByCategory = [];
-        foreach ($categories as $category) {
-            $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
+        $categories = ['Récents', 'Découvrir des albums...',"Sorties que vous suivez"]; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
+        if(Utils::getConnexion() !== null){
+            $categories[] = 'Sorties que vous suivez';
         }
+        $albumsByCategory = [];
+        try{
+            $idUtilisateur = Utils::getIdUtilisateurConnecte();
+        }
+        catch(\Exception $e){
+            $idUtilisateur = null;
+        }
+        foreach ($categories as $category) {
+            $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category, $idUtilisateur);
+        }
+
         $lesPlaylists = Utils::getPlaylistsMenu();
 
         $this->template->addParam("playlists", $lesPlaylists);
@@ -56,7 +68,13 @@ class ControllerHome extends Controller{
                 ];
             }
         }
+        $utilisateur = Utils::getConnexion();
+        $artistesSuivis = [];
+        if ($utilisateur) {
+            $artistesSuivis = ArtisteDB::getUserFollowedArtists($utilisateur->getId());
+        }
 
+        $this->template->addParam("artistesSuivis", $artistesSuivis);
         $this->template->addParam("albumsDetails", $albumsDetails);
         $this->template->addParam("albumsDetailsJson", json_encode($albumsDetailsJson));
         $this->template->addParam("lesPlaylists", $lesPlaylists);
@@ -68,7 +86,8 @@ class ControllerHome extends Controller{
     /**
      * @return void
      */
-    public function publiersSonsPlaylist(): void{
+    public function publiersSonsPlaylist(): void
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $songIds = $_POST['songIds'] ?? null;
             if ($songIds === null) {

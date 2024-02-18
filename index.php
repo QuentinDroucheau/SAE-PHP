@@ -22,6 +22,7 @@ $routes = [
     new Route("/getPlaylistSub", "GET", ControllerHome::class, "view", []),
     new Route("/publiersSonsPlaylist", "POST", ControllerHome::class, "publiersSonsPlaylist", []),
     new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
+    new Route("/follow", "POST", ControllerArtiste::class, "follow", []),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
     new Route("/publier", "GET", ControllerPublier::class, "view", []),
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),

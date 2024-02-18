@@ -36,7 +36,7 @@
 <?php endforeach ?>
 <section class="section-categorie-artiste">
     <div class="header-section">
-        <h2>Des artistes...</h2>
+        <h2>Découvrir...</h2>
         <a class="btn-voir-plus" href="categorie?category=artistes">Voir plus</a>
     </div>
     <div class="container-for-swiper">
@@ -48,6 +48,25 @@
                     </div> <!-- ferme le swiper-slide -->
                 <?php endforeach; ?>
             </div> <!-- ferme le wrapper -->
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+<section class="section-categorie-artiste">
+    <div class="header-section">
+        <h2>Artistes suivis</h2>
+    </div>
+    <div class="container-for-swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <?php foreach ($artistesSuivis as $artiste) : ?>
+                    <div class="swiper-slide">
+                    <?= $artiste->render() ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
