@@ -34,7 +34,7 @@ $routes = [
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
     new Route("/album", "POST", ControllerAlbum::class),
-    new Route("/administrateur", "GET", ControllerAdmin::class, "view", [], []),
+    new Route("/administrateur", "GET", ControllerAdmin::class, "view", ["admin"], []),
     new Route("/administrateur", "POST", ControllerAdmin::class, "supprimer", [], []),
     new Route("/playlist/musique", "POST", ControllerPlaylist::class, null, [], ["musique", "playlist"]),
     new Route("/playlist", "GET", ControllerPlaylist::class, "view", [], ["id"]),
@@ -50,7 +50,6 @@ $url = $uri["path"] ?? "/";
 $role = !is_null(Utils::getConnexion()) ? Utils::getConnexion()->getRoleU() : "logout";
 $params = $_REQUEST;
 $action = $_REQUEST["action"] ?? null;
-
 $notFound = true;
 
 foreach($routes as $route){
