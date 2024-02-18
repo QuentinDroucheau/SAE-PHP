@@ -3,6 +3,11 @@
 namespace models;
 
 class Utilisateur {
+
+    public const ROLE_ADMIN = "ADMIN";
+    public const ROLE_USER = "USER";
+    public const ROLE_ARTISTE = "ARTISTE";
+    
     public function __construct(
         private int $id,
         private string $pseudoU,

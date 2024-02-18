@@ -31,20 +31,44 @@
             use utils\Utils;
 
             if (is_null(Utils::getConnexion())) {
-                echo '<div class="profil" onclick="openConnexion();">';
+                echo '<div class="profil" onclick="openConnexionInscription();">';
             } else {
                 echo '<div class="profil" onclick="openUpdate();">';
             }
             ?>
-            <a><?php echo $utilisateur; ?></a>
+            <a>Se connecter</a>
             <img class="profil-icon" src="img/profil.png" alt="">
+        </div>
+        <div class="inscription-connexion">
+            <div class="close">
+                <img src="img/close.svg" alt="" onclick="closeInscriptionConnexion();">
+            </div>
+            <div class="profil">
+                <a>Se connecter</a>
+                <img class="profil-icon" src="img/profil.png" alt="">
+            </div>
+            <div class="inscription-container">
+                <a onclick="openInscription();">Inscription</a>
+            </div>
+            <div class="connexion-container">
+                <a onclick="openConnexion();">Connexion</a>
+            </div>
+        </div>
+        <div class="inscription">
+            <div class="close">
+                <img src="img/close.svg" alt="" onclick="closeInscription();">
+            </div>
+            <div class="profil">
+                <a><?php echo "Inscription"?></a>
+                <img class="profil-icon" src="img/profil.png" alt="">
+            </div>
         </div>
         <div class="connexion">
             <div class="close">
                 <img src="img/close.svg" alt="" onclick="closeConnexion();">
             </div>
             <div class="profil">
-                <a><?php echo $utilisateur; ?></a>
+                <a>Se connecter</a>
                 <img class="profil-icon" src="img/profil.png" alt="">
             </div>
         </div>
