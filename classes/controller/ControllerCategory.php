@@ -8,34 +8,29 @@ use models\db\ArtisteDB;
 use utils\Utils;
 use models\db\GenreDB;
 
-class ControllerCategory extends Controller{
-  
-    /**
-     * affiche la vue d'une catégorie
-     * @return void
-     */
-    public function view(): void{
-        $lesPlaylists = Utils::getPlaylistsMenu();
-        $category = $this->params["category"];
-        $category = $_GET["category"];
+class ControllerCategory extends Controller
+{
+  public function view(): void
+{
+  $lesPlaylists = Utils::getPlaylistsMenu();
+  $category = $this->params["category"];
+  $category = $_GET["category"];
+  $base = new BaseTemplate();
+  $genres = GenreDB::getGenres();  
 
-        $this->template->setContent("category");
-        $genres = GenreDB::getGenres();
-
-        if($category == "artistes"){
-            $artistes = ArtisteDB::getArtistes(); 
-            $this->template->addParam("items", $artistes);
-        }else{
-            $albums = AlbumDB::getAllAlbumsByCategory($category);
-        }
-        
-        $this->template->addParam("items", $albums);
-        $this->template->addParam("playlists", $lesPlaylists);
-        $this->template->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
-        $this->template->addParam("category", $category);
-        $this->template->addParam("genres", $genres); 
-        $this->template->render();
-    }
+  if($category == "artistes"){
+    $this->viewArtists();
+  } else {
+    $base->setContent("category");
+    $albums = AlbumDB::getAllAlbumsByCategory($category);
+    $base->addParam("items", $albums);
+    $base->addParam("playlists", $lesPlaylists);
+    $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+    $base->addParam("category", $category);
+    $base->addParam("genres", $genres); 
+    $base->render();
+  }
+}
 
     /**
      * filtre la vue d'une catégorie
@@ -71,4 +66,19 @@ class ControllerCategory extends Controller{
         $this->template->addParam("playlists", $lesPlaylists);
         $this->template->render();
     }
+
+
+public function viewArtists(): void
+{
+  $category = $this->params["category"];
+  $lesPlaylists = Utils::getPlaylistsMenu();
+  $base = new BaseTemplate();
+  $base->setContent("artisteCategory");
+  $artistes = ArtisteDB::getArtistes(); 
+  $base->addParam("items", $artistes);
+  $base->addParam("playlists", $lesPlaylists);
+  $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+  $base->addParam("category", $category);
+  $base->render();
+}
 }
