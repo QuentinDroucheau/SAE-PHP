@@ -60,24 +60,35 @@ class AlbumDB{
      * @param string $category
      * @return Album[]
      */
-    public static function getInfosCardsAlbum(string $category): array{
+    public static function getInfosCardsAlbum(string $category, int $idUtilisateur = null): array{
         $db = Database::getInstance();
         $conditions = '';
         switch ($category) {
             case 'Récents':
                 $conditions = "ORDER BY SUBSTR(anneeAlbum, 7, 4) || SUBSTR(anneeAlbum, 4, 2) || SUBSTR(anneeAlbum, 1, 2) DESC";
                 break;
-            case 'Populaires':
+            case 'Découvrir des albums...':
                 // a faire quand on aura le nb d'écoute
+                break;
+            case 'Sorties que vous suivez':
+                if ($idUtilisateur !== null) {
+                    try{
+                        return self::getAlbumSuivi($idUtilisateur);
+                    }catch(\Exception $e){
+                        return [];
+                    }
+                } else {
+                    return [];
+                }
                 break;
             default:
                 $conditions = "ORDER BY album.idAlbum DESC";
                 break;
         }
-
+    
         $stmt = $db->query("SELECT * from album $conditions LIMIT 10");
         $albums = [];
-
+    
         foreach ($stmt as $s) {
             $idAlbum = $s["idAlbum"];
             if (!isset($albums[$idAlbum])) {
@@ -97,6 +108,19 @@ class AlbumDB{
             }
         }
         return array_values($albums);
+    }
+
+    public static function getAlbumSuivi(int $idUtilisateur): array {
+        $artistesSuivis = ArtisteDB::getUserFollowedArtists($idUtilisateur);
+        
+        $albumsSuivis = [];
+        foreach ($artistesSuivis as $artiste) {
+            $albumsArtiste = self::getAlbumsArtiste($artiste->getId());
+            foreach ($albumsArtiste as $album) {
+                $albumsSuivis[] = $album;
+            }
+        }
+        return $albumsSuivis;
     }
 
     /**
@@ -106,66 +130,96 @@ class AlbumDB{
      * @param string|null $artistId
      * @return Album[]
      */
-    public static function getAllAlbumsByCategory(string $category, ?string $year = null, ?string $genre = null, ?int $artistId = null): array{
-        $db = Database::getInstance();
-        $conditions = '';
-        switch ($category) {
-            case 'Récents':
-                $conditions = "ORDER BY SUBSTR(anneeAlbum, 7, 4) || SUBSTR(anneeAlbum, 4, 2) || SUBSTR(anneeAlbum, 1, 2) DESC";
-                break;
-            case 'Populaires':
-                // à faire quand on aura le nb d'écoute
-                break;
-            default:
-                $conditions = "ORDER BY idAlbum DESC";
-                break;
-        }
-        $yearCondition = '';
-        if ($year) {
-            $year = "%$year%";
-            $yearCondition = "AND anneeAlbum LIKE :year";
-        }
-        $genreCondition = '';
-        if ($genre) {
-            $genreCondition = "AND idAlbum IN (SELECT idAlbum FROM musique NATURAL JOIN contient WHERE idG = :genre)";
-        }
-        $artistCondition = '';
-        if ($artistId) {
-            $artistCondition = "AND idA = :artistId";
-        }
-        $stmt = $db->prepare("SELECT * FROM album WHERE 1=1 $yearCondition $genreCondition $artistCondition $conditions");
-        if ($year) {
-            $stmt->bindParam(":year", $year);
-        }
-        if ($genre) {
-            $stmt->bindParam(":genre", $genre);
-        }
-        if ($artistId) {
-            $stmt->bindParam(":artistId", $artistId);
-        }
-        $stmt->execute();
-        $albums = [];
-
-        foreach ($stmt as $s) {
-            $idAlbum = $s["idAlbum"];
-            if (!isset($albums[$idAlbum])) {
-                $descriptionA = $s["descriptionA"] ?? '';
-                $album = new Album(
-                    $s["idAlbum"],
-                    $s["titreAlbum"],
-                    ArtisteDB::getArtiste($s["idA"]),
-                    $s["imgAlbum"],
-                    $s["anneeAlbum"],
-                    self::getNoteAlbum($s["idAlbum"]),
-                    self::getNbEcouteAlbum($s["idAlbum"]),
-                    $descriptionA,
-                    self::getMusiques($s["idAlbum"])
-                );
-                $albums[$idAlbum] = $album;
+    /**
+ * @param string $category
+ * @param string|null $year
+ * @param string|null $genre
+ * @param string|null $artistId
+ * @param int|null $idUtilisateur
+ * @return Album[]
+ */
+public static function getAllAlbumsByCategory(string $category, ?string $year = null, ?string $genre = null, ?int $artistId = null, ?int $idUtilisateur = null): array{
+    $db = Database::getInstance();
+    $conditions = '';
+    switch ($category) {
+        case 'Récents':
+            $conditions = "ORDER BY SUBSTR(anneeAlbum, 7, 4) || SUBSTR(anneeAlbum, 4, 2) || SUBSTR(anneeAlbum, 1, 2) DESC";
+            break;
+        case 'Découvrir':
+            $conditions = "ORDER BY idAlbum DESC";
+        case 'Sorties que vous suivez':
+            if ($idUtilisateur !== null) {
+                try{
+                    return self::getAlbumSuivi($idUtilisateur);
+                }catch(\Exception $e){
+                    return [];
+                }
+            } else {
+                return [];
             }
-        }
-        return array_values($albums);
+            break;
+        default:
+            $conditions = "ORDER BY idAlbum DESC";
+            break;
     }
+    $yearCondition = '';
+    if ($year) {
+        $year = "%$year%";
+        $yearCondition = "AND anneeAlbum LIKE :year";
+    }
+    $genreCondition = '';
+    if ($genre) {
+        $genreCondition = "AND idAlbum IN (SELECT idAlbum FROM musique NATURAL JOIN contient WHERE idG = :genre)";
+    }
+    $artistCondition = '';
+    if ($artistId) {
+        $artistCondition = "AND idA = :artistId";
+    }
+    $stmt = $db->prepare("SELECT * FROM album WHERE 1=1 $yearCondition $genreCondition $artistCondition $conditions");
+    if ($year) {
+        $stmt->bindParam(":year", $year);
+    }
+    if ($genre) {
+        $stmt->bindParam(":genre", $genre);
+    }
+    if ($artistId) {
+        $stmt->bindParam(":artistId", $artistId);
+    }
+    $stmt->execute();
+    $albums = [];
+
+    foreach ($stmt as $s) {
+        $idAlbum = $s["idAlbum"];
+        if (!isset($albums[$idAlbum])) {
+            $descriptionA = $s["descriptionA"] ?? '';
+            $album = new Album(
+                $s["idAlbum"],
+                $s["titreAlbum"],
+                ArtisteDB::getArtiste($s["idA"]),
+                $s["imgAlbum"],
+                $s["anneeAlbum"],
+                self::getNoteAlbum($s["idAlbum"]),
+                self::getNbEcouteAlbum($s["idAlbum"]),
+                $descriptionA,
+                self::getMusiques($s["idAlbum"])
+            );
+            $albums[$idAlbum] = $album;
+        }
+    }
+
+    // Si un utilisateur est connecté et la catégorie est 'Sorties que vous suivez'
+    if ($idUtilisateur !== null && $category === 'Sorties que vous suivez') {
+        try{
+            $albumsSuivis = self::getAlbumSuivi($idUtilisateur);
+            foreach ($albumsSuivis as $albumSuivi) {
+                $albums[$albumSuivi->getId()] = $albumSuivi;
+            }
+        }catch(\Exception $e){
+            return [];
+        }
+    }
+    return array_values($albums);
+}
 
 
     /**

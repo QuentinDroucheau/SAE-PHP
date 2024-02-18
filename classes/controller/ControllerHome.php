@@ -18,10 +18,19 @@ class ControllerHome extends Controller
     public function view(): void
     {
         $artistes = ArtisteDB::getArtistesLimit();
-        $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
+        $categories = ['Récents', 'Découvrir des albums...',"Sorties que vous suivez"]; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
+        if(Utils::getConnexion() !== null){
+            $categories[] = 'Sorties que vous suivez';
+        }
         $albumsByCategory = [];
+        try{
+            $idUtilisateur = Utils::getIdUtilisateurConnecte();
+        }
+        catch(\Exception $e){
+            $idUtilisateur = null;
+        }
         foreach ($categories as $category) {
-            $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
+            $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category, $idUtilisateur);
         }
 
         $lesPlaylists = Utils::getPlaylistsMenu();

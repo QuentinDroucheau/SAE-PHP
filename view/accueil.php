@@ -36,7 +36,7 @@
 <?php endforeach ?>
 <section class="section-categorie-artiste">
     <div class="header-section">
-        <h2>Des artistes...</h2>
+        <h2>Découvrir...</h2>
         <a class="btn-voir-plus" href="categorie?category=artistes">Voir plus</a>
     </div>
     <div class="container-for-swiper">
