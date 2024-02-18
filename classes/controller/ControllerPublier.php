@@ -92,7 +92,7 @@ class ControllerPublier extends Controller{
 
                 if (isset($_FILES['image'])) {
                     $image = $this->traiterImage();
-                    $imagePath = str_replace('fixtures/images/', '', $image);
+                    $imagePath = str_replace('public/images/', '', $image);
                 } else {
                     $imagePath = 'default.jpg';
                 }
@@ -149,7 +149,7 @@ class ControllerPublier extends Controller{
     private function traiterImage(): string|bool{
         // Taille maximale autorisée en octets (2 Mo)
         $maxFileSize = 2 * 1024 * 1024;
-        $uploadDir = 'fixtures/images/';
+        $uploadDir = 'public/images/';
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
 
         if (file_exists($uploadFile)) {

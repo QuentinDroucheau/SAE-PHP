@@ -23,7 +23,7 @@ $('.form-publie-playlist').on('submit', function(e) {
         alert('Playlist publiée avec succès');
         var playlistItem = '<div class="element">' +
                               '<div>' +
-                              '<img class="pochette" src="fixtures/images/' + response.image + '" alt=""' +
+                              '<img class="pochette" src="public/images/' + response.image + '" alt=""' +
                               '</div>' +
                               '<div class="text">' +
                                 '<div class="title">' +

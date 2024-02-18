@@ -45,7 +45,7 @@ class CollectionMusicale{
      * @return string
      */
     public function getImage(): string{
-        $lien = $this->image ? "fixtures/images/" . $this->image : "../../img/default_album.png";
+        $lien = $this->image ? "public/images/" . $this->image : "../../img/default_album.png";
         if(file_exists($lien)){
             return $lien;
         }

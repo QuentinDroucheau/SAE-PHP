@@ -46,7 +46,7 @@ class Musique{
      * @return string
      */
     public function getLien(): string{
-        $lien = "fixtures/images/" . $this->lien;
+        $lien = "public/images/" . $this->lien;
         if(file_exists($lien)){
             return $lien;
         }

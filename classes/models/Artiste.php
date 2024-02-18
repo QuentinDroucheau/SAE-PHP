@@ -46,7 +46,7 @@ class Artiste{
      * @return string
      */
     public function getImage(): string{
-        return ($this->image ? "fixtures/images/" . $this->image : "../../img/default_album.png");
+        return ($this->image ? "public/images/" . $this->image : "../../img/default_album.png");
     }
 
     /**
