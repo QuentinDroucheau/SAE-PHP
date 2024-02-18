@@ -4,12 +4,10 @@
         <img src=<?= $playlist->getImage() ?> alt="">
     </div>
     <div class="info">
-        <p>Playlist</p>
-        <h1><?= $playlist->getTitre() ?></h1>
+        <h1>Playlist</h1>
+        <input class="title" type="text" value="<?= $playlist->getTitre()?>">
         <div class="container-description">
-            <p>
-                <?= $playlist->getDescription() ?>
-            </p>
+            <input class="description" type="text" value="<?= $playlist->getDescription()?>">
         </div>
         <div class="buttons">
             <div class="button-play"></div>
@@ -58,6 +56,32 @@
 </div>
 
 <script>
+
+    let titre = document.querySelector(".header-playlist .info .title");
+    titre.addEventListener("keyup", function(e){
+        updatePlaylist(<?=$idPlaylist?>);
+    });
+
+    let description = document.querySelector(".container-description .description");
+    description.addEventListener("keyup", function(e){
+        updatePlaylist(<?=$idPlaylist?>);
+    });
+
+    function updatePlaylist(id){
+        $.ajax({
+            url: "/playlist/edit",
+            method: "POST",
+            data: {
+                id: <?=$idPlaylist?>,
+                titre: titre.value,
+                description: description.value,
+                action: "ajaxUpdatePlaylist"
+            },
+            success: function(result){
+                console.log(result);
+            }
+        });
+    }
 
     function removeMusique(idPlaylist, idMusique){
         $.ajax({

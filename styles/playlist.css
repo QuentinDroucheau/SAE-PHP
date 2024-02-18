@@ -85,3 +85,13 @@ tr{
     background-color: var(--couleur4);
     border-radius: 7px;
 }
+
+.header-playlist .info .title{
+    border: none;
+    font-size: 2rem;
+}
+
+.container-description .description{
+    border: none;
+    font-size: 1rem;
+}

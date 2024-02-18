@@ -37,6 +37,7 @@ $routes = [
     new Route("/administrateur", "POST", ControllerAdmin::class, "supprimer", [], []),
     new Route("/playlist/musique", "POST", ControllerPlaylist::class, null, [], ["musique", "playlist"]),
     new Route("/playlist", "GET", ControllerPlaylist::class, "view", [], ["id"]),
+    new Route("/playlist/edit", "POST", ControllerPlaylist::class, "ajaxUpdatePlaylist", [], ["id", "titre", "description"]),
     // new Route("/getMusiquesAlbumSelec", "GET", ControllerHome::class, "view", [], []),
         // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
 ];

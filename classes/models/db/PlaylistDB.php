@@ -174,4 +174,18 @@ class PlaylistDB{
         }
         return $musiques;
     }
+
+    /**
+     * @param int $idPlaylist
+     * @param string $titre
+     * @param string $description
+     */
+    public static function updatePlaylist(int $idPlaylist, string $titre, string $description): bool{
+        $db = Database::getInstance();
+        $stmt = $db->prepare("UPDATE playlist SET nomP = :titre, descriptionP = :description WHERE idP = :idP");
+        $stmt->bindParam(":titre", $titre);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":idP", $idPlaylist);
+        return $stmt->execute();
+    }
 }

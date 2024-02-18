@@ -57,4 +57,18 @@ class ControllerPlaylist extends Controller{
         ]);
         die();
     }
+
+    /**
+     * @return void
+     */
+    public function ajaxUpdatePlaylist(){
+        $idPlaylist = $this->params["id"];
+        $titre = $this->params["titre"];
+        $description = $this->params["description"];
+
+        echo json_encode([
+            "success" => PlaylistDB::updatePlaylist($idPlaylist, $titre, $description)
+        ]);
+        die();
+    }
 }

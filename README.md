@@ -41,7 +41,7 @@ php -S localhost:8000
 - Détail d'un artiste avec ses albums
 - Recherche avancée dans les albums
 - Inscription / Login utilisateur
-- Playlist par utilisateur
+- Lecture / Creation / Suppression / Modification Playlist
 - Système de notation des albums
 - Lecture / Suppression d'un artiste
 - Lecture / Creation / Suppression / Modification d'un album
