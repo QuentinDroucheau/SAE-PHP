@@ -46,6 +46,10 @@ php -S localhost:8000
 - Lecture / Suppression d'un artiste
 - Lecture / Creation / Suppression / Modification d'un album
 
+### Base de donnée : 
+
+![image](/diagramme/mcd/MCD.svg)
+
 ### Diagramme des controllers : 
 
 ![image](/diagramme/classes/controller.png)
