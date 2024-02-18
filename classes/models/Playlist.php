@@ -49,8 +49,7 @@ class Playlist extends CollectionMusicale{
      */
     public function getDateAjoutMusique(int $id): string{
         $time = MusiqueDB::getDateAjoutMusique($id, $this->getId());
-        $date = date("d/m/Y", $time);
-        return $date;
+        return $time;
     }
 
     /**
