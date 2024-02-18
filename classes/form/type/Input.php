@@ -9,6 +9,12 @@ abstract class Input implements InputRender{
     protected string $type;
     protected string $label = "";
 
+    /**
+     * @param string $value
+     * @param bool $required
+     * @param string $name
+     * @param string $id
+     */
     public function __construct(
         protected string $value,
         protected bool $required,
@@ -16,15 +22,22 @@ abstract class Input implements InputRender{
         protected string $id
     ){}
 
-    public function __toString() {
+    public function __toString(){
         return $this->render();
     }
 
-    public function setLabel(string $label){
+    /**
+     * @param string $label
+     * @return Input
+     */
+    public function setLabel(string $label): Input{
         $this->label = sprintf("<label for='%s'>%s</label>", $this->id, $label);
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function render(): string{
         $required = $this->required ? "required=true" : "";
         $value = $this->value === "" ? "" : "value='".$this->value."'";

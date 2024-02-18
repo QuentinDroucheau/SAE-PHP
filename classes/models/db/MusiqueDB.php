@@ -14,9 +14,9 @@ class MusiqueDB
     {
         $db = Database::getInstance();
         $musiques = [];
-        $result = $db->query("SELECT * FROM musique");
+        $result = $db->query("SELECT * FROM musique NATURAL JOIN album");
         foreach($result as $r){
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($r["idAlbum"]));
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), $r["titreAlbum"]);
         }
         return $musiques;
     }
@@ -27,10 +27,10 @@ class MusiqueDB
     public static function getMusique(int $id): ?Musique
     {
         $db = Database::getInstance();
-        $result = $db->query("SELECT * FROM musique WHERE idM = $id");
+        $result = $db->query("SELECT * FROM musique NATURAL JOIN album WHERE idM = $id");
         $r = $result->fetch();
         if($r){
-            return new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($id), AlbumDB::getAlbumName($r["idAlbum"]));
+            return new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($id), $r["titreAlbum"]);
         }
         return null;
     }
@@ -55,9 +55,9 @@ class MusiqueDB
     {
         $db = Database::getInstance();
         $musiques = [];
-        $result = $db->query("SELECT * FROM musique WHERE idAlbum = $id");
+        $result = $db->query("SELECT * FROM musique NATURAL JOIN album WHERE idAlbum = $id");
         foreach($result as $r){
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($id));
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), $r["titreAlbum"]);
         }
         return $musiques;
     }
@@ -72,7 +72,7 @@ class MusiqueDB
         $result = $db->query("SELECT * FROM musique NATURAL JOIN album NATURAL JOIN artiste WHERE idA = $id");
         foreach($result as $r){
             $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], 
-                self::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($r["idAlbum"]));
+                self::getNbEcoute($r["idM"]), $r["titreAlbum"]);
         }
         return $musiques;
     }
@@ -125,10 +125,10 @@ class MusiqueDB
         $db = Database::getInstance();
         $musiques = [];
         $result = $db->query("SELECT * FROM musique m 
-                              JOIN composer c ON m.idM = c.idM 
+                              JOIN composer c ON m.idM = c.idM NATURAL JOIN album
                               WHERE c.idP = $idPlaylist");
         foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($r["idAlbum"]));
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), $r["titreAlbum"]);
         }
         return $musiques;
     }
@@ -140,9 +140,9 @@ class MusiqueDB
     {
         $db = Database::getInstance();
         $musiques = [];
-        $result = $db->query("SELECT * FROM musique WHERE idAlbum = $idAlbum");
+        $result = $db->query("SELECT * FROM musique NATURAL JOIN album WHERE idAlbum = $idAlbum");
         foreach ($result as $r) {
-            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), AlbumDB::getAlbumName($idAlbum));
+            $musiques[] = new Musique($r["idM"], $r["nomM"], $r["lienM"], self::getNbEcoute($r["idM"]), $r["titreAlbum"]);
         }
         return $musiques;
     }

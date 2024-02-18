@@ -5,7 +5,6 @@ namespace controller;
 use models\db\AlbumDB;
 use view\BaseTemplate;
 use models\db\ArtisteDB;
-use models\db\GenreDB as DbGenreDB;
 use utils\Utils;
 use models\db\GenreDB;
 
@@ -33,37 +32,41 @@ class ControllerCategory extends Controller
   }
 }
 
+    /**
+     * filtre la vue d'une catégorie
+     * @return void
+     */
+    public function filtreView(): void{
+        $genres = GenreDB::getGenres(); 
+        $lesPlaylists = Utils::getPlaylistsMenu();
 
-public function filtreView(){
-    $genres = GenreDB::getGenres(); 
-    $lesPlaylists = Utils::getPlaylistsMenu();
-    $base = new BaseTemplate();
-    $base->setContent("category");
-    $artistes = ArtisteDB::getArtistes(); 
-    $category = $this->params["category"];
-    $artisteId = $this->params["artistId"];
-    $genreSelec = intval($this->params["genre"]);
-    $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
-    $year = $this->params["year"];
-    if (isset($year) || isset($genre) || isset($artistId)) {
-        $albums = AlbumDB::getAllAlbumsByCategory($category, $year, $genreSelec, $artisteId);
-    } else {
-        if($category == "artistes"){
-            $base->addParam("items", $artistes);
+        $this->template->setContent("category");
+        $artistes = ArtisteDB::getArtistes(); 
+        $category = $this->params["category"];
+        $artisteId = $this->params["artistId"];
+        $genreSelec = intval($this->params["genre"]);
+        $this->template->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+        $year = $this->params["year"];
+        if (isset($year) || isset($genre) || isset($artistId)) {
+            $albums = AlbumDB::getAllAlbumsByCategory($category, $year, $genreSelec, (int) $artisteId);
         } else {
-            $albums = AlbumDB::getAllAlbumsByCategory($category);
+            if($category == "artistes"){
+                $this->template->addParam("items", $artistes);
+            } else {
+                $albums = AlbumDB::getAllAlbumsByCategory($category);
+            }
         }
+        $this->template->addParam("genres", $genres); 
+        $this->template->addParam("selectedGenre", $genreSelec);  
+        $this->template->addParam("selectedYear", $year);
+        $this->template->addParam("selectedArtist", $artisteId);
+        $this->template->addParam("items", $albums);
+        $this->template->addParam("category", $category);
+        $this->template->addParam("artistes", $artistes);
+        $this->template->addParam("playlists", $lesPlaylists);
+        $this->template->render();
     }
-    $base->addParam("genres", $genres); 
-    $base->addParam("selectedGenre", $genreSelec);  
-    $base->addParam("selectedYear", $year);
-    $base->addParam("selectedArtist", $artisteId);
-    $base->addParam("items", $albums);
-    $base->addParam("category", $category);
-    $base->addParam("artistes", $artistes);
-    $base->addParam("playlists", $lesPlaylists);
-    $base->render();
-}
+
 
 public function viewArtists(): void
 {

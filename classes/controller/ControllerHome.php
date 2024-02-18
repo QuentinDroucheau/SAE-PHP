@@ -1,21 +1,20 @@
 <?php
-// 2 méthodes
 
 namespace controller;
 
 use models\db\AlbumDB;
-use models\db\PlaylistDB;
 use models\db\ArtisteDB;
 use models\db\MusiqueDB;
-use models\db\UtilisateurDB;
 use utils\Utils;
 use view\BaseTemplate;
 
-class ControllerHome extends Controller
-{
+class ControllerHome extends Controller{
 
-    public function view(): void
-    {
+    /**
+     * affiche la page d'accueil
+     * @return void
+     */
+    public function view(): void{
         $artistes = ArtisteDB::getArtistesLimit();
         $categories = ['Récents', 'Populaires']; // on peut ajouter d'autres catégories -> à voir condition dans albumBD
         $albumsByCategory = [];
@@ -23,9 +22,9 @@ class ControllerHome extends Controller
             $albumsByCategory[$category] = AlbumDB::getInfosCardsAlbum($category);
         }
         $lesPlaylists = Utils::getPlaylistsMenu();
-        $params = ['playlists' => $lesPlaylists];
-        $base = new BaseTemplate($params);
-        $base->setContent("accueil");
+
+        $this->template->addParam("playlists", $lesPlaylists);
+        $this->template->setContent("accueil");
 
         $albumsDetails = [];
         $albumsDetailsJson = [];
@@ -58,16 +57,18 @@ class ControllerHome extends Controller
             }
         }
 
-        $base->addParam("albumsDetails", $albumsDetails);
-        $base->addParam("albumsDetailsJson", json_encode($albumsDetailsJson));
-        $base->addParam("lesPlaylists", $lesPlaylists);
-        $base->addParam("artistes", $artistes);
-        $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
-        $base->render();
+        $this->template->addParam("albumsDetails", $albumsDetails);
+        $this->template->addParam("albumsDetailsJson", json_encode($albumsDetailsJson));
+        $this->template->addParam("lesPlaylists", $lesPlaylists);
+        $this->template->addParam("artistes", $artistes);
+        $this->template->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+        $this->template->render();
     }
 
-    public function publiersSonsPlaylist(): void
-    {
+    /**
+     * @return void
+     */
+    public function publiersSonsPlaylist(): void{
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $songIds = $_POST['songIds'] ?? null;
             if ($songIds === null) {

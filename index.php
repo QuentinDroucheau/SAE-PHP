@@ -3,14 +3,12 @@
 use controller\ControllerAlbum;
 use controller\ControllerHome;
 use controller\ControllerLogin;
-use controller\ControllerTest;
 use controller\ControllerArtiste;
 use controller\ControllerPublier;
 use controller\ControllerPubliePlaylist;
 use controller\ControllerCategory;
 use controller\ControllerAdmin;
 use controller\ControllerPlaylist;
-use models\db\Database;
 use controller\ControllerHeader;
 use models\Musique;
 use route\Route;
@@ -23,8 +21,6 @@ $routes = [
     new Route("/search", "POST", ControllerHeader::class, "search", []),
     new Route("/getPlaylistSub", "GET", ControllerHome::class, "view", []),
     new Route("/publiersSonsPlaylist", "POST", ControllerHome::class, "publiersSonsPlaylist", []),
-    // new Route("/getMusiquesAlbumSelec", "GET", ControllerHome::class, "view", [], []),
-    new Route("/test", "GET", ControllerTest::class, "view"),
     new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
     new Route("/publier", "GET", ControllerPublier::class, "view", []),
@@ -33,7 +29,6 @@ $routes = [
     new Route("/effacerPlaylist", "POST", ControllerPubliePlaylist::class, "effacerPlaylist", []),
     new Route("/categorie", "GET", ControllerCategory::class, "view", [], ["category"]),
     new Route("/filtreView", "GET", ControllerCategory::class, "filtreView", [], ["year", "category", "genre", "artistId"]),
-    // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
     new Route("/login", "POST", ControllerLogin::class),
     new Route("/login", "GET", ControllerLogin::class),
     new Route("/album", "POST", ControllerAlbum::class),
@@ -41,6 +36,8 @@ $routes = [
     new Route("/administrateur", "POST", ControllerAdmin::class, "supprimer", [], []),
     new Route("/playlist/musique", "POST", ControllerPlaylist::class, null, [], ["musique", "playlist"]),
     new Route("/playlist", "GET", ControllerPlaylist::class, "view", [], ["id"]),
+    // new Route("/getMusiquesAlbumSelec", "GET", ControllerHome::class, "view", [], []),
+        // new Route("/getPlaylistItem/id", "GET", ControllerPubliePlaylist::class, "getPlaylistItem", [], ["id"]),
 ];
 
 

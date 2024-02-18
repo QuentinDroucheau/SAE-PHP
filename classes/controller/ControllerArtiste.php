@@ -11,7 +11,11 @@ use utils\Utils;
 
 class ControllerArtiste extends Controller{
 
-    public function view(){
+    /**
+     * affiche la vue d'un artiste
+     * @return void
+     */
+    public function view(): void{
         $lesPlaylists = Utils::getPlaylistsMenu();
         $albums = AlbumDB::getAlbumsArtiste($this->params["id"]);
         $allAlbums = AlbumDB::getAlbums();
@@ -59,15 +63,14 @@ class ControllerArtiste extends Controller{
             }
         }
 
-        $base = new BaseTemplate();
-        $base->setContent("artiste");
-        $base->addParam("playlists", $lesPlaylists);
-        $base->addParam("albums", $albums);
-        $base->addParam("musiquesArtiste", $musiquesArtiste);
-        $base->addParam("artiste", $artiste);
-        $base->addParam("genres", $genres);
-        $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
-        $base->addParam("artisteSimilaires", $artisteSimilaires);
-        $base->render();
+        $this->template->setContent("artiste");
+        $this->template->addParam("playlists", $lesPlaylists);
+        $this->template->addParam("albums", $albums);
+        $this->template->addParam("musiquesArtiste", $musiquesArtiste);
+        $this->template->addParam("artiste", $artiste);
+        $this->template->addParam("genres", $genres);
+        $this->template->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "" : $c->getPseudoU());
+        $this->template->addParam("artisteSimilaires", $artisteSimilaires);
+        $this->template->render();
     }
 }

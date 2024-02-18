@@ -7,14 +7,14 @@ use models\db\ArtisteDB;
 use models\db\GenreDB;
 use models\db\MusiqueDB;
 use models\db\ContientDB;
-use models\db\PlaylistDB;
-use view\BaseTemplate;
 use utils\Utils;
 
-class ControllerPublier extends Controller
-{
-    public function view()
-    {
+class ControllerPublier extends Controller{
+
+    /**
+     * @return void
+     */
+    public function view(): void{
         $artistes = ArtisteDB::getArtistes();
         $genres = GenreDB::getGenres();
 
@@ -30,22 +30,22 @@ class ControllerPublier extends Controller
         $idA = ArtisteDB::getIdArtiste($nomUtilisateur);
         $albums = AlbumDB::getAlbumsArtiste($idA);
 
-        $base = new BaseTemplate();
-        $base->setContent("publier");
-        $base->addParam("artistes", $artistes);
-        $base->addParam("genres", $genres);
-        $base->addParam("albums", $albums);
-        $base->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "Connexion" : $c->getPseudoU());
+        $this->template->setContent("publier");
+        $this->template->addParam("artistes", $artistes);
+        $this->template->addParam("genres", $genres);
+        $this->template->addParam("albums", $albums);
+        $this->template->addParam("utilisateur", is_null($c = Utils::getConnexion()) ? "" : $c->getPseudoU());
         $lesPlaylists = Utils::getPlaylistsMenu();
-        $base->addParam("playlists", $lesPlaylists);
-        $base->render();
-
+        $this->template->addParam("playlists", $lesPlaylists);
+        $this->template->render();
     }
 
-    public function publierContenue()
-    {
+    /**
+     * @return void
+     */
+    public function publierContenue(): void{
         // Vérifier si le formulaire a été soumis
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
             if ($_POST['action'] === 'supprimerAlbum') {
                 $idAlbum = $_POST['idAlbum'];
@@ -143,7 +143,10 @@ class ControllerPublier extends Controller
         }
     }
 
-    private function traiterImage(){
+    /**
+     * @return bool|string
+     */
+    private function traiterImage(): string|bool{
         // Taille maximale autorisée en octets (2 Mo)
         $maxFileSize = 2 * 1024 * 1024;
         $uploadDir = 'fixtures/images/';

@@ -6,14 +6,24 @@ class BaseTemplate extends Template{
 
     private string $content;
 
+    /**
+     * @param array $params = []
+     */
     public function __construct(array $params = []){
         parent::__construct("base", $params);
     }
 
+    /**
+     * @param string $view
+     * @return void
+     */
     public function setContent(string $view): void{
         $this->content = $view;
     }
 
+    /**
+     * @return void
+     */
     public function render(): void{
         extract($this->params);
 

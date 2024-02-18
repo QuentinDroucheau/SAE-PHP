@@ -33,6 +33,15 @@ class UtilisateurDB{
         return null;
     }
 
+    public static function getUtilisateurByPseudo(string $pseudo): ?Utilisateur{
+        $db = Database::getInstance();
+        $result = $db->query("SELECT * FROM utilisateur WHERE pseudoU = '$pseudo'");
+        foreach($result as $r){
+            return new Utilisateur($r["idU"], $r["pseudoU"], $r["mdpU"], $r["roleU"]);
+        }
+        return null;
+    }
+
     /**
      * @param Utilisateur $utilisateur
      * @return ?Utilisateur
@@ -68,5 +77,15 @@ class UtilisateurDB{
         $stmt = $db->prepare("DELETE FROM utilisateur WHERE idU = :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
+    }
+
+    public static function addUtilisateur(string $pseudo, string $password, string $role): ?Utilisateur{
+        $db = Database::getInstance();
+        $stmt = $db->prepare("INSERT INTO utilisateur (pseudoU, mdpU, roleU) VALUES (:pseudo, :mdp, :role)");
+        $stmt->bindParam(":pseudo", $pseudo);
+        $stmt->bindParam(":mdp", $password);
+        $stmt->bindParam(":role", $role);
+        $stmt->execute();
+        return self::getUtilisateurByPseudo($pseudo);
     }
 }

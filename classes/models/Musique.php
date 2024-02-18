@@ -6,6 +6,13 @@ use models\db\MusiqueDB;
 
 class Musique{
 
+    /**
+     * @param int $id
+     * @param string $nom
+     * @param string $lien
+     * @param int $ecoute
+     * @param string $albumName
+     */
     public function __construct(
         private int $id, 
         private string $nom,
@@ -14,19 +21,31 @@ class Musique{
         private string $albumName
     ){}
 
-    public function getId(){
+    /**
+     * @return int
+     */
+    public function getId(): int{
         return $this->id;
     }
 
-    public function getNom(){
+    /**
+     * @return string
+     */
+    public function getNom(): string{
         return $this->nom;
     }
 
+    /**
+     * @return string
+     */
     public function getAlbumName(): string {
         return $this->albumName;
     }
 
-    public function getLien(){
+    /**
+     * @return string
+     */
+    public function getLien(): string{
         $lien = "fixtures/images/" . $this->lien;
         if(file_exists($lien)){
             return $lien;
@@ -34,10 +53,16 @@ class Musique{
         return "../../img/default_album.png";
     }
 
-    public function getEcoute(){
+    /**
+     * @return int
+     */
+    public function getEcoute(): int{
         return $this->ecoute;
     }
 
+    /**
+     * @return array
+     */
     public function toJsonArray(): array {
         return [
             "id" => $this->getId(),
@@ -46,8 +71,11 @@ class Musique{
         ];
     }
 
-    public function getArtisteMusique(int $id)
-    {
+    /**
+     * @param int $id
+     * @return string
+     */
+    public function getArtisteMusique(int $id): string{
         // Utilisez la méthode appropriée de MusiqueDB pour obtenir les musiques de l'artiste
         return MusiqueDB::getArtisteMusique($id);
     }

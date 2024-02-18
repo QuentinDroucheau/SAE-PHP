@@ -2,12 +2,28 @@
 
 namespace controller;
 
+use view\BaseTemplate;
+
 abstract class Controller{
 
+    /**
+     * liste des paramètres à passer dans l'url
+     * @var array
+     */
     protected array $params;
 
+    /**
+     * template à afficher
+     * @var BaseTemplate
+     */
+    protected BaseTemplate $template;
+
+    /**
+     * @param array $params = []
+     */
     public function __construct(array $params = []){
         $this->params = $params;
+        $this->template = new BaseTemplate();
     }
 
     /**
