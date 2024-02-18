@@ -64,7 +64,12 @@ class ControllerArtiste extends Controller
                 continue;
             }
         }
-        $estFollow = AbonnementDB::isUserFollowing(Utils::getConnexion()?->getId(), $idArtiste);
+        try{
+            $estFollow = AbonnementDB::isUserFollowing(Utils::getConnexion()?->getId(), $idArtiste);
+        }
+        catch(\Exception $e){
+            $estFollow = false;
+        }
         $this->template->addParam("estFollow", $estFollow);
         $this->template->setContent("artiste");
         $this->template->addParam("nbFollowers", $nbFollowers);

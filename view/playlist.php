@@ -1,14 +1,19 @@
 <link rel="stylesheet" href="styles/playlist.css">
-<div class="header-playlist">
+<script src="js/modif_playlist.js" defer></script>
+<div class="header-playlist" data-id="<?= $playlist->getId() ?>">
     <div class="img-playlist">
         <img src=<?= $playlist->getImage() ?> alt="">
     </div>
     <div class="info">
         <p>Playlist</p>
-        <h1><?= $playlist->getTitre() ?></h1>
-        <div class="container-description">
+        <h1 onmouseover="showEditButton('editNameButton')" onmouseout="hideEditButton('editNameButton')">
+            <?= $playlist->getTitre() ?>
+            <button id="editNameButton" class="edit-button" style="display: none;" onclick="openEditModal('name')">Modifier</button>
+        </h1>
+        <div class="container-description" onmouseover="showEditButton('editDescriptionButton')" onmouseout="hideEditButton('editDescriptionButton')">
             <p>
                 <?= $playlist->getDescription() ?>
+                <button id="editDescriptionButton" class="edit-button" style="display: none;" onclick="openEditModal('description')">Modifier</button>
             </p>
         </div>
         <div class="buttons">
@@ -16,6 +21,7 @@
             <div class="button-add"></div>
         </div>
     </div>
+
     <ul class="navbar-playlist">
         <li><a onclick="openMusique();">Musiques</a></li>
     </ul>
@@ -33,7 +39,7 @@
         </thead>
         <tbody>
             <?php foreach ($musiques as $musique) : ?>
-                <tr class="musique-<?=$musique->getId()?>">
+                <tr class="musique-<?= $musique->getId() ?>">
                     <td><?= $musique->getId() ?></td>
 
                     <td class="musique-title">
@@ -45,9 +51,9 @@
                         </div>
                     </td>
                     <td><?= $musique->getAlbumName() ?></td>
-                    <td><?= $playlist->getDateAjoutMusique($musique->getId())?></td>
+                    <td><?= $playlist->getDateAjoutMusique($musique->getId()) ?></td>
                     <td>
-                        <div class="remove" onclick="removeMusique(<?=$idPlaylist?>, <?=$musique->getId()?>);">
+                        <div class="remove" onclick="removeMusique(<?= $idPlaylist ?>, <?= $musique->getId() ?>);">
                             <div></div>
                         </div>
                     </td>
@@ -58,8 +64,7 @@
 </div>
 
 <script>
-
-    function removeMusique(idPlaylist, idMusique){
+    function removeMusique(idPlaylist, idMusique) {
         $.ajax({
             url: "/playlist/musique",
             method: "POST",
@@ -68,16 +73,15 @@
                 musique: idMusique,
                 action: "ajaxRemoveMusiqueInPlaylist"
             },
-            success: function(result){
+            success: function(result) {
                 let r = JSON.parse(result);
-                if(r.success){
+                if (r.success) {
                     musique = document.querySelector(".musique-" + idMusique);
-                    if(musique){
+                    if (musique) {
                         musique.remove();
                     }
                 }
             }
         });
     }
-
 </script>

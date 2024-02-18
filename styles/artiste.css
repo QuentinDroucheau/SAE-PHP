@@ -253,3 +253,11 @@
     text-decoration: underline;
 }
 
+.album img{
+    width: 6.25rem;
+}
+
+.album{
+    gap: 20px;
+    display: flex;
+}
