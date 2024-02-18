@@ -12,6 +12,7 @@ use controller\ControllerPlaylist;
 use controller\ControllerHeader;
 use models\Musique;
 use route\Route;
+use utils\Utils;
 
 require "classes/autoload.php";
 
@@ -24,7 +25,7 @@ $routes = [
     new Route("/artiste", "GET", ControllerArtiste::class, "view", [], ["id"]),
     new Route("/follow", "POST", ControllerArtiste::class, "follow", []),
     new Route("/album", "GET", ControllerAlbum::class, "view", [], ["id"]),
-    new Route("/publier", "GET", ControllerPublier::class, "view", []),
+    new Route("/publier", "GET", ControllerPublier::class, "view", ["user", "artiste", "admin"]),
     new Route("/publier", "POST", ControllerPublier::class, "publierContenue", []),
     new Route("/publierPlaylist", "POST", ControllerPubliePlaylist::class, "publierPlaylist", []),
     new Route("/effacerPlaylist", "POST", ControllerPubliePlaylist::class, "effacerPlaylist", []),
@@ -46,7 +47,7 @@ $routes = [
 $uri = parse_url($_SERVER["REQUEST_URI"]);
 $method = $_SERVER["REQUEST_METHOD"];
 $url = $uri["path"] ?? "/";
-$role = $_SESSION["utilisateur"]["role"] ?? "user";
+$role = !is_null(Utils::getConnexion()) ? Utils::getConnexion()->getRoleU() : "logout";
 $params = $_REQUEST;
 $action = $_REQUEST["action"] ?? null;
 
