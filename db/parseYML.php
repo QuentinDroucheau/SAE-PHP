@@ -21,6 +21,18 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $db->prepare('INSERT INTO utilisateur (pseudoU, mdpU, mailU, roleU) VALUES (:pseudoU, :mdpU, :mailU, :roleU)');
+    $pseudo = "admin";
+    $mdp = "admin";
+    $mail = "admin@gmail.com";
+    $role = "admin";
+
+    $stmt->bindParam(':pseudoU', $pseudo);
+    $stmt->bindParam(':mdpU', $mdp);
+    $stmt->bindParam(':mailU', $mail);
+    $stmt->bindParam(':roleU', $role);
+    $stmt->execute();
+
+    $stmt = $db->prepare('INSERT INTO utilisateur (pseudoU, mdpU, mailU, roleU) VALUES (:pseudoU, :mdpU, :mailU, :roleU)');
     $pseudo = "quentin";
     $mdp = "motdepasse";
     $mail = "quentin@gmail.com";

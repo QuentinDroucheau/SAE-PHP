@@ -42,7 +42,7 @@
                 echo '<div class="profil" onclick="openUpdate();">';
             }
             ?>
-            <a>Se connecter</a>
+            <a><?= is_null(Utils::getConnexion()) ? "Se connecter" : Utils::getConnexion()->getPseudoU()?></a>
             <img class="profil-icon" src="img/profil.png" alt="">
         </div>
         <div class="inscription-connexion">
