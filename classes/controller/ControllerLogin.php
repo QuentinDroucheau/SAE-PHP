@@ -6,6 +6,7 @@ use form\Form;
 use form\type\Submit;
 use form\type\Text;
 use models\db\UtilisateurDB;
+use models\Utilisateur;
 use utils\Utils;
 use view\BaseTemplate;
 
@@ -34,6 +35,24 @@ class ControllerLogin extends Controller{
         $form->addInput((new Text("", true, "password-confirmation", "password-confirmation"))->setLabel("Confirmer le mot de passe"));
         $form->addInput(new Submit("Confirmer", "password-button"));
         return $form;
+    }
+
+    /**
+     * retourne le formulaire d'inscription
+     */
+    private function getInscriptionForm(): Form{
+        $form = new Form("javascript:void(0);", Form::POST, "inscription-form");
+        $form->addInput((new Text("", true, "inscription-pseudo", "inscription-pseudo"))->setLabel("Pseudo"));
+        $form->addInput((new Text("", true, "inscription-mail", "inscription-mail"))->setLabel("Mail"));
+        $form->addInput((new Text("", true, "inscription-password", "inscription-password"))->setLabel("Mot de passe"));
+        $form->addInput((new Text("", true, "inscription-confirmation", "inscription-confirmation"))->setLabel("Confirmer le mot de passe"));
+        $form->addInput(new Submit("Valider", "inscription-button"));
+        return $form;
+    }
+
+    public function ajaxGetInscriptionForm(){
+        echo json_encode($this->getInscriptionForm()->render());
+        die();
     }
 
     public function ajaxGetLoginForm(){
@@ -101,6 +120,42 @@ class ControllerLogin extends Controller{
                 die();
             }
 
+        }
+
+        echo json_encode([
+            "success" => false
+        ]);
+        die();
+    }
+
+    public function ajaxValideInscriptionForm(){
+        if(isset($this->params["inscription-pseudo"])
+            and isset($this->params["inscription-mail"])
+            and isset($this->params["inscription-password"])
+            and isset($this->params["inscription-confirmation"])
+        ){
+            $pseudo = $this->params["inscription-pseudo"];
+            $mail = $this->params["inscription-mail"];
+            $password = $this->params["inscription-password"];
+            $confirmation = $this->params["inscription-confirmation"];
+
+            if($password === $confirmation){
+
+                if(is_null(UtilisateurDB::getUtilisateurByPseudo($pseudo))){
+                    
+                    $utilisateur = UtilisateurDB::addUtilisateur(
+                        $pseudo,
+                        $password,
+                        Utilisateur::ROLE_USER
+                    );
+                    Utils::login($utilisateur);
+
+                    echo json_encode([
+                        "success" => true
+                    ]);
+                    die();
+                }
+            }
         }
 
         echo json_encode([

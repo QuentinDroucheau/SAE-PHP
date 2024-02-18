@@ -32,6 +32,39 @@ function addLoginFormEvent() {
   });
 }
 
+function addInscriptionFormEvent() {
+  let form = document.querySelector("#inscription-form");
+  if (form == null) {
+    console.log("inscription form est null");
+    return false;
+  }
+  form.addEventListener("submit", function (e) {
+    let pseudo = document.querySelector("#inscription-pseudo");
+    let password = document.querySelector("#inscription-password");
+    let passwordc = document.querySelector("#inscription-confirmation");
+    let mail = document.querySelector("#inscription-mail");
+
+    $.ajax({
+      url: "/login",
+      type: "POST",
+      async: false,
+      data: {
+        "inscription-pseudo": pseudo.value,
+        "inscription-password": password.value,
+        "inscription-confirmation": passwordc.value,
+        "inscription-mail": mail.value,
+        action: "ajaxValideInscriptionForm",
+      },
+      success: function (reponse) {
+        let obj = JSON.parse(reponse);
+        if (obj.success == true) {
+          window.location.reload();
+        }
+      },
+    });
+  });
+}
+
 function addPasswordFormEvent() {
   let form = document.querySelector("#password-form");
   if (form == null) {
@@ -106,6 +139,9 @@ function closePassword() {
 }
 
 function openPassword() {
+  let elem = document.querySelector(".inscription-connexion");
+  elem.style.display = "none";
+
   let update = document.querySelector(".profil-update");
   update.style.animation = "close 0.4s ease-in-out";
 
@@ -136,7 +172,81 @@ function openPassword() {
   }, 400);
 }
 
-function openConnexion() {
+function openConnexionInscription(){
+  let elem = document.querySelector(".inscription-connexion");
+  elem.style.display = "flex";
+
+  let profil = document.querySelector(".profil");
+  profil.style.display = "none";
+}
+
+function closeInscription() {
+  let inscription = document.querySelector(".inscription");
+  inscription.removeChild(document.querySelector("#inscription-form"));
+
+  let close = document.querySelector(".inscription .close");
+  inscription.removeChild(close);
+
+  inscription.style.animation = "close 0.4s ease-in-out";
+
+  setTimeout(function () {
+    let profil = document.querySelector(".profil");
+    profil.style.display = "flex";
+    inscription.style.display = "none";
+    inscription.style.animation = "open 0.4s ease-in-out";
+    inscription.appendChild(close);
+  }, 300);
+}
+
+function closeInscriptionConnexion() {
+  let inscriptionConnexion = document.querySelector(".inscription-connexion");
+
+  let close = document.querySelector(".inscription-connexion .close");
+  inscriptionConnexion.removeChild(close);
+
+  inscriptionConnexion.style.animation = "close 0.4s ease-in-out";
+
+  setTimeout(function () {
+    let profil = document.querySelector(".profil");
+    profil.style.display = "flex";
+    inscriptionConnexion.style.display = "none";
+    inscriptionConnexion.style.animation = "open 0.4s ease-in-out";
+    inscriptionConnexion.appendChild(close);
+  }, 300);
+}
+
+function openInscription(){
+  let elem = document.querySelector(".inscription-connexion");
+  elem.style.display = "none";
+
+  let profil = document.querySelector(".profil");
+  profil.style.display = "none";
+
+  let inscription = document.querySelector(".inscription");
+  inscription.style.display = "flex";
+
+  $.ajax({
+    url: "/login",
+    type: "POST",
+    async: false,
+    data: {
+      action: "ajaxGetInscriptionForm",
+    },
+    success: function (reponse) {
+      let obj = JSON.parse(reponse);
+      let form = document.querySelector(".inscription");
+      setTimeout(function () {
+        form.innerHTML = form.innerHTML + obj;
+        addInscriptionFormEvent();
+      }, 400);
+    },
+  });
+}
+
+function openConnexion(){
+  let elem = document.querySelector(".inscription-connexion");
+  elem.style.display = "none";
+
   let profil = document.querySelector(".profil");
   profil.style.display = "none";
 
@@ -164,6 +274,9 @@ function openConnexion() {
 function openUpdate() {
   let profil = document.querySelector(".profil");
   profil.style.display = "none";
+
+  let elem = document.querySelector(".inscription-connexion");
+  elem.style.display = "none";
 
   let connexion = document.querySelector(".profil-update");
   connexion.style.display = "flex";

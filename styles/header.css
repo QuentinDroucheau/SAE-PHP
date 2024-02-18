@@ -226,6 +226,34 @@ header .right .notif .nb-notif p{
     flex-direction: column;
 }
 
+.inscription{
+    background-color: var(--couleur1);
+    border-radius: 7px;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    animation: open 0.4s ease-in-out;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.inscription-connexion{
+    background-color: var(--couleur1);
+    border-radius: 7px;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    animation: open 0.4s ease-in-out;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
 .password{
     background-color: var(--couleur1);
     border-radius: 7px;
