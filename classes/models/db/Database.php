@@ -46,7 +46,11 @@ class Database{
         return self::$instance;
     }
     
-    public function lastInsertId(){
+    /**
+     * @param string|null $name
+     * @return string|false
+     */
+    public function lastInsertId(string|null $name = null): string|false{
         return $this->db->lastInsertId();
     }
 }
