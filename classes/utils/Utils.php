@@ -51,7 +51,7 @@ class Utils{
     public static function traiterImage(): string|bool{
         // Taille maximale autorisée en octets (2 Mo)
         $maxFileSize = 2 * 1024 * 1024;
-        $uploadDir = 'fixtures/images/';
+        $uploadDir = 'public/images/';
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
     
         if (file_exists($uploadFile)) {

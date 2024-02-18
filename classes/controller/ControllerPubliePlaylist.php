@@ -19,7 +19,7 @@ class ControllerPubliePlaylist extends Controller{
             $anneeP = date('d/m/Y');
             if(isset($_FILES['image'])){
                 $image = Utils::traiterImage();
-                $imagePath = str_replace('fixtures/images/', '', $image);
+                $imagePath = str_replace('public/images/', '', $image);
             }else{
                 $imagePath = 'default.jpg';
             }

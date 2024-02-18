@@ -78,6 +78,6 @@ class Playlist extends CollectionMusicale{
      * @return string
      */
     public function getImage(): string {
-        return ($this->image ? "fixtures/images/" . $this->image : "../../img/default_playlist.png");
+        return ($this->image ? "public/images/" . $this->image : "../../img/default_playlist.png");
     }
 }

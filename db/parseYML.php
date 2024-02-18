@@ -13,7 +13,7 @@ try {
     $db = null;
 
     // Charger le fichier YAML
-    $yamlContent = file_get_contents('fixtures/extrait.yml');
+    $yamlContent = file_get_contents('db/extrait.yml');
     $data = parseYAML($yamlContent);
 
     // Connexion à la base de données SQLite

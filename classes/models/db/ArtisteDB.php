@@ -32,6 +32,9 @@ class ArtisteDB{
     }
 
 
+    /**
+     * @return Artiste[]
+     */
     public static function getArtistesLimit(): array{
         $db = Database::getInstance();
         $artistes = [];
@@ -68,14 +71,21 @@ class ArtisteDB{
         return null;
     }
 
-    public static function creerIdArtiste(){
+    /**
+     * @return int
+     */
+    public static function creerIdArtiste(): int{
         $db = Database::getInstance();
         $stmt = $db->query('SELECT MAX(idA) FROM artiste');
         $result = $stmt->fetch();
         return $result[0] + 1;
     }
 
-    public static function getIdArtiste($nom){
+    /**
+     * @param string $nom
+     * @return int|null
+     */
+    public static function getIdArtiste(string $nom): ?int{
         $db = Database::getInstance();
         $stmt = $db->prepare("SELECT idA FROM artiste WHERE nomA = :nom");
         $stmt->bindParam(":nom", $nom);
@@ -84,7 +94,11 @@ class ArtisteDB{
         return $result[0];
     }
 
-    public static function getNomArtisteById(int $id){
+    /**
+     * @param int $id
+     * @return string|null
+     */
+    public static function getNomArtisteById(int $id): ?string{
         $db = Database::getInstance();
         $stmt = $db->prepare("SELECT nomA FROM artiste WHERE idA = :id");
         $stmt->bindParam(":id", $id);
@@ -93,7 +107,11 @@ class ArtisteDB{
         return $result[0];
     }
 
-    public static function getArtisteAlbum($idAlbum) {
+    /**
+     * @param int $id
+     * @return string|null
+     */
+    public static function getArtisteAlbum(int $idAlbum): ?string{
         $db = Database::getInstance();
         $stmt = $db->prepare('SELECT artiste.nomA FROM album JOIN artiste ON album.idA = artiste.idA WHERE album.idAlbum = :idAlbum');
         $stmt->bindParam(':idAlbum', $idAlbum);
@@ -102,7 +120,11 @@ class ArtisteDB{
         return isset($result['nomA']) ? $result['nomA'] : null;
     }
     
-    public static function getIdArtisteByNom($nom){
+    /**
+     * @param string $nom
+     * @return int|null
+     */
+    public static function getIdArtisteByNom(string $nom): ?int{
         $db = Database::getInstance();
         $stmt = $db->prepare('SELECT idA FROM artiste WHERE nomA = :nomA');
         $stmt->bindParam(':nomA', $nom);
@@ -111,7 +133,10 @@ class ArtisteDB{
         return isset($result['idA']) ? $result['idA'] : null;
     }
 
-    public static function getAllNomArtiste(){
+    /**
+     * @return string[]
+     */
+    public static function getAllNomArtiste(): array{
         $db = Database::getInstance();
         $stmt = $db->query('SELECT nomA FROM artiste');
         $result = $stmt->fetchAll();
@@ -122,21 +147,35 @@ class ArtisteDB{
         return $allNomArtiste;
     }
 
-    public static function insererArtiste($nom, $image){
+    /**
+     * @param string $nom
+     * @param string $image
+     * @return void
+     */
+    public static function insererArtiste(string $nom, string $image): void{
         $db = Database::getInstance();
         $stmt = $db->prepare('INSERT INTO artiste(nomA, imgArtiste) VALUES (:nom, :image)');
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':image', $image);
         $stmt->execute();
     }
-
-    public static function supprimerArtiste($id){
+    
+    /**
+     * @param int $id
+     * @return void
+     */
+    public static function supprimerArtiste(int $id): void{
         $db = Database::getInstance();
         $stmt = $db->prepare('DELETE FROM artiste WHERE idA = :id');
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
-    public static function searchArtistes($search){
+
+    /**
+     * @param string $search
+     * @return array|false
+     */
+    public static function searchArtistes(string $search): array|false{
         $db = Database::getInstance();
         $search = '%' . $search . '%';
         $stmt = $db->prepare('SELECT * FROM artiste WHERE nomA LIKE :search');
@@ -145,5 +184,4 @@ class ArtisteDB{
         $result = $stmt->fetchAll();
         return $result;
     }
-    
 }

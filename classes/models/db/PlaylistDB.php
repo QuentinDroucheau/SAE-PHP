@@ -2,17 +2,22 @@
 
 namespace models\db;
 
-use models\Album;
 use models\Playlist;
 use models\db\MusiqueDB;
 use models\Musique;
-use models\Note;
-use models\Utilisateur;
 
-class PlaylistDB
-{
-    public static function insererPlaylist(string $titre, string $descriptionP, int $auteur, string $dateMaj, string $image, string $anneeP): ?string
-    {
+class PlaylistDB{
+
+    /**
+     * @param string $titre
+     * @param string $descriptionP
+     * @param int $auteur
+     * @param string $dateMaj
+     * @param string $image
+     * @param string $anneeP
+     * @return string|false
+     */
+    public static function insererPlaylist(string $titre, string $descriptionP, int $auteur, string $dateMaj, string $image, string $anneeP): ?string{
         $db = Database::getInstance();
         $stmt = $db->prepare("INSERT INTO playlist(nomP, descriptionP, idU, dateMajP, imgPlaylist, anneeP) VALUES (:titre, :descriptionP, :idU, :dateMaj, :imagePl, :anneeP)");
         $stmt->bindParam(":titre", $titre);
@@ -36,6 +41,11 @@ class PlaylistDB
         ]);
     }
 
+    /**
+     * @param int $idMusique
+     * @param int $idPlaylist
+     * @return bool
+     */
     public static function addMusiqueInPlaylist(int $idMusique, int $idPlaylist): bool{
         $db = Database::getInstance();
         $stmt = $db->prepare("INSERT INTO composer(idM, idP, dateAjout) VALUES (:idM, :idP, :dateAjout)");
@@ -46,6 +56,11 @@ class PlaylistDB
         return $stmt->execute();
     }
 
+    /**
+     * @param int $idMusique
+     * @param int $idPlaylist
+     * @return bool
+     */
     public static function removeMusiqueInPlaylist(int $idMusique, int $idPlaylist): bool{
         $db = Database::getInstance();
         $stmt = $db->prepare("DELETE FROM composer WHERE idM = :idM AND idP = :idP");
@@ -54,8 +69,11 @@ class PlaylistDB
         return $stmt->execute();
     }
 
-    public static function getPlaylists(int $userId): array
-    {
+    /**
+     * @param int $userId
+     * @return Playlist[]
+     */
+    public static function getPlaylists(int $userId): array{
         $db = Database::getInstance();
         $result = $db->query("SELECT * FROM playlist WHERE idU = $userId");
         $playlists = [];
@@ -73,8 +91,11 @@ class PlaylistDB
         return $playlists;
     }
 
-    public static function getPlaylist(int $playlistId): ?Playlist
-    {
+    /**
+     * @param int $playlistId
+     * @return Playlist
+     */
+    public static function getPlaylist(int $playlistId): Playlist{
         $db = Database::getInstance();
         $result = $db->query("SELECT * FROM playlist WHERE idP = $playlistId");
         $r = $result->fetch();
@@ -89,7 +110,11 @@ class PlaylistDB
         );
     }
 
-    public static function searchPlaylists($search){
+    /**
+     * @param string $search
+     * @return Playlist[]
+     */
+    public static function searchPlaylists(string $search): array{
         $db = Database::getInstance();
         $search = '%' . $search . '%';
         $stmt = $db->prepare("SELECT * FROM playlist WHERE nomP LIKE :search");
@@ -111,21 +136,24 @@ class PlaylistDB
         return $playlists;
     }
 
-    public static function effacerPlaylist(int $playlistId): ?string
-{
-    $db = Database::getInstance();
+    /**
+     * @param int $playlistId
+     * @return string|false
+     */
+    public static function effacerPlaylist(int $playlistId): ?string{
+        $db = Database::getInstance();
 
-    $stmt = $db->prepare("DELETE FROM composer WHERE idP = :idP");
-    $stmt->bindParam(":idP", $playlistId);
-    $stmt->execute();
-    $stmt = $db->prepare("DELETE FROM playlist WHERE idP = :idP");
-    $stmt->bindParam(":idP", $playlistId);
-    $stmt->execute();
-    return json_encode([
-        'success' => true,
-        'message' => 'Playlist et les sons associés ont été effacés avec succès',
-    ]);
-}
+        $stmt = $db->prepare("DELETE FROM composer WHERE idP = :idP");
+        $stmt->bindParam(":idP", $playlistId);
+        $stmt->execute();
+        $stmt = $db->prepare("DELETE FROM playlist WHERE idP = :idP");
+        $stmt->bindParam(":idP", $playlistId);
+        $stmt->execute();
+        return json_encode([
+            'success' => true,
+            'message' => 'Playlist et les sons associés ont été effacés avec succès',
+        ]);
+    }
 
     /**
      * @param int $playlistId
